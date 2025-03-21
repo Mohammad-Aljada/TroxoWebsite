@@ -6,7 +6,7 @@ const TamplateSignUp = () => {
         {/* Left Side Image */}
         <div className="hidden md:flex md:w-1/2 justify-center items-center p-6">
           <img
-            src="../../public/images/LeftSide.png"
+            src="/images/LeftSide.png"
             alt="Dashboard Preview"
             className="w-full h-full object-cover"
           />
@@ -17,7 +17,7 @@ const TamplateSignUp = () => {
           {/* Logo */}
           <div className="flex justify-start mb-6">
             <img
-              src="../../public/images/Logo.png"
+              src="/images/Logo.png"
               alt="Logo"
               className="w-32"
             />
@@ -41,7 +41,7 @@ const TamplateSignUp = () => {
 
           {/* Already have an account */}
           <p className="text-center text-gray-600 mt-4">
-            Already have an account?{" "}
+            Already have an account?
             <NavLink to="/signin" className="cursor-pointer">
               Log In
             </NavLink>
