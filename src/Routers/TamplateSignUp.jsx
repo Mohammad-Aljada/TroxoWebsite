@@ -1,14 +1,14 @@
 import { NavLink, Outlet } from "react-router";
 const TamplateSignUp = () => {
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 px-4">
-      <div className="w-full max-w-5xl overflow-hidden flex flex-col md:flex-row">
+    <div className="flex  items-center min-h-screen bg-gray-100 ">
+      <div className="w-full max-w-5xl overflow-hidden flex flex-col md:flex-row md:gap-2">
         {/* Left Side Image */}
-        <div className="hidden md:flex md:w-1/2 justify-center items-center p-6">
+        <div className="hidden md:flex  items-center p-6">
           <img
             src="/images/LeftSide.png"
             alt="Dashboard Preview"
-            className="w-full h-full object-cover"
+            className="w-full rounded-lg  object-cover"
           />
         </div>
 
