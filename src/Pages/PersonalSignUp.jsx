@@ -7,18 +7,18 @@ const PersonalSignUp = () => {
       <form className="mt-6 space-y-4">
         <input
           type="text"
-          placeholder="First Name"
-          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
+          placeholder="اسم الاول"
+          className="w-full px-4 py-2 border rounded-lg text-right focus:outline-none focus:ring-2 focus:ring-pink-500"
         />
         <input
           type="text"
-          placeholder="Last Name"
-          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
+          placeholder="اسم العائلة"
+          className="w-full px-4 py-2 border text-right rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
         />
         <input
           type="email"
-          placeholder="Email"
-          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
+          placeholder="البريد الالكتروني"
+          className="w-full px-4 py-2 border text-right rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
         />
 
         <div className="flex items-center  ">
@@ -31,29 +31,29 @@ const PersonalSignUp = () => {
           </div>
 
           <input
-            type="text"
-            placeholder="5x xxx xxxx"
-            className="w-full focus:outline-none border rounded-lg px-4 py-2"
+            type="phone"
+            placeholder="xxxx xxx x5"
+            className="w-full focus:outline-none border text-right rounded-lg px-4 py-2"
           />
         </div>
 
         <input
           type="password"
-          placeholder="Password"
-          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
+          placeholder="كلمة المرور"
+          className="w-full px-4 py-2 border text-right rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
         />
         <input
           type="password"
-          placeholder="Confirm Password"
-          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
+          placeholder="تاكيد كلمة المرور"
+          className="w-full px-4 py-2 border text-right rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
         />
 
-        <div className="flex items-center space-x-2">
-          <input type="checkbox" id="terms" className="w-4 h-4" />
-          <label htmlFor="terms" className="text-gray-600 text-sm">
-            I agree with <span className="text-[#EE3F36]">Terms</span> and
-            <span className="text-[#EE3F36]">Privacy Policy</span>
+        <div className="flex justify-end items-right space-x-2 ">
+          <label htmlFor="terms" className="text-gray-600 text-sm text-right">
+            أوافق على <span className="text-[#EE3F36] text-right">الشروط</span>و
+            <span className="text-[#EE3F36] text-right">السياسة الخصوصية</span>
           </label>
+          <input type="checkbox" id="terms" className="w-4 h-4 " />
         </div>
 
         {/* Submit Button */}
@@ -63,7 +63,7 @@ const PersonalSignUp = () => {
             type="submit"
             className="w-full bg-[#FFDDDD] text-gray-900 py-2 rounded-lg hover:bg-pink-300 transition duration-300"
           >
-            Next Step
+            خطوة التالية
           </button>
         </NavLink>
       </form>

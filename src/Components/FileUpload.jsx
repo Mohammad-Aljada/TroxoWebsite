@@ -42,16 +42,14 @@ const FileUpload = () => {
             alt="File Upload Icon"
             className="w-6"
           />
-          <p className="text-base font-semibold ">
-            Attach the commercial register
-          </p>
+          <p className="text-base font-semibold ">أرفق السجل التجاري </p>
         </div>
 
         <label
           htmlFor="file-upload"
           className=" cursor-pointer text-[#2a2a2ad3] mb-2"
         >
-          Drag And Drop File Here Or Click To Upload
+          اسحب وأفلت الملف هنا أو انقر لتحميله
         </label>
 
         <input
@@ -62,7 +60,7 @@ const FileUpload = () => {
         />
       </div>
       <p className="text-gray-500 text-sm text-center mt-2">
-        File size should not be more than 5MB
+        يجب ألا يتجاوز حجم الملف 5 ميغابايت{" "}
       </p>
       {file && (
         <div className="mt-4 p-4 bg-gray-100 rounded-lg">
