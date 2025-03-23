@@ -48,7 +48,7 @@ const BussinessSignUp = () => {
 
         <FileUpload />
         {/* Submit Button */}
-        <NavLink to="/home">
+        <NavLink to="/signin">
         <button
           type="submit"
           className="w-full bg-[#FFDDDD] text-gray-900 py-2 rounded-lg hover:bg-pink-300 transition duration-300"
