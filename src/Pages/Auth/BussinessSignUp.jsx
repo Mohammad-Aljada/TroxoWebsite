@@ -49,12 +49,12 @@ const BussinessSignUp = () => {
         <FileUpload />
         {/* Submit Button */}
         <NavLink to="/signIn">
-        <button
-          type="submit"
-          className="w-full bg-[#FFDDDD] text-gray-900 py-2 rounded-lg hover:bg-pink-300 transition duration-300"
-        >
-          انشاء حساب
-        </button>
+          <button
+            type="submit"
+            className="w-full bg-[#FFDDDD] text-gray-900 py-2 rounded-lg hover:bg-pink-300 transition duration-300"
+          >
+            انشاء حساب
+          </button>
         </NavLink>
       </form>
     </>
