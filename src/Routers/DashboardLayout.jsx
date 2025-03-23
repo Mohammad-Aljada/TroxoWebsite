@@ -1,5 +1,5 @@
-import DashboardHeader from './../Components/DashboardHeader';
-import  SideBar  from './../Components/SideBar';
+import DashboardHeader from '../../Components/DashboardHeader';
+import  SideBar  from '../../Components/SideBar';
 import { Outlet } from 'react-router';
 const DashboardLayout = () => {
     return(
