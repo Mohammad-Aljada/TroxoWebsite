@@ -7,26 +7,20 @@ const SignIn = () => {
         {/* Left Side Image */}
         <div className="hidden md:flex  items-center p-6">
           <img
-            src="/images/LeftSide.png"
+            src="/images/SignInImage.png"
             alt="Dashboard Preview"
             className="w-full rounded-lg  object-cover"
           />
         </div>
 
         {/* Right Side Form */}
-        <div className="w-full md:w-1/2 p-8">
+        <div className="w-full flex flex-col items-center mt-20 md:w-1/2 p-8">
           {/* Logo */}
-          <div className="flex justify-start mb-14">
-            <img
-              src="/images/Logo.png" // تأكد من أن المسار صحيح
-              alt="Logo"
-              className="w-32"
-            />
-          </div>
+          
 
           {/* Title */}
           <h2 className="text-2xl font-bold text-right text-gray-900">
-            ابدأ الآن{" "}
+            ابدأ الآن
           </h2>
           <p className="text-gray-600 text-right mt-2">
             . يرجى إدخال معلوماتك للوصول إلى حسابك
@@ -51,12 +45,13 @@ const SignIn = () => {
               نسيت كلمة المرور؟
             </NavLink>
             {/* Submit Button */}
+            <NavLink to="/home" className=" hover:text-pink-400">
             <button
               type="submit"
               className="w-full cursor-pointer mt-4 bg-[#FFDDDD]  py-2 rounded-lg hover:bg-pink-300 transition duration-300"
             >
               تسجيل الدخول
-            </button>
+            </button></NavLink>
           </form>
 
           {/* OR Divider */}

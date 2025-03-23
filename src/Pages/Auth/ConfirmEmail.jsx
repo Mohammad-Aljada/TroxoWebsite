@@ -7,7 +7,7 @@ const ConfirmEmail = () => {
         {/* Left Side Image */}
         <div className="hidden md:flex  items-center p-6">
           <img
-            src="/images/LeftSide.png"
+            src="/images/SignInImage.png"
             alt="Dashboard Preview"
             className="w-full rounded-lg  object-cover"
           />
