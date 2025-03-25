@@ -1,5 +1,4 @@
-
-import StatCardStore from './StatCardStore';
+import StatCardStore from "./StatCardStore";
 
 export default function StatGrid() {
   const stats = [
@@ -32,37 +31,37 @@ export default function StatGrid() {
       isPositive: false,
     },
     {
-        title: "أكثر الشركات استخداماً",
-        value: "smsa",
-        change: "33.02%",
-        icon: "/images/DeliveryIcone.svg",
-        isPositive: true,
-      },
-      {
-        title: "الشحنات الدولية",
-        value: "250",
-        change: "18.72%",
-        icon: "/images/globe.svg",
-        isPositive: true,
-      },
-      {
-        title: "الشحنات المحلية",
-        value: "654",
-        change: "33.02%",
-        icon: "/images/TempIcone.svg",
-        isPositive: false,
-      },
-      {
-        title: "أكثر متجر شحن",
-        value: "ملابس رياضية",
-        change: "33.02%",
-        icon: "/images/mostShippe.svg",
-        isPositive: false,
-      },
+      title: "أكثر الشركات استخداماً",
+      value: "smsa",
+      change: "33.02%",
+      icon: "/images/DeliveryIcone.svg",
+      isPositive: true,
+    },
+    {
+      title: "الشحنات الدولية",
+      value: "250",
+      change: "18.72%",
+      icon: "/images/globe.svg",
+      isPositive: true,
+    },
+    {
+      title: "الشحنات المحلية",
+      value: "654",
+      change: "33.02%",
+      icon: "/images/TempIcone.svg",
+      isPositive: false,
+    },
+    {
+      title: "أكثر متجر شحن",
+      value: "ملابس رياضية",
+      change: "33.02%",
+      icon: "/images/mostShippe.svg",
+      isPositive: false,
+    },
   ];
 
   return (
-    <div className="mt-4 w-full" >
+    <div className="mt-4 w-full">
       <div className="grid grid-cols-1 sm:grid-cols-2   md:grid-cols-3 lg:grid-cols-4 gap-5">
         {stats.map((stat, index) => (
           <StatCardStore key={index} {...stat} />

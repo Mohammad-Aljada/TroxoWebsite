@@ -15,7 +15,9 @@ export default function Statistics() {
         <span className="text-sm text-neutral-500">
           الرئيسية &gt; الإحصائيات
         </span>
-        <h2 className="text-2xl text-right font-black text-gray-800">لوحة التحكم</h2>
+        <h2 className="text-2xl text-right font-black text-gray-800">
+          لوحة التحكم
+        </h2>
       </div>
 
       <section className="p-4 md:p-8 bg-white rounded-2xl">
@@ -25,13 +27,17 @@ export default function Statistics() {
           </h3>
           <p className="text-base text-right text-neutral-500">
             نحتاج منك اختيار المتجر الذي ترغب في عرض الإحصائيات له. من خلال
-            اختيار المتجر المناسب، سنتمكن من تزويدك بأحدث التحليلات
-            والبيانات التي تعكس أداء الشحن الخاص بك.
+            اختيار المتجر المناسب، سنتمكن من تزويدك بأحدث التحليلات والبيانات
+            التي تعكس أداء الشحن الخاص بك.
           </p>
         </div>
         <div className="w-full flex flex-col md:flex-row gap-5 justify-around items-center">
           <div className="w-full md:w-[400px] self-center">
-            <img src="/Icones/stats.png" alt="Stats image" className="w-full max-w-[300px] mx-auto" />
+            <img
+              src="/Icones/stats.png"
+              alt="Stats image"
+              className="w-full max-w-[300px] mx-auto"
+            />
           </div>
           <div className="flex flex-col  gap-5 w-full md:w-[400px]">
             <h4 className="text-xl text-right font-semibold text-slate-900">
@@ -55,19 +61,16 @@ export default function Statistics() {
                 onClick={() => handleStoreSelect("متجر ساعات")}
               />
             </div>
-
-           
           </div>
-          
         </div>
-        <NavLink to="/home/statistics/statstore" className="flex justify-center items-center mt-6">
-              <button
-                className="mt-5 h-12 text-lg  font-semibold bg-red-100 rounded-xl text-pink-950 w-full md:w-[290px]"
-                
-              >
-                الخطوة التالية
-              </button>
-            </NavLink>
+        <NavLink
+          to="/home/statistics/statstore"
+          className="flex justify-center items-center mt-6"
+        >
+          <button className="mt-5 h-12 text-lg  font-semibold bg-red-100 rounded-xl text-pink-950 w-full md:w-[290px]">
+            الخطوة التالية
+          </button>
+        </NavLink>
       </section>
     </main>
   );
@@ -87,8 +90,14 @@ function StoreOption({ name, selected, onClick }) {
             __html: `<svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-[35px] h-[35px]">...</svg>`,
           }}
         />
-        <span className="text-xl md:text-lg font-bold text-slate-900">{name}</span>
-        <img src="/Icones/StoreLogo.png" alt="Store icon" className="w-8 h-8 md:w-10 md:h-10" />
+        <span className="text-xl md:text-lg font-bold text-slate-900">
+          {name}
+        </span>
+        <img
+          src="/Icones/StoreLogo.png"
+          alt="Store icon"
+          className="w-8 h-8 md:w-10 md:h-10"
+        />
       </div>
       <div
         className={`rounded-full border h-[22px] w-[22px] ${
