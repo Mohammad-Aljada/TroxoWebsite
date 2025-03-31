@@ -1,6 +1,13 @@
 import StoreDetails from "../Components/StoreDetails";
+import { useState } from "react";
+import AddStoreModal from './../Components/Modal/AddStoreModal';
 
 function Shopes() {
+  const [activeModal, setActiveModal] = useState(false);
+
+  const handleAddStoreClick = () => {
+    setActiveModal(true);
+  };
   return (
     <div className="ml-5 w-[95%] max-md:ml-0 max-md:w-full">
       <section className="flex flex-col grow items-end mt-10  max-md:max-w-full">
@@ -12,7 +19,7 @@ function Shopes() {
         </nav>
         <div className="flex overflow-hidden flex-col self-stretch px-7 pt-5 pb-10 mt-7 w-full bg-white rounded-2xl max-md:px-5 max-md:max-w-full">
           <div className="flex flex-wrap gap-5 justify-between max-md:max-w-full">
-            <button className="flex overflow-hidden flex-col justify-center items-center py-1 pr-3 pl-2 my-auto text-sm font-semibold tracking-normal leading-6 bg-red-100 rounded-md text-pink-950">
+            <button onClick={handleAddStoreClick} className="flex overflow-hidden flex-col justify-center items-center py-1 pr-3 pl-2 my-auto text-sm font-semibold tracking-normal leading-6 bg-red-100 rounded-md text-pink-950">
               <div className="flex overflow-hidden gap-2 items-start">
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets/TEMP/1e95660b64d80ec70fafcd1a47dbccf9a97e8de4?placeholderIfAbsent=true&apiKey=33cf6ee4ee4e4cdd8b24ad2c5832d456"
@@ -71,6 +78,12 @@ function Shopes() {
             />
           </div>
         </div>
+           {/* عرض المودال عند النقر */}
+      {activeModal === true && (
+        <AddStoreModal 
+          onClose={() => setActiveModal(null)} 
+        />
+      )}
       </section>
     </div>
   );

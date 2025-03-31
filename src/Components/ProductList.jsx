@@ -1,4 +1,6 @@
 import { FilterButton, ExcelButton, AddProductButton } from "./ActionButtons";
+import AddProductModal from './Modal/AddProductModal';
+import { useState } from 'react';
 
 const productData = [
   {
@@ -84,181 +86,239 @@ const productData = [
 ];
 
 export const ProductList = () => {
+    const [activeModal, setActiveModal] = useState(null);
+    
+    const handleAddProductClick = () => {
+      setActiveModal('product');
+    };
   return (
-    <section className="flex flex-col px-7 py-5 mt-7 w-full bg-white rounded-2xl max-md:px-5">
+    <section className="flex flex-col w-full  bg-white rounded-2xl p-4 sm:p-6">
       {/* Header Section */}
-      <div className="flex flex-wrap flex-row-reverse justify-between items-center w-full gap-4 mb-6">
-        <div className="flex flex-row-reverse items-center gap-4">
-          <h2 className="text-2xl  font-bold text-gray-800">المنتجات</h2>
-          <div className="flex items-center gap-2 flex-row-reverse px-4 py-2 border border-gray-300 rounded-full">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/927f879410be1cceca35e9ec4d49b92866ee320f?placeholderIfAbsent=true&apiKey=33cf6ee4ee4e4cdd8b24ad2c5832d456"
-              alt="ابحث عن المنتج"
-              className="object-contain w-3.5 aspect-square"
-            />
+      <div className="flex flex-col gap-4 w-full mb-6 lg:flex-row lg:justify-between lg:items-center">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+          <h2 className="text-xl font-bold text-gray-800 sm:text-2xl">
+            المنتجات
+          </h2>
+          <div className="relative">
+            <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+              <svg
+                className="w-5 h-5 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+            </div>
             <input
               type="text"
               placeholder="...ابحث عن المنتج"
-              className="text-sm text-right text-gray-500 bg-transparent outline-none w-40"
+              className="w-full py-2 pl-4 pr-10 text-sm text-right border border-gray-300 rounded-full focus:ring-2 focus:ring-red-300 focus:border-transparent sm:w-64"
             />
           </div>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end">
           <div className="flex gap-2">
             <FilterButton />
             <ExcelButton />
           </div>
-          <AddProductButton />
+          <AddProductButton onClick={handleAddProductClick} />
         </div>
+           {/* عرض المودال عند النقر */}
+      {activeModal === 'product' && (
+        <AddProductModal 
+          onClose={() => setActiveModal(null)} 
+        />
+      )}
       </div>
 
       {/* Info Message */}
-      <p className="text-sm text-right text-pink-700 mb-6">
+      <p className="text-sm text-right text-pink-700 mb-6 sm:text-base">
         .تتيح لك تروكسو حفظ منتجاتك لتسهيل إدارة الشحنات. لضمان دقة حساب تكاليف
         الشحن، يرجى الحرص على دقة إدخال الأبعاد ووزن المنتج
       </p>
 
-      {/* Products Table - Horizontal Layout */}
-      <div className="overflow-x-auto">
-        <table className="w-full border-collapse">
-          <thead>
-            <tr className="bg-red-100 text-gray-700 font-semibold">
-              <th className="p-3 w-12 text-center">#</th>
-
-              <th className="p-3 min-w-[100px]">
-                <div className="flex items-center justify-center gap-2">
-                  <img
-                    src="/Icones/box.svg"
-                    alt="product icon"
-                    className="w-5 h-5 object-contain"
-                  />
-                  <span>اسم المنتج</span>
-                </div>
-              </th>
-
-              <th className="p-3 min-w-[100px]">
-                <div className="flex items-center justify-center gap-2">
-                  <img
-                    src="/Icones/length.svg"
-                    alt="length icon"
-                    className="w-5 h-5 object-contain"
-                  />
-                  <span>الطول</span>
-                </div>
-              </th>
-
-              <th className="p-3 min-w-[100px]">
-                <div className="flex items-center justify-center gap-2">
-                  <img
-                    src="/Icones/weight.svg"
-                    alt="weight icon"
-                    className="w-5 h-5 object-contain"
-                  />
-                  <span>الوزن</span>
-                </div>
-              </th>
-
-              <th className="p-3 min-w-[100px]">
-                <div className="flex items-center justify-center gap-2">
-                  <img
-                    src="/Icones/height.svg"
-                    alt="height icon"
-                    className="w-5 h-5 object-contain"
-                  />
-                  <span>الارتفاع</span>
-                </div>
-              </th>
-
-              <th className="p-3 min-w-[100px]">
-                <div className="flex items-center justify-center gap-2">
-                  <img
-                    src="/Icones/width.svg"
-                    alt="width icon"
-                    className="w-5 h-5 object-contain"
-                  />
-                  <span>العرض</span>
-                </div>
-              </th>
-
-              <th className="p-3 min-w-[100px]">
-                <div className="flex items-center justify-center gap-2">
-                  <img
-                    src="/Icones/price.svg"
-                    alt="price icon"
-                    className="w-5 h-5 object-contain"
-                  />
-                  <span>السعر</span>
-                </div>
-              </th>
-
-              <th className="p-3 min-w-[100px]">
-                <div className="flex items-center justify-center gap-2">
-                  <img
-                    src="/Icones/Quantity.svg"
-                    alt="quantity icon"
-                    className="w-5 h-5 object-contain"
-                  />
-                  <span>الكمية</span>
-                </div>
-              </th>
-
-              <th className="p-3 min-w-[100px] text-center"></th>
-            </tr>
-          </thead>
-          <tbody>
-            {productData.map((product, index) => (
-              <tr
-                key={index}
-                className="border-b border-gray-200 hover:bg-gray-50"
-              >
-                <td className="p-3 text-center">{index + 1}</td>
-                <td className="p-3 font-medium text-center ">{product.name}</td>
-                <td className="p-3 text-center">{product.length}</td>
-                <td className="p-3 text-center">{product.weight}</td>
-                <td className="p-3 text-center">{product.height}</td>
-                <td className="p-3 text-center">{product.width}</td>
-                <td className="p-3 font-medium text-center ">
-                  {product.price}
-                </td>
-                <td className="p-3 text-center">{product.quantity}</td>
-                <td className="p-3 text-center">
-                  <div className="flex gap-2">
-                    <button className="px-3 py-1  bg-red-100">
-                      <img
-                        src="/Icones/subMenu.svg"
-                        alt="menu icon"
-                        className="w-5 h-5 object-contain"
-                      />
-                    </button>
+      {/* Responsive Table */}
+      <div className="border  border-gray-200 rounded-lg overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="min-w-full  divide-y divide-gray-200">
+            <thead className="bg-red-100">
+              <tr>
+                <th
+                  scope="col"
+                  className="px-3 py-3 text-xs font-medium text-gray-700 text-center uppercase tracking-wider"
+                >
+                  #
+                </th>
+                <th
+                  scope="col"
+                  className="px-3 py-3  text-xs font-medium text-gray-700 text-center uppercase tracking-wider min-w-[150px]"
+                >
+                  <div className="flex justify-center items-center gap-1">
+                    <img
+                      src="/Icones/box.svg"
+                      alt="product name"
+                      className="object-contain w-4 h-4 aspect-square"
+                    />
+                    <span className="font-bold text-base ">اسم المنتج</span>
                   </div>
-                </td>
+                </th>
+                <th
+                  scope="col"
+                  className="px-3 py-3 text-xs font-medium text-gray-700 text-center uppercase tracking-wider"
+                >
+                  <div className="flex justify-center items-center gap-1">
+                    <img
+                      src="/Icones/length.svg"
+                      alt="product length"
+                      className="object-contain w-4 h-4 aspect-square"
+                    />
+                    <span className="font-bold text-base">الطول</span>
+                  </div>
+                </th>
+                <th
+                  scope="col"
+                  className="px-3 py-3 text-xs font-medium text-gray-700 text-center uppercase tracking-wider"
+                >
+                  <div className="flex justify-center items-center gap-1">
+                    <img
+                      src="/Icones/weight.svg"
+                      alt="product weight"
+                      className="object-contain w-4 h-4 aspect-square"
+                    />
+                    <span className="font-bold text-base">الوزن</span>
+                  </div>
+                </th>
+                <th
+                  scope="col"
+                  className="px-3 py-3 text-xs font-medium text-gray-700 text-center uppercase tracking-wider"
+                >
+                  <div className="flex justify-center items-center gap-1">
+                    <img
+                      src="/Icones/height.svg"
+                      alt="product height"
+                      className="object-contain w-4 h-4 aspect-square"
+                    />
+                    <span className="font-bold text-base ">ارتفاع</span>
+                  </div>
+                </th>
+                <th
+                  scope="col"
+                  className="px-3 py-3 text-xs font-medium text-gray-700 text-center uppercase tracking-wider"
+                >
+                  <div className="flex justify-center items-center gap-1">
+                    <img
+                      src="/Icones/width.svg"
+                      alt="product width"
+                      className="object-contain w-4 h-4 aspect-square"
+                    />
+                    <span className="font-bold text-base">عرض</span>
+                  </div>
+                </th>
+                <th
+                  scope="col"
+                  className="px-3 py-3 text-xs font-medium text-gray-700 text-center uppercase tracking-wider"
+                >
+                  <div className="flex justify-center items-center gap-1">
+                    <img
+                      src="/Icones/price.svg"
+                      alt="product price"
+                      className="object-contain w-4 h-4 aspect-square"
+                    />
+                    <span className="font-bold text-base">السعر</span>
+                  </div>
+                </th>
+                <th
+                  scope="col"
+                  className="px-3 py-3 text-xs font-medium text-gray-700 text-center uppercase tracking-wider"
+                >
+                  <div className="flex justify-center items-center gap-1">
+                    <img
+                      src="/Icones/Quantity.svg"
+                      alt="product quantity"
+                      className="object-contain w-4 h-4 aspect-square"
+                    />
+                    <span className="font-bold text-base">الكمية</span>
+                  </div>
+                </th>
+                <th
+                  scope="col"
+                  className="px-3 py-3 text-xs font-medium text-gray-700 text-center uppercase tracking-wider"
+                >
+                  <span className="sr-only">إجراءات</span>
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {productData.map((product, index) => (
+                <tr key={index} className="hover:bg-gray-50">
+                  <td className="px-3 py-4 whitespace-nowrap text-sm text-center text-gray-800">
+                    Po-{index + 1}
+                  </td>
+                  <td className="px-3 py-4 whitespace-nowrap text-sm font-medium text-center text-gray-800">
+                    {product.name}
+                  </td>
+                  <td className="px-3 py-4 whitespace-nowrap text-sm text-center text-gray-800">
+                    {product.length}
+                  </td>
+                  <td className="px-3 py-4 whitespace-nowrap text-sm text-center text-gray-800">
+                    {product.weight}
+                  </td>
+                  <td className="px-3 py-4 whitespace-nowrap text-sm text-center text-gray-800">
+                    {product.height}
+                  </td>
+                  <td className="px-3 py-4 whitespace-nowrap text-sm text-center text-gray-800">
+                    {product.width}
+                  </td>
+                  <td className="px-3 py-4 whitespace-nowrap text-sm font-medium text-center text-gray-800">
+                    {product.price}
+                  </td>
+                  <td className="px-3 py-4 whitespace-nowrap text-sm text-center text-gray-800">
+                    {product.quantity}
+                  </td>
+                  <td className="px-3 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <button className="text-gray-400 hover:text-red-900">
+                      <svg
+                        className="w-6 h-6 rotate-90 bg-red-100 rounded-lg"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
 
       {/* Pagination */}
-      <div className="flex justify-between items-center mt-6">
-        <div className="text-sm text-gray-500">
-          <span>عرض</span>
-          <select className="px-3 py-1 ml-2 border border-gray-300 rounded">
-            <option>10</option>
-            <option>20</option>
-            <option>30</option>
+      <div className="flex flex-col items-center justify-between mt-6 space-y-4 sm:flex-row sm:space-y-0">
+        <div className="flex items-center space-x-2">
+          <p className="text-sm text-gray-700">عدد الصفوف في كل صفحة:</p>
+          <select className="text-sm bg-gray-300 p-2  focus:ring-red-500 focus:border-red-500">
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
           </select>
-          <span> عدد الصفوف لكل صفحة</span>
         </div>
-        <div className="flex items-center gap-2">
-          <button className="px-3 py-1 rounded bg-gray-100 text-gray-700 hover:bg-gray-200">
-            السابق
+        <div className="flex space-x-2">
+          <button className="px-3 py-1 border rounded-md text-sm font-medium text-gray-700 ">
+            <img src="/Icones/ArrowRight.svg" alt="السابق" />
           </button>
-          <button className="px-3 py-1 rounded bg-red-100 text-red-700 font-medium">
+          <button className="px-3 py-1 bg-gray-100 text-black rounded-md text-sm font-medium">
             1
           </button>
-          <button className="px-3 py-1 rounded bg-gray-100 text-gray-700 hover:bg-gray-200">
-            التالي
+          <button className="px-3 py-1 border  rounded-md text-sm font-medium text-gray-700 ">
+            <img src="/Icones/ArrowLeft.svg" alt="تالي" />
           </button>
         </div>
       </div>

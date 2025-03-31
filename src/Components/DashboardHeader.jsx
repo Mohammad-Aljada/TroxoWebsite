@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import NotificationsPanel from "../Components/Notifications/NotificationsPanel";
-import SettingsMenu from "../Components/Settings/SettingsMenu"; // تأكد من المسار الصحيح
+import SettingsMenu from "../Components/Settings/SettingsMenu";
+import { NavLink } from "react-router";
 
 const DashboardHeader = ({ toggleSidebar }) => {
   const [showNotifications, setShowNotifications] = useState(false);
@@ -8,7 +9,6 @@ const DashboardHeader = ({ toggleSidebar }) => {
   const notificationsRef = useRef(null);
   const settingsRef = useRef(null);
 
-  // إغلاق لوحة الإشعارات عند النقر خارجها
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -28,19 +28,20 @@ const DashboardHeader = ({ toggleSidebar }) => {
 
   const toggleNotifications = () => {
     setShowNotifications(!showNotifications);
-    setShowSettings(false); // إغلاق قائمة الإعدادات إذا كانت مفتوحة
+    setShowSettings(false);
   };
 
   const toggleSettings = () => {
     setShowSettings((prev) => !prev);
     setShowNotifications(false);
   };
+
   return (
-    <header className="flex flex-wrap gap-5 justify-between items-center py-5 px-4 w-full bg-red-100 max-lg:flex-col max-md:px-3">
-      {/* Section 1: الترحيب وشريط البحث */}
-      <div className="flex flex-wrap items-center gap-8 text-pink-950 max-lg:w-full max-lg:justify-between">
-        <div className="flex justify-center items-center gap-8 max-lg:items-start">
-          {/* Hamburger Menu for Mobile */}
+    <header className="flex flex-col md:flex-row gap-3 md:gap-5 justify-between items-start md:items-center py-3 px-4 w-full bg-red-100">
+      {/* الجزء الأول: القائمة والترحيب */}
+      <div className="flex items-center justify-between w-full md:w-auto">
+        <div className="flex items-center gap-3">
+          {/* قائمة الهامبرجر */}
           <button
             className="md:hidden"
             onClick={toggleSidebar}
@@ -48,48 +49,92 @@ const DashboardHeader = ({ toggleSidebar }) => {
           >
             <img src="/Icones/MenuIcone.svg" alt="Menu" className="w-6 h-6" />
           </button>
-          <h2 className="text-xl font-extrabold leading-none">مرحبًا</h2>
-          <p className="text-base leading-6">
-            عبد الله <br /> #1255
-          </p>
+
+          {/* الترحيب والمعلومات */}
+          <div className="flex flex-col md:flex-row md:items-center md:gap-4">
+            <h2 className="text-lg md:text-xl font-extrabold">مرحبًا</h2>
+            <p className="text-sm md:text-base">
+              عبد الله <br className="md:hidden" /> #1255
+            </p>
+          </div>
         </div>
-        <div className="flex items-center gap-4 px-5 py-3 text-xs border border-solid border-pink-950 rounded-[30px] max-lg:w-full">
-          <img
-            src="/images/SearchIcone.svg"
-            alt="Search"
-            className="object-contain shrink-0 w-4 aspect-square"
-          />
+
+        {/* الأيقونات (للجوال فقط) */}
+        <div className="flex items-center gap-3 md:hidden">
+          <button
+            aria-label="Notifications"
+            onClick={toggleNotifications}
+            className="p-1 hover:bg-gray-100 rounded-full"
+          >
+            <img
+              src="/images/Notification.svg"
+              alt="Notifications"
+              className="w-5 h-5"
+            />
+          </button>
+          <button
+            aria-label="World"
+            className="p-1 hover:bg-gray-100 rounded-full"
+          >
+            <img
+              src="/Icones/worldIcone.svg"
+              alt="world icon"
+              className="w-5 h-5"
+            />
+          </button>
+          <button
+            onClick={toggleSettings}
+            aria-label="User profile"
+            className="p-1 hover:bg-gray-100 rounded-full"
+          >
+            <img
+              src="/images/profileImage.png"
+              alt="User profile"
+              className="w-8 h-8 rounded-lg"
+            />
+          </button>
+        </div>
+      </div>
+
+      {/* الجزء الأوسط: البحث والأزرار */}
+      <div className="flex flex-col md:flex-row items-center gap-3 w-full md:flex-1 md:justify-center">
+        {/* شريط البحث */}
+        <div className="flex items-center w-full md:max-w-[300px] gap-2 px-3 py-2 text-sm border border-solid border-pink-950 rounded-full ">
+          <img src="/images/SearchIcone.svg" alt="Search" className="w-4 h-4" />
           <input
             type="search"
             placeholder="ابحث هنا..."
             className="w-full bg-transparent outline-none"
           />
         </div>
+
+        {/* الأزرار */}
+        <div className="flex items-center gap-2 w-full md:w-auto">
+          <NavLink
+            to="/home/shipments/addnewstore">
+
+          <button className="flex items-center cursor-pointer justify-center gap-2 px-4 py-2  rounded-lg shadow-sm border border-solid border-pink-950 text-sm md:text-base hover:bg-gray-50 transition-colors">
+            <span>إضافة شحنة</span>
+          </button>
+          </NavLink>
+          <button className="flex items-center cursor-pointer justify-center gap-2 px-4 py-2  rounded-lg shadow-sm border border-solid border-pink-950 text-sm md:text-base hover:bg-gray-50 transition-colors">
+            <span>إضافة رصيد</span>
+          </button>
+        </div>
       </div>
 
-      {/* Section 2: الأزرار */}
-      <div className="flex items-center gap-4 text-center text-pink-950 max-lg:w-full max-lg:justify-center max-lg:mt-4">
-        <button className="flex flex-col justify-center items-center px-2 py-1 bg-opacity-10 rounded-lg shadow-md border border-solid border-pink-950">
-          <span className="py-2 px-5 rounded-lg">إضافة شحنة</span>
-        </button>
-        <button className="flex flex-col justify-center items-center px-2 py-1 bg-opacity-10 rounded-lg shadow-md border border-solid border-pink-950">
-          <span className="py-2 px-5 rounded-lg">إضافة رصيد</span>
-        </button>
-      </div>
-
-      {/* Section 3: الإشعارات وصورة الملف الشخصي */}
-      <div className="flex items-center gap-4 max-lg:w-full max-lg:justify-end max-lg:mt-4">
-        {/* زر الإشعارات مع لوحة الإشعارات */}
+      {/* الأيقونات (لشاشات الكمبيوتر) */}
+      <div className="hidden md:flex items-center gap-3 ml-4">
         <div className="relative" ref={notificationsRef}>
           <button
             aria-label="Notifications"
             onClick={toggleNotifications}
-            className="focus:outline-none cursor-pointer"
+            className="p-1 hover:bg-gray-100 rounded-full focus:outline-none cursor-pointer"
           >
             <img
               src="/images/Notification.svg"
               alt="Notifications"
-              className="w-5 aspect-square"
+              className="w-5 h-5"
             />
           </button>
           {showNotifications && (
@@ -99,26 +144,27 @@ const DashboardHeader = ({ toggleSidebar }) => {
           )}
         </div>
 
-        {/* زر اللغة */}
-        <button aria-label="World">
+        <button
+          aria-label="World"
+          className="p-1 hover:bg-gray-100 rounded-full"
+        >
           <img
             src="/Icones/worldIcone.svg"
             alt="world icon"
-            className="w-5 aspect-square"
+            className="w-5 h-5"
           />
         </button>
 
-        {/* صورة الملف الشخصي مع قائمة الإعدادات */}
         <div className="relative" ref={settingsRef}>
           <button
             onClick={toggleSettings}
             aria-label="User profile"
-            className="focus:outline-none cursor-pointer"
+            className="hover:opacity-80 transition-opacity focus:outline-none cursor-pointer"
           >
             <img
               src="/images/profileImage.png"
               alt="User profile"
-              className="w-10 rounded-lg aspect-square hover:opacity-80 transition-opacity"
+              className="w-9 h-9 rounded-lg"
             />
           </button>
           {showSettings && (

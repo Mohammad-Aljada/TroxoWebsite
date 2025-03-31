@@ -4,14 +4,20 @@ import SalesChart from "./../Components/SalesCart";
 
 const Home = () => {
   return (
-    <section className="flex flex-col px-8 mt-6 w-full max-md:px-5 max-md:max-w-full">
-      <h1 className="self-end text-2xl font-black leading-tight text-gray-800 uppercase">
-        لوحة التحكم
-      </h1>
-      <p className="self-end mt-2 text-sm text-neutral-500">الرئيسية</p>
+    <section className="flex flex-col px-4 md:px-8 mt-4 md:mt-6 w-full">
+      {/* العنوان والمسار */}
+      <div className="self-end text-right">
+        <h1 className="text-xl md:text-2xl font-black text-gray-800 uppercase">
+          لوحة التحكم
+        </h1>
+        <p className="mt-1 md:mt-2 text-xs md:text-sm text-neutral-500">
+          الرئيسية
+        </p>
+      </div>
 
-      <div className="mt-6 w-full max-md:mr-2.5 max-md:max-w-full">
-        <div className="flex gap-5 max-md:flex-col">
+      {/* بطاقات الإحصائيات - الصف الأول */}
+      <div className="mt-4 md:mt-6 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-3">
           <StatCard
             title="الشحنات شهريًا"
             value="155"
@@ -20,6 +26,7 @@ const Home = () => {
             icon="/images/ShippingMonth.svg"
             borderColor="border-indigo-500"
             textColor="text-indigo-500"
+            compact
           />
           <StatCard
             title="الربح"
@@ -30,6 +37,7 @@ const Home = () => {
             borderColor="border-rose-400"
             textColor="text-rose-400"
             showCurrency
+            compact
           />
           <StatCard
             title="إجمالي العملاء"
@@ -39,12 +47,14 @@ const Home = () => {
             icon="/images/AllClients.svg"
             borderColor="border-slate-400"
             textColor="text-slate-400"
+            compact
           />
         </div>
       </div>
 
-      <div className="mt-6 w-full max-md:mr-2.5 max-md:max-w-full">
-        <div className="flex gap-5 max-md:flex-col">
+      {/* بطاقات الإحصائيات - الصف الثاني */}
+      <div className="mt-4 md:mt-6 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5">
           <StatCard
             title="إجمالي الشحنات"
             value="250"
@@ -54,6 +64,7 @@ const Home = () => {
             borderColor="border-pink-950"
             textColor="text-pink-950"
             borderOpacity="border-opacity-60"
+            compact
           />
           <StatCard
             title="تم الاستلام"
@@ -63,6 +74,7 @@ const Home = () => {
             icon="/images/DeliveryTime.svg"
             borderColor="border-orange-500"
             textColor="text-orange-500"
+            compact
           />
           <StatCard
             title="مرتجع"
@@ -72,16 +84,18 @@ const Home = () => {
             icon="/images/Rebot.svg"
             borderColor="border-neutral-400"
             textColor="text-neutral-400"
+            compact
           />
         </div>
       </div>
 
-      <div className="mt-6 max-md:max-w-full">
-        <div className="flex gap-5 lg:flex-row md:flex-col">
-          <div className="w-[68%] max-md:ml-0 max-md:w-full">
+      {/* الجدول والرسم البياني */}
+      <div className="mt-4 md:mt-6 w-full">
+        <div className="flex flex-col lg:flex-row gap-4 md:gap-5">
+          <div className="w-full lg:w-[68%]">
             <ProductTable />
           </div>
-          <div className="ml-5 w-[32%]  max-md:ml-0 max-md:w-full">
+          <div className="w-full lg:w-[32%]">
             <SalesChart />
           </div>
         </div>

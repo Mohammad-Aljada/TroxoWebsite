@@ -12,7 +12,7 @@ const StatCard = ({
   borderOpacity = "",
 }) => {
   return (
-    <article className="w-[33%] max-md:w-full max-md:mt-4">
+    <article className="w-full max-md:w-full max-md:mt-4">
       <div
         className={`flex gap-5 justify-between p-5 w-full bg-white rounded-md border ${borderColor} ${borderOpacity} border-solid shadow-md`}
       >

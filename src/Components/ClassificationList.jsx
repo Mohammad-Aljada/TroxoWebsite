@@ -67,12 +67,12 @@ const ClassificationList = () => {
   return (
     <section className="flex flex-col px-7 py-5 mt-7 w-full bg-white rounded-2xl max-md:px-5">
       {/* Header Section */}
-      <div className="flex flex-wrap flex-row-reverse justify-between items-center w-full gap-4 mb-6">
-        <div className="flex flex-row-reverse items-center gap-4">
+      <div className="flex flex-wrap  justify-between items-center w-full gap-4 mb-6">
+        <div className="flex  items-center gap-4">
           <h2 className="text-2xl  font-bold text-gray-800">التصنيفات</h2>
           <div className="flex items-center gap-2 flex-row-reverse px-4 py-2 border border-gray-300 rounded-full">
             <img
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/927f879410be1cceca35e9ec4d49b92866ee320f?placeholderIfAbsent=true&apiKey=33cf6ee4ee4e4cdd8b24ad2c5832d456"
+              src="/Icones/search.svg"
               alt="ابحث عن تصنيف"
               className="object-contain w-3.5 aspect-square"
             />
@@ -157,25 +157,28 @@ const ClassificationList = () => {
       </div>
 
       {/* Pagination */}
-      <div className="flex justify-between items-center mt-6">
-        <div className="text-sm text-gray-500">
-          <span>عرض</span>
+      <div className="flex flex-wrap gap-5 justify-between items-start mt-4 ml-3.5 max-w-full w-[518px]">
+        <div className="flex gap-6 text-sm leading-none text-black">
+          <div className="my-auto basis-auto">عدد الصفوف في كل صفحة:</div>
           <select className="px-3 py-1 ml-2 border border-gray-300 rounded">
-            <option>10</option>
-            <option>20</option>
-            <option>30</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
           </select>
-          <span> عدد الصفوف لكل صفحة</span>
         </div>
         <div className="flex items-center gap-2">
-          <button className="px-3 py-1 rounded bg-gray-100 text-gray-700 hover:bg-gray-200">
-            السابق
+          <button className="px-3 py-1 rounded  text-gray-700 ">
+            <img
+              src="/Icones/ArrowRight.svg"
+              alt="arrow right"
+              className="w-4"
+            />
           </button>
           <button className="px-3 py-1 rounded bg-red-100 text-red-700 font-medium">
             1
           </button>
-          <button className="px-3 py-1 rounded bg-gray-100 text-gray-700 hover:bg-gray-200">
-            التالي
+          <button className="px-3 py-1 rounded  text-gray-700 ">
+            <img src="/Icones/ArrowLeft.svg" alt="arrow left" className="w-4" />
           </button>
         </div>
       </div>

@@ -1,17 +1,20 @@
 import { useState } from "react";
 import { NavLink } from "react-router";
 
-const Sidebar = () => {
+const Sidebar = ({ onShipmentsClick }) => {
   const [showSubMenu, setShowSubMenu] = useState(false);
-  const [showStoresSubMenu, setShowStoresSubMenu] = useState(false);
+  const [openMenus, setOpenMenus] = useState({});
 
+  const toggleMenu = (menuName) => {
+    setOpenMenus(prev => ({
+      ...prev,
+      [menuName]: !prev[menuName]
+    }));
+  };
   const toggleSubMenu = () => {
     setShowSubMenu(!showSubMenu);
   };
 
-  const toggleStoresSubMenu = () => {
-    setShowStoresSubMenu(!showStoresSubMenu);
-  };
 
   const menuItems = [
     {
@@ -35,8 +38,16 @@ const Sidebar = () => {
     {
       icon: "/Icones/ShipmentsIcone.svg",
       text: "الشحنات",
-      path: "/shipments",
+      path: "/home/shipments",
       icone: "/Icones/ArrowRight.svg",
+      onClick: onShipmentsClick,
+      subMenu: [
+        {
+          icon: "/Icones/StatIcone.png",
+          text: "العميل",
+          path: "/home/shipments/customer",
+        },
+      ],
     },
     {
       icon: "/Icones/WalletIcone.svg",
@@ -70,8 +81,8 @@ const Sidebar = () => {
 
       <ul className="flex flex-col gap-5 items-start px-8 mt-8 w-full text-base max-md:px-5">
         {/* لوحة التحكم */}
-        <div
-          className={`flex gap-5 items-center py-4 text-base whitespace-nowrap pl-8 -ml-8 pr-8 w-full ${
+        <li
+          className={`flex gap-3 items-center py-4 text-base whitespace-nowrap pl-8 -ml-10 pr-8 w-full ${
             showSubMenu ? "bg-red-100 text-pink-950 font-semibold" : ""
           }`}
           onClick={toggleSubMenu}
@@ -96,7 +107,7 @@ const Sidebar = () => {
               showSubMenu ? "rotate-90" : ""
             }`}
           />
-        </div>
+        </li>
         {/* القائمة الفرعية */}
         {showSubMenu && (
           <ul className="w-full pl-8 -ml-8 pr-8">
@@ -115,7 +126,7 @@ const Sidebar = () => {
 
         {/* عنصر المتاجر مع القائمة الفرعية */}
         {menuItems.map((item, index) => (
-          <li key={index} className="flex flex-col  w-full">
+          <li key={index} className="flex flex-col -ml-1  w-full">
             <div className="flex items-center">
               <NavLink
                 to={item.path}
@@ -126,13 +137,19 @@ const Sidebar = () => {
                       : "text-emerald-900"
                   }`
                 }
-                onClick={
-                  item.text === "المتاجر" ? toggleStoresSubMenu : undefined
-                }
+                onClick={() => {
+                  if (item.text === "المتاجر") {
+                    toggleMenu(item.text);
+                  }
+                  if (item.text === "الشحنات" && item.onClick) {
+                    toggleMenu(item.text);
+                    item.onClick(); // تنفيذ الدالة الممررة
+                  }
+                }}
               >
                 <img
                   src={item.icon}
-                  alt=""
+                  alt={item.text}
                   className="object-contain shrink-0 w-5 aspect-square"
                 />
                 {item.text}
@@ -141,31 +158,37 @@ const Sidebar = () => {
                     src={item.icone}
                     alt="Down arrow icon"
                     className={`object-contain shrink-0 w-5 aspect-square ${
-                      item.text === "المتاجر" && showStoresSubMenu
-                        ? "rotate-90"
-                        : ""
-                    }`}
+                      openMenus[item.text] ? "rotate-90" : ""
+                    } `}
                   />
                 )}
               </NavLink>
             </div>
-
-            {item.text === "المتاجر" && showStoresSubMenu && item.subMenu && (
-              <ul className="w-full ">
-                {item.subMenu.map((subItem, subIndex) => (
-                  <li key={subIndex} className="flex items-start py-2">
-                    <img
-                      src={subItem.icon}
-                      alt=""
-                      className="object-contain shrink-0 w-5 aspect-square mr-2"
-                    />
-                    <NavLink to={subItem.path} className={navLinkClass}>
+           {item.subMenu && openMenus[item.text] && (
+              <ul className=" mt-1 space-y-1">
+                {item.subMenu.map((subItem) => (
+                  <li key={subItem.path}>
+                    <NavLink
+                      to={subItem.path}
+                      className={({ isActive }) =>
+                        `flex items-center p-2 rounded-lg text-sm ${
+                          isActive ? "bg-red-100 text-pink-950" : "text-gray-600 hover:bg-gray-100"
+                        }`
+                      }
+                    >
+                      <img
+                        src={subItem.icon}
+                        alt={subItem.text}
+                        className="object-contain shrink-0 w-5 aspect-square"
+                      />
                       {subItem.text}
                     </NavLink>
                   </li>
                 ))}
               </ul>
             )}
+            
+
           </li>
         ))}
 

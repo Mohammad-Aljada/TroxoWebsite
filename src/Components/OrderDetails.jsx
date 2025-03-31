@@ -1,0 +1,199 @@
+import React from "react";
+
+export default function OrderDetails() {
+  // بيانات الطلب
+  const orders = [
+    {
+      id: 1,
+      customer: "مشاري الذبياني",
+      store: "جولدن جول",
+      product: "عدة الرياضيين",
+      quantity: "5",
+      price: "154",
+      shipping: "147",
+    },
+    {
+      id: 2,
+      customer: "مشاري الذبياني",
+      store: "جولدن جول",
+      product: "عدة الرياضيين",
+      quantity: "7",
+      price: "254",
+      shipping: "250",
+    },
+    {
+      id: 3,
+      customer: "مشاري الذبياني",
+      store: "جولدن جول",
+      product: "عدة الرياضيين",
+      quantity: "15",
+      price: "100",
+      shipping: "100",
+    },
+  ];
+
+  // حساب الإجمالي
+  const total = orders.reduce(
+    (sum, order) => sum + parseInt(order.price) + parseInt(order.shipping),
+    0
+  );
+
+  return (
+    <section className="w-full px-4 lg:px-8 py-4 lg:py-6 mt-4 lg:mt-8 bg-white rounded-lg lg:rounded-xl border-2 border-solid border-zinc-200 overflow-x-auto">
+      {/* العنوان والتاريخ */}
+      <div className="flex flex-col gap-2  lg:items-start  mb-4 lg:mb-6">
+        <h3 className="text-lg lg:text-xl xl:text-2xl font-bold text-gray-800">
+          تفاصيل الشحنة
+        </h3>
+        <time className="text-xs lg:text-sm text-gray-400">25 مايو 2023</time>
+      </div>
+
+      {/* الجدول المعدل */}
+      <div className="w-full">
+        <table className="w-full border-collapse">
+          {/* رأس الجدول المعدل */}
+          <thead>
+            <tr className="border-b-2 border-zinc-200 text-neutral-500">
+              <th className="text-center py-3 px-2 lg:px-4 text-sm lg:text-base xl:text-lg font-bold">
+                <div className="flex flex-col items-center justify-center gap-1">
+                  <div className="flex items-center gap-2">
+                    <div className="flex flex-col items-center">
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/7b08270e7e9044626c036e45e2e6db8d0c6597db?placeholderIfAbsent=true&apiKey=33cf6ee4ee4e4cdd8b24ad2c5832d456"
+                        alt="Sort ascending"
+                        className="w-[9px] h-[6px]"
+                      />
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/406dcb46c879a809157d0af6df319347384fc82e?placeholderIfAbsent=true&apiKey=33cf6ee4ee4e4cdd8b24ad2c5832d456"
+                        alt="Sort descending"
+                        className="w-[9px] h-[6px] mt-[2px]"
+                      />
+                    </div>
+                    <img
+                      src="/Icones/Profile.svg"
+                      alt="client icon"
+                      className="w-4 h-4"
+                    />
+                    <span>اسم العميل</span>
+                  </div>
+                </div>
+              </th>
+              <th className="text-center py-3 px-2 lg:px-4 text-sm lg:text-base xl:text-lg font-bold">
+                <div className="flex items-center justify-center gap-1">
+                  <img
+                    src="/Icones/StoresIcone.svg"
+                    alt="store icon"
+                    className="w-4 h-4"
+                  />
+                  <span>اسم المتجر</span>
+                </div>
+              </th>
+              <th className="text-center py-3 px-2 lg:px-4 text-sm lg:text-base xl:text-lg font-bold">
+                <div className="flex items-center justify-center gap-1">
+                  <img
+                    src="/Icones/box.svg"
+                    alt="product icon"
+                    className="w-4 h-4"
+                  />
+                  <span>المنتج</span>
+                </div>
+              </th>
+              <th className="text-center py-3 px-2 lg:px-4 text-sm lg:text-base xl:text-lg font-bold">
+                <div className="flex items-center justify-center gap-1">
+                  <img
+                    src="/Icones/Quantity.svg"
+                    alt="quantity icon"
+                    className="w-4 h-4"
+                  />
+                  <span>الكمية</span>
+                </div>
+              </th>
+              <th className="text-center py-3 px-2 lg:px-4 text-sm lg:text-base xl:text-lg font-bold">
+                <div className="flex items-center justify-center gap-1">
+                  <img
+                    src="/Icones/price.svg"
+                    alt="price icon"
+                    className="w-4 h-4"
+                  />
+                  <span>السعر</span>
+                </div>
+              </th>
+              <th className="text-center py-3 px-2 lg:px-4 text-sm lg:text-base xl:text-lg font-bold">
+                <div className="flex items-center justify-center gap-1">
+                  <img
+                    src="/Icones/shipment.svg"
+                    alt="shipment icon"
+                    className="w-4 h-4"
+                  />
+                  <span>تكلفة الشحن</span>
+                </div>
+              </th>
+            </tr>
+          </thead>
+
+          {/* جسم الجدول المعدل */}
+          <tbody>
+            {orders.map((order, index) => (
+              <tr
+                key={order.id}
+                className={`${
+                  index !== orders.length - 1 ? "border-b border-zinc-200" : ""
+                }`}
+              >
+                <td className="py-3 px-2 text-center lg:px-4 text-sm lg:text-base xl:text-lg text-gray-800">
+                  {order.customer}
+                </td>
+                <td className="py-3 px-2 text-center lg:px-4 text-sm lg:text-base xl:text-lg text-gray-800">
+                  {order.store}
+                </td>
+                <td className="py-3 px-2 text-center lg:px-4 text-sm lg:text-base xl:text-lg text-gray-800">
+                  {order.product}
+                </td>
+                <td className="py-3 px-2 lg:px-4 text-sm lg:text-base xl:text-lg text-gray-800 text-center">
+                  {order.quantity}
+                </td>
+                <td className="py-3 px-2 lg:px-4 text-sm lg:text-base xl:text-lg text-gray-800">
+                  <div className="flex items-center justify-end">
+                    <span>{order.price}</span>
+                    <img
+                      src="/images/CurrencyIcone.svg"
+                      alt="ريال"
+                      className="w-3 lg:w-4 ml-1"
+                    />
+                  </div>
+                </td>
+                <td className="py-3 px-2 lg:px-4 text-sm lg:text-base xl:text-lg text-gray-800">
+                  <div className="flex items-center justify-center">
+                    <span>{order.shipping}</span>
+                    <img
+                      src="/images/CurrencyIcone.svg"
+                      alt="ريال"
+                      className="w-3 lg:w-4 ml-1"
+                    />
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* الإجمالي */}
+      <div className="flex items-center justify-between lg:justify-end gap-4 lg:gap-6 mt-6 lg:mt-8">
+        <h4 className="text-lg lg:text-xl xl:text-2xl font-medium text-gray-800">
+          الإجمالي
+        </h4>
+        <div className="flex items-center gap-2 lg:gap-3 px-4 lg:px-6 py-2 lg:py-3 bg-red-300 rounded-lg lg:rounded-xl">
+          <span className="text-lg lg:text-xl xl:text-2xl font-bold text-white">
+            {total}
+          </span>
+          <img
+            src="/images/CurrencyIcone.svg"
+            alt="ريال"
+            className="w-5 lg:w-6 xl:w-7"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}

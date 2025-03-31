@@ -4,7 +4,7 @@ import Divider from "./Divider";
 const NotificationsPanel = () => {
   return (
     <section
-      className="bg-white rounded-lg shadow-sm w-[370px] max-md:mx-auto max-md:my-0  max-md:max-w-[370px] max-md:shadow-none"
+      className="bg-white rounded-lg shadow-sm w-[370px] max-md:mx-auto max-md:my-0  max-md:max-w-[250px] max-md:shadow-none"
       role="region"
       aria-label="Notifications panel"
     >
