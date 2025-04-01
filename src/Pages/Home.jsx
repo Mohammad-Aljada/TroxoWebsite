@@ -69,7 +69,7 @@ const Home = () => {
       </div>
 
       {/* بطاقات الإحصائيات - الصف الثاني */}
-      <div className="mt-4 md:mt-6 w-full">
+      <div className="mt-4 md:mt-6 max-md:mb-2 w-full">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5">
           <StatCard
             title="إجمالي الشحنات"

@@ -1,5 +1,3 @@
-
-
 export default function OrderDetails() {
   // بيانات الطلب
   const orders = [
@@ -60,12 +58,12 @@ export default function OrderDetails() {
                     {/* أيقونات الترتيب */}
                     <div className="flex flex-col items-center">
                       <img
-                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/7b08270e7e9044626c036e45e2e6db8d0c6597db"
+                        src="/Icones/Sortup.svg"
                         alt="Sort ascending"
                         className="w-[18px] h-[10px] md:w-[22px] md:h-[12px] lg:w-[12px] lg:h-[12px]"
                       />
                       <img
-                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/406dcb46c879a809157d0af6df319347384fc82e"
+                        src="/Icones/Sortdown.svg"
                         alt="Sort descending"
                         className="w-[12px] h-[10px] md:w-[16px] md:h-[12px] lg:w-[12px] lg:h-[12px] mt-[2px]"
                       />

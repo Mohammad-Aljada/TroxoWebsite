@@ -72,7 +72,9 @@ const DropdownMenu = ({
           {options.map((option, index) => (
             <div
               key={index}
-              className={`flex items-center gap-1 px-4 py-2.5 hover:bg-gray-50 cursor-pointer`}
+              className={`flex items-center gap-1 px-4 py-2.5 hover:bg-gray-50 cursor-pointer ${
+                selected === option ? "bg-blue-100" : ""
+              }`}
               onClick={() => handleSelect(option)}
               role="option"
               aria-selected={selected === option}
