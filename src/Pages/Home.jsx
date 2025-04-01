@@ -1,10 +1,26 @@
 import StatCard from "./../Components/StatCard";
-import ProductTable from "./../Components/ProductTable";
-import SalesChart from "./../Components/SalesCart";
+// import ProductTable from "./../Components/ProductTable";
+// import SalesChart from "./../Components/SalesCart";
+import { useLocation } from "react-router";
+import { useState } from "react";
+import WelcomeModal from "../Components/Modal/WelcomeModal";
+import { useEffect } from "react";
 
 const Home = () => {
+  const location = useLocation();
+  const [showWelcomeModal, setShowWelcomeModal] = useState(false);
+
+  useEffect(() => {
+    if (location.state?.showWelcomeModal) {
+      setShowWelcomeModal(true);
+      window.history.replaceState({}, "");
+    }
+  }, [location.state]);
   return (
     <section className="flex flex-col px-4 md:px-8 mt-4 md:mt-6 w-full">
+      {showWelcomeModal && (
+        <WelcomeModal onClose={() => setShowWelcomeModal(false)} />
+      )}
       {/* العنوان والمسار */}
       <div className="self-end text-right">
         <h1 className="text-xl md:text-2xl font-black text-gray-800 uppercase">
@@ -90,7 +106,7 @@ const Home = () => {
       </div>
 
       {/* الجدول والرسم البياني */}
-      <div className="mt-4 md:mt-6 w-full">
+      {/* <div className="mt-4 md:mt-6 w-full">
         <div className="flex flex-col lg:flex-row gap-4 md:gap-5">
           <div className="w-full lg:w-[68%]">
             <ProductTable />
@@ -99,7 +115,7 @@ const Home = () => {
             <SalesChart />
           </div>
         </div>
-      </div>
+      </div> */}
     </section>
   );
 };

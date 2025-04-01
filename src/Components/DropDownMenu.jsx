@@ -1,36 +1,31 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import AddStoreModal from "./Modal/AddStoreModal";
-import AddClientModal from './Modal/AddClientModal';
+import AddClientModal from "./Modal/AddClientModal";
+import CheckBox from "./CheckBox";
 
-const DropdownMenu = ({ options, placeholder, title, icon, onSelect, modalToOpen = "store" }) => {
+const DropdownMenu = ({
+  options,
+  placeholder,
+  title,
+  icon,
+  selected,
+  onSelect,
+  modalToOpen = "store",
+}) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOptions, setSelectedOptions] = useState([]);
   const [activeModal, setActiveModal] = useState(null);
 
-  const handleAddNew = () => {
-    if (onSelect) onSelect("new");
+  const handleSelect = (option) => {
+    // إذا كان الخيار المحدد هو نفسه المختار مسبقاً، يتم إلغاء الاختيار
+    const newSelection = option === selected ? null : option;
+    if (onSelect) onSelect(newSelection);
     setIsOpen(false);
-    setActiveModal(modalToOpen); // استخدام القيمة المحددة مسبقاً
-  };
- 
-
-  const toggleOption = (option) => {
-    setSelectedOptions((prev) =>
-      prev.includes(option)
-        ? prev.filter((item) => item !== option)
-        : [...prev, option]
-    );
-
-    if (onSelect) {
-      onSelect(option);
-    }
   };
 
-  const getDisplayText = () => {
-    if (selectedOptions.length === 0) return placeholder;
-    if (selectedOptions.length === 1) return selectedOptions[0];
-    return `${selectedOptions.length} ${title} مختارة`;
+  const handleAddNew = () => {
+    setIsOpen(false);
+    setActiveModal(modalToOpen);
   };
 
   return (
@@ -50,18 +45,25 @@ const DropdownMenu = ({ options, placeholder, title, icon, onSelect, modalToOpen
               aria-hidden="true"
             />
           )}
-          <span className={selectedOptions.length === 0 ? "text-zinc-400" : "text-blue-950"}>
-            {getDisplayText()}
+          <span className={!selected ? "text-zinc-400" : "text-blue-950"}>
+            {selected || placeholder}
           </span>
         </div>
 
         <svg
-          className={`w-5 h-5 text-gray-500 transition-transform ${isOpen ? "rotate-180" : ""}`}
+          className={`w-5 h-5 text-gray-500 transition-transform ${
+            isOpen ? "rotate-180" : ""
+          }`}
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M19 9l-7 7-7-7"
+          />
         </svg>
       </button>
 
@@ -70,17 +72,21 @@ const DropdownMenu = ({ options, placeholder, title, icon, onSelect, modalToOpen
           {options.map((option, index) => (
             <div
               key={index}
-              className="flex items-center px-4 py-2.5 hover:bg-gray-50 cursor-pointer"
-              onClick={() => toggleOption(option)}
+              className={`flex items-center gap-1 px-4 py-2.5 hover:bg-gray-50 cursor-pointer`}
+              onClick={() => handleSelect(option)}
               role="option"
-              aria-selected={selectedOptions.includes(option)}
+              aria-selected={selected === option}
             >
-              <input
-                type="checkbox"
-                checked={selectedOptions.includes(option)}
-                readOnly
-                className="h-4 w-4 text-indigo-600 rounded border-gray-300 mr-3"
-              />
+              {/* CheckBox يظهر فقط إذا كان الخيار هو "المتجر" أو "العميل" */}
+              {title === "العميل" && (
+                <CheckBox
+                  checked={selected === option}
+                  onChange={() => handleSelect(option)}
+                  onClick={
+                    selected === option ? null : () => handleSelect(option)
+                  } // لمنع تنفيذ onClick الخاص بالعنصر الأب
+                />
+              )}
               <span className="flex-1 text-right">{option}</span>
             </div>
           ))}
@@ -89,14 +95,22 @@ const DropdownMenu = ({ options, placeholder, title, icon, onSelect, modalToOpen
             className="flex items-center gap-2 w-full px-4 py-2.5 border-t border-gray-200 bg-red-100 hover:bg-gray-100 text-neutral-600"
             onClick={handleAddNew}
           >
-            <img src="/Icones/AddIcone.svg" alt="add icon" className="w-5 h-5" />
+            <img
+              src="/Icones/AddIcone.svg"
+              alt="add icon"
+              className="w-5 h-5"
+            />
             <span>إضافة {title} جديد</span>
           </button>
         </div>
       )}
 
-      {activeModal === 'store' && <AddStoreModal onClose={() => setActiveModal(null)} />}
-      {activeModal === 'client' && <AddClientModal onClose={() => setActiveModal(null)} />}
+      {activeModal === "store" && (
+        <AddStoreModal onClose={() => setActiveModal(null)} />
+      )}
+      {activeModal === "client" && (
+        <AddClientModal onClose={() => setActiveModal(null)} />
+      )}
     </div>
   );
 };

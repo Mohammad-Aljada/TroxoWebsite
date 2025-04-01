@@ -1,11 +1,29 @@
 import { useState } from "react";
-import AddProductModal from './Modal/AddProductModal';
+import AddProductModal from "./Modal/AddProductModal";
 
 export const ProductSelector = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedProducts, setSelectedProducts] = useState([]);
   const [showSubDropdown, setShowSubDropdown] = useState(null);
   const [isProductModalOpen, setIsProductModalOpen] = useState(false);
+  const [selectedProducts, setSelectedProducts] = useState([]);
+
+  const selectSubItem = (product, subItem, e) => {
+    e.stopPropagation();
+    setSelectedProducts((prev) => {
+      const existingProduct = prev.find((p) => p.id === product.id);
+
+      if (existingProduct) {
+        if (existingProduct.selectedSubItem?.id === subItem.id) {
+          return prev.filter((p) => p.id !== product.id);
+        }
+        return prev.map((p) =>
+          p.id === product.id ? { ...p, selectedSubItem: subItem } : p
+        );
+      }
+
+      return [...prev, { ...product, selectedSubItem: subItem }];
+    });
+  };
 
   const handleAddNew = () => {
     setIsOpen(false);
@@ -25,7 +43,8 @@ export const ProductSelector = () => {
     { id: 3, name: "عدة رياضية" },
   ];
 
-  const toggleProduct = (product) => {
+  const toggleProduct = (product, e) => {
+    e.stopPropagation();
     setSelectedProducts((prev) =>
       prev.some((p) => p.id === product.id)
         ? prev.filter((p) => p.id !== product.id)
@@ -38,13 +57,10 @@ export const ProductSelector = () => {
     setShowSubDropdown(showSubDropdown === productId ? null : productId);
   };
 
-  const selectSubItem = (product, subItem, e) => {
-    e.stopPropagation();
-    setSelectedProducts((prev) => [
-      ...prev.filter((p) => p.id !== product.id),
-      { ...product, selectedSubItem: subItem },
-    ]);
-    setShowSubDropdown(null);
+  const isSubItemActive = (product, subItem) => {
+    return selectedProducts.some(
+      (p) => p.id === product.id && p.selectedSubItem?.id === subItem.id
+    );
   };
 
   return (
@@ -63,9 +79,13 @@ export const ProductSelector = () => {
       >
         <div className="flex items-center gap-2">
           <img src="/Icones/box.svg" alt="Box" className="w-6 h-6" />
-          <span className="text-zinc-400">يرجى اختيار المنتج</span> 
+          <span className="text-zinc-400">
+            {selectedProducts.length > 0
+              ? `${selectedProducts.length} منتج مختار`
+              : "يرجى اختيار المنتج"}
+          </span>
         </div>
-      
+
         <svg
           className={`w-5 h-5 text-gray-500 transition-transform ${
             isOpen ? "rotate-180" : ""
@@ -89,7 +109,7 @@ export const ProductSelector = () => {
             <div key={product.id} className="relative">
               <div
                 className="flex items-center p-3 hover:bg-slate-50 cursor-pointer"
-                onClick={() => toggleProduct(product)}
+                onClick={(e) => toggleProduct(product, e)}
               >
                 <input
                   type="checkbox"
@@ -124,37 +144,67 @@ export const ProductSelector = () => {
               </div>
 
               {showSubDropdown === product.id && product.subItems && (
-                <div className="ml-4 bg-gray-50 rounded">
-                  {product.subItems.map((subItem) => (
-                    <div
-                      key={subItem.id}
-                      className="flex gap-2 justify-between items-center p-2 hover:bg-gray-100 cursor-pointer"
-                      onClick={(e) => selectSubItem(product, subItem, e)}
-                    >
-                      <span>{subItem.name}</span>
-                      <span>{subItem.quantity}</span>
-                    </div>
-                  ))}
+                <div className="ml-4 bg-gray-50 rounded-lg border-t border-gray-100">
+                  {product.subItems.map((subItem) => {
+                    const active = isSubItemActive(product, subItem);
+                    return (
+                      <div
+                        key={subItem.id}
+                        className={`flex gap-3 justify-between items-center p-3 cursor-pointer transition-colors ${
+                          active
+                            ? "bg-blue-50 border-r-4 border-blue-500 text-blue-600"
+                            : "hover:bg-gray-100"
+                        }`}
+                        onClick={(e) => selectSubItem(product, subItem, e)}
+                      >
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm font-medium">
+                            {subItem.name}
+                          </span>
+                          {active && (
+                            <svg
+                              className="w-4 h-4 text-blue-500"
+                              fill="currentColor"
+                              viewBox="0 0 20 20"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                          )}
+                        </div>
+                        <span
+                          className={`text-xs px-2 py-1 rounded-full ${
+                            active ? "bg-blue-100 text-blue-800" : "bg-gray-200"
+                          }`}
+                        >
+                          {subItem.quantity}
+                        </span>
+                      </div>
+                    );
+                  })}
                 </div>
               )}
             </div>
           ))}
 
-          <button 
+          <button
             onClick={handleAddNew}
-            className="flex items-center gap-2 w-full p-3 bg-red-100 hover:bg-indigo-100 border-t border-gray-200"
+            className="flex items-center gap-2 w-full p-3 bg-red-100 hover:bg-red-200 border-t border-gray-200 transition-colors"
           >
-           <img src="/Icones/AddIcone.svg" alt="Add icone" className="w-6" />
-            <span>إضافة منتج جديد</span>
+            <img src="/Icones/AddIcone.svg" alt="Add icone" className="w-6" />
+            <span className="text-red-800">إضافة منتج جديد</span>
           </button>
         </div>
       )}
 
       {isProductModalOpen && (
-        <AddProductModal 
-          onClose={() => setIsProductModalOpen(false)}
-        />
+        <AddProductModal onClose={() => setIsProductModalOpen(false)} />
       )}
     </div>
   );
 };
+
+export default ProductSelector;

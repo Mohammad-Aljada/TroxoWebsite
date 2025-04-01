@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import SuccessAddClientModal from "./SuccessAddClientModal";
 
@@ -14,7 +15,6 @@ export default function AddClientModal({ onClose }) {
 
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
-  
   const onSubmit = (e) => {
     e.preventDefault(); // لمنع إعادة تحميل الصفحة
     setShowSuccessModal(true);
@@ -326,8 +326,11 @@ export default function AddClientModal({ onClose }) {
               >
                 الغاء الطلب
               </button>
-              {showSuccessModal && <SuccessAddClientModal onClose={() => setShowSuccessModal(false)} />}
-
+              {showSuccessModal && (
+                <SuccessAddClientModal
+                  onClose={() => setShowSuccessModal(false)}
+                />
+              )}
             </div>
           </form>
         </div>

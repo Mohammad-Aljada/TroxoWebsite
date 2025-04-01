@@ -1,23 +1,24 @@
-import { useState } from 'react';
+/* eslint-disable react/prop-types */
+import { useState } from "react";
 
 const TicketModal = ({ onClose }) => {
   const [formData, setFormData] = useState({
-    ticketNumber: 'T-1234567',
-    shipmentNumber: '',
-    companyName: '',
-    ticketType: '',
-    additionalComplaints: ''
+    ticketNumber: "T-1234567",
+    shipmentNumber: "",
+    companyName: "",
+    ticketType: "",
+    additionalComplaints: "",
   });
 
   const handleChange = (e) => {
     const { id, value } = e.target;
-    setFormData(prev => ({ ...prev, [id]: value }));
+    setFormData((prev) => ({ ...prev, [id]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission logic here
-    console.log('Form submitted:', formData);
+    console.log("Form submitted:", formData);
     onClose();
   };
 
@@ -67,8 +68,13 @@ const TicketModal = ({ onClose }) => {
         </div>
 
         {/* Content */}
-        <form onSubmit={handleSubmit} className="p-4 md:p-6 lg:p-8 flex flex-col overflow-y-auto">
-          <h2 className="text-xl font-bold text-right mb-2 text-indigo-950">رفع تذكرة</h2>
+        <form
+          onSubmit={handleSubmit}
+          className="p-4 md:p-6 lg:p-8 flex flex-col overflow-y-auto"
+        >
+          <h2 className="text-xl font-bold text-right mb-2 text-indigo-950">
+            رفع تذكرة
+          </h2>
           <p className="text-gray-600 mb-6 text-right">
             هذا القسم يقدم أمثلة على الشكاوى الشائعة التي قد تواجهها. استخدم هذه
             المراجع لتحديد مشكلتك وتبسيط عملية الشكوى.
@@ -77,7 +83,10 @@ const TicketModal = ({ onClose }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Ticket Number */}
             <div className=" text-start mb-4">
-              <label htmlFor="ticketNumber" className="block mb-2 font-bold text-indigo-950">
+              <label
+                htmlFor="ticketNumber"
+                className="block mb-2 font-bold text-indigo-950"
+              >
                 رقم التذكرة
               </label>
               <input
@@ -91,7 +100,10 @@ const TicketModal = ({ onClose }) => {
 
             {/* Shipment Number */}
             <div className=" text-start mb-4">
-              <label htmlFor="shipmentNumber" className="block mb-2 font-bold text-indigo-950">
+              <label
+                htmlFor="shipmentNumber"
+                className="block mb-2 font-bold text-indigo-950"
+              >
                 رقم الشحنة
               </label>
               <input
@@ -106,7 +118,10 @@ const TicketModal = ({ onClose }) => {
 
             {/* Company Name */}
             <div className=" text-start mb-4">
-              <label htmlFor="companyName" className="block mb-2 font-bold text-indigo-950">
+              <label
+                htmlFor="companyName"
+                className="block mb-2 font-bold text-indigo-950"
+              >
                 اسم الشركة
               </label>
               <input
@@ -121,7 +136,10 @@ const TicketModal = ({ onClose }) => {
 
             {/* Ticket Type */}
             <div className=" text-start mb-4">
-              <label htmlFor="ticketType" className="block mb-2 font-bold text-indigo-950">
+              <label
+                htmlFor="ticketType"
+                className="block mb-2 font-bold text-indigo-950"
+              >
                 نوع التذكرة
               </label>
               <select
@@ -142,7 +160,10 @@ const TicketModal = ({ onClose }) => {
 
             {/* Additional Complaints - Full width */}
             <div className=" text-start mb-4 md:col-span-2">
-              <label htmlFor="additionalComplaints" className="block mb-2 font-bold text-indigo-950">
+              <label
+                htmlFor="additionalComplaints"
+                className="block mb-2 font-bold text-indigo-950"
+              >
                 شكوى إضافية
               </label>
               <textarea

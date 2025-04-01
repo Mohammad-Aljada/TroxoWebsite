@@ -12,21 +12,24 @@ const DashboardLayout = () => {
   };
 
   return (
-    <div className="overflow-hidden pb-2.5 bg-gray-100">
-      <div className="flex max-md:flex-col">
-        {/* السايدبار المعدل */}
+    <div className="min-h-screen bg-gray-100">
+      <div className="flex flex-col md:flex-row">
+        {/* السايدبار - ارتفاع تلقائي */}
         <aside
-          className={`w-[280px] max-md:w-[55%] max-lg:w-[300px] fixed md:static h-screen bg-white z-50 shadow-lg md:shadow-none transform transition-transform duration-300 ${
-            isSidebarOpen
-              ? "translate-x-0"
-              : "-translate-x-full md:translate-x-0"
-          }`}
+          className={`w-[280px] max-md:w-[70%] max-lg:w-[300px] bg-white shadow-lg md:shadow-none
+            transform transition-transform duration-300 md:transform-none
+            ${
+              isSidebarOpen
+                ? "translate-x-0"
+                : "-translate-x-full md:translate-x-0"
+            }
+            fixed md:static z-50 h-[100vh] md:h-auto`}
         >
-          <Sidebar onShipmentsClick={() => setShowWelcomeModal(true)} />
+          <Sidebar />
         </aside>
 
         {/* المحتوى الرئيسي */}
-        <main className="flex-1 max-md:ml-0">
+        <main className="flex-1 max-md:ml-0 min-h-screen">
           <div className="w-full max-md:max-w-full">
             <DashboardHeader toggleSidebar={toggleSidebar} />
             <Outlet context={{ showWelcomeModal, setShowWelcomeModal }} />

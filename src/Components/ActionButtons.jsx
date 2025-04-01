@@ -1,8 +1,8 @@
-import { useState } from 'react';
+/* eslint-disable react/prop-types */
 
 
 
-export const ActionButtons = ({ icon, children, variant = "default" , modalToOpen }) => {
+export const ActionButtons = ({ icon, children, variant = "default" }) => {
   const baseClasses =
     "flex overflow-hidden flex-col justify-center items-center px-1 py-1 rounded-lg min-h-12 shadow-[0px_2px_0px_rgba(0,0,0,0.016)]";
   const variantClasses = {

@@ -1,6 +1,17 @@
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
+import { useState } from "react";
+import WelcomeModal from "../../Components/Modal/WelcomeModal";
 
 const SignIn = () => {
+  const [showWelcomeModal, setShowWelcomeModal] = useState(false);
+
+  const navigate = useNavigate();
+
+  const onSignInClick = (e) => {
+    e.preventDefault();
+    navigate("/home", { state: { showWelcomeModal: true } });
+  };
+
   return (
     <div className="flex  items-center min-h-screen bg-gray-100 ">
       <div className="w-full max-w-5xl overflow-hidden flex flex-col md:flex-row  rounded-lg">
@@ -16,7 +27,6 @@ const SignIn = () => {
         {/* Right Side Form */}
         <div className="w-full flex flex-col items-center mt-20 md:w-1/2 p-8">
           {/* Logo */}
-          
 
           {/* Title */}
           <h2 className="text-2xl font-bold text-right text-gray-900">
@@ -46,13 +56,18 @@ const SignIn = () => {
             </NavLink>
             {/* Submit Button */}
             <NavLink to="/home" className=" hover:text-pink-400">
-            <button
-              type="submit"
-              className="w-full cursor-pointer mt-4 bg-[#FFDDDD]  py-2 rounded-lg hover:bg-pink-300 transition duration-300"
-            >
-              تسجيل الدخول
-            </button></NavLink>
+              <button
+                onClick={onSignInClick}
+                type="submit"
+                className="w-full cursor-pointer mt-4 bg-[#FFDDDD]  py-2 rounded-lg hover:bg-pink-300 transition duration-300"
+              >
+                تسجيل الدخول
+              </button>
+            </NavLink>
           </form>
+          {showWelcomeModal && (
+            <WelcomeModal onClose={() => setShowWelcomeModal(false)} />
+          )}
 
           {/* OR Divider */}
           <div className="flex items-center my-4">

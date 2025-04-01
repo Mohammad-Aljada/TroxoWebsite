@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { MenuItem } from "./MenuItem";
 import { useState } from "react";
 import TicketModal from '../Modal/TicketModal';

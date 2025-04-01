@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { NavLink } from "react-router";
 
 export default function SuccessShipmentModal({ onClose }) {
@@ -71,15 +72,15 @@ export default function SuccessShipmentModal({ onClose }) {
 
           {/* الأزرار */}
           <div className="w-full p-4">
-            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
-                <NavLink to="/home/shipments/shipmentstatus">
-            <button className="px-6 py-3 md:px-8 md:py-3 text-sm md:text-base font-semibold bg-gray-200 rounded-xl text-neutral-500 hover:bg-gray-300 transition-colors">
-                صفحة الشحنات
-              </button></NavLink>
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center">
+              <NavLink to="/home/shipments/shipmentstatus">
+                <button className="px-6 py-3 md:px-8 md:py-3 text-sm md:text-base font-semibold bg-gray-200 rounded-xl text-neutral-500 hover:bg-gray-300 transition-colors">
+                  صفحة الشحنات
+                </button>
+              </NavLink>
               <button className="px-6 py-3 md:px-8 md:py-3 text-sm md:text-base font-semibold bg-red-100 rounded-xl text-pink-950 hover:bg-red-200 transition-colors">
                 سياسات الطباعة
               </button>
-             
             </div>
           </div>
         </div>

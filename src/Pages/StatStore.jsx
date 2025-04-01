@@ -1,6 +1,6 @@
 import StatGrid from "./../Components/StatGrid";
-import ProductTable from "./../Components/ProductTable";
-import CityChart from "./../Components/CityChart";
+// import ProductTable from "./../Components/ProductTable";
+// import CityChart from "./../Components/CityChart";
 
 export default function StatStore() {
   return (
@@ -36,12 +36,12 @@ export default function StatStore() {
               إحصائيات المتجر
             </h2>
             <StatGrid />
-            <div className="mt-10 w-full max-w-full px-4 sm:px-6 md:px-8">
+            {/* <div className="mt-10 w-full max-w-full px-4 sm:px-6 md:px-8">
               <div className="flex gap-5 sm:gap-4 md:gap-5 max-lg:flex-col max-md:gap-3 lg:gap-3">
                 <ProductTable className="w-full lg:w-full " />
                 <CityChart className="w-full lg:w-full" />
               </div>
-            </div>
+            </div> */}
           </section>
         </div>
       </section>

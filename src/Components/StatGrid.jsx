@@ -4,7 +4,8 @@ export default function StatGrid() {
   const stats = [
     {
       title: "المبيعات الصافية",
-      value: "$4,689.00",
+      value: "4,689.00",
+      currency: "/images/CurrencyIcone.svg",
       change: "18.72%",
       icon: "/images/CurrencyIcone.svg",
       isPositive: true,
@@ -26,6 +27,7 @@ export default function StatGrid() {
     {
       title: "إجمالي العملاء",
       value: "502",
+
       change: "33.02%",
       icon: "/images/CustomerIcone.svg",
       isPositive: false,

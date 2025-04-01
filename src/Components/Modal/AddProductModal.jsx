@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import SuccessAddProductModal from "./SuccessAddProductModal";
 
-const AddProductModal = ({ onClose, modalToOpen }) => {
+const AddProductModal = ({ onClose }) => {
   const [formData, setFormData] = useState({
     productName: "",
     productType: "",
@@ -85,9 +86,9 @@ const AddProductModal = ({ onClose, modalToOpen }) => {
                 بطاقة البيانات الشخصية
               </h3>
 
-              <div className="mt-4 flex flex-col md:flex-row gap-6">
+              <div className="mt-4 flex flex-col-reverse md:flex-row gap-6">
                 {/* الجانب الأيسر (الصورة والكمية) */}
-                <div className="md:w-1/2 flex flex-row md:flex-col items-end space-y-4">
+                <div className="md:w-1/2 flex flex-col items-end space-y-4">
                   {/* حقل الكمية */}
 
                   <label className="flex flex-col item-end text-sm text-right font-semibold text-slate-950 mb-2">

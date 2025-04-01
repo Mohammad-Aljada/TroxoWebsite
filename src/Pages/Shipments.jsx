@@ -1,11 +1,8 @@
 import ShipmentForm from "../Components/ShipmentForm";
 import ShipmentTable from "../Components/ShipmentTable";
-import { useOutletContext } from "react-router";
 //import ShipmentEmpty from "../Components/ShipmentEmpty";
 
 const Shipments = () => {
-  const { setShowWelcomeModal } = useOutletContext();
-
   return (
     <div className="ml-5 w-[95%] max-md:ml-0 max-md:w-full">
       <div className="flex flex-col items-end  mt-6">
@@ -21,9 +18,8 @@ const Shipments = () => {
         </nav>
 
         <div className="flex overflow-hidden flex-col self-stretch px-7 py-9 mt-7 bg-white rounded-2xl max-md:px-5 max-md:max-w-full">
-        <ShipmentForm/>
-        <ShipmentTable/>
-        
+          <ShipmentForm />
+          <ShipmentTable />
         </div>
       </div>
     </div>

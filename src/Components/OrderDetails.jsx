@@ -1,4 +1,4 @@
-import React from "react";
+
 
 export default function OrderDetails() {
   // بيانات الطلب
@@ -54,32 +54,39 @@ export default function OrderDetails() {
           {/* رأس الجدول المعدل */}
           <thead>
             <tr className="border-b-2 border-zinc-200 text-neutral-500">
-              <th className="text-center py-3 px-2 lg:px-4 text-sm lg:text-base xl:text-lg font-bold">
-                <div className="flex flex-col items-center justify-center gap-1">
+              <th className="text-center py-3 px-2 lg:px-4">
+                <div className="flex flex-col items-center justify-center gap-1 min-w-[120px]">
                   <div className="flex items-center gap-2">
+                    {/* أيقونات الترتيب */}
                     <div className="flex flex-col items-center">
                       <img
-                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/7b08270e7e9044626c036e45e2e6db8d0c6597db?placeholderIfAbsent=true&apiKey=33cf6ee4ee4e4cdd8b24ad2c5832d456"
+                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/7b08270e7e9044626c036e45e2e6db8d0c6597db"
                         alt="Sort ascending"
-                        className="w-[9px] h-[6px]"
+                        className="w-[18px] h-[10px] md:w-[22px] md:h-[12px] lg:w-[12px] lg:h-[12px]"
                       />
                       <img
-                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/406dcb46c879a809157d0af6df319347384fc82e?placeholderIfAbsent=true&apiKey=33cf6ee4ee4e4cdd8b24ad2c5832d456"
+                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/406dcb46c879a809157d0af6df319347384fc82e"
                         alt="Sort descending"
-                        className="w-[9px] h-[6px] mt-[2px]"
+                        className="w-[12px] h-[10px] md:w-[16px] md:h-[12px] lg:w-[12px] lg:h-[12px] mt-[2px]"
                       />
                     </div>
-                    <img
-                      src="/Icones/Profile.svg"
-                      alt="client icon"
-                      className="w-4 h-4"
-                    />
-                    <span>اسم العميل</span>
+
+                    {/* نص العميل مع الأيقونة */}
+                    <div className="flex max-md:flex-col items-center gap-1 md:gap-2">
+                      <img
+                        src="/Icones/Profile.svg"
+                        alt="client icon"
+                        className="w-3 h-3 md:w-4 md:h-4"
+                      />
+                      <span className="text-xs md:text-sm lg:text-base whitespace-nowrap">
+                        اسم العميل
+                      </span>
+                    </div>
                   </div>
                 </div>
               </th>
               <th className="text-center py-3 px-2 lg:px-4 text-sm lg:text-base xl:text-lg font-bold">
-                <div className="flex items-center justify-center gap-1">
+                <div className="flex max-md:flex-col items-center justify-center gap-1">
                   <img
                     src="/Icones/StoresIcone.svg"
                     alt="store icon"
@@ -89,7 +96,7 @@ export default function OrderDetails() {
                 </div>
               </th>
               <th className="text-center py-3 px-2 lg:px-4 text-sm lg:text-base xl:text-lg font-bold">
-                <div className="flex items-center justify-center gap-1">
+                <div className="flex max-md:flex-col items-center justify-center gap-1">
                   <img
                     src="/Icones/box.svg"
                     alt="product icon"
@@ -99,7 +106,7 @@ export default function OrderDetails() {
                 </div>
               </th>
               <th className="text-center py-3 px-2 lg:px-4 text-sm lg:text-base xl:text-lg font-bold">
-                <div className="flex items-center justify-center gap-1">
+                <div className="flex max-md:flex-col items-center justify-center gap-1">
                   <img
                     src="/Icones/Quantity.svg"
                     alt="quantity icon"
@@ -109,7 +116,7 @@ export default function OrderDetails() {
                 </div>
               </th>
               <th className="text-center py-3 px-2 lg:px-4 text-sm lg:text-base xl:text-lg font-bold">
-                <div className="flex items-center justify-center gap-1">
+                <div className="flex max-md:flex-col items-center justify-center gap-1">
                   <img
                     src="/Icones/price.svg"
                     alt="price icon"
@@ -119,7 +126,7 @@ export default function OrderDetails() {
                 </div>
               </th>
               <th className="text-center py-3 px-2 lg:px-4 text-sm lg:text-base xl:text-lg font-bold">
-                <div className="flex items-center justify-center gap-1">
+                <div className="flex max-md:flex-col items-center justify-center gap-1">
                   <img
                     src="/Icones/shipment.svg"
                     alt="shipment icon"

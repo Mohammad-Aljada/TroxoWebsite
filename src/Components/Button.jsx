@@ -1,5 +1,4 @@
-"use client";
-import React from "react";
+/* eslint-disable react/prop-types */
 
 export const Button = ({
   children,

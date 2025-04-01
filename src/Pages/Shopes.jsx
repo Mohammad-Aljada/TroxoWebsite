@@ -1,6 +1,6 @@
 import StoreDetails from "../Components/StoreDetails";
 import { useState } from "react";
-import AddStoreModal from './../Components/Modal/AddStoreModal';
+import AddStoreModal from "./../Components/Modal/AddStoreModal";
 
 function Shopes() {
   const [activeModal, setActiveModal] = useState(false);
@@ -19,7 +19,10 @@ function Shopes() {
         </nav>
         <div className="flex overflow-hidden flex-col self-stretch px-7 pt-5 pb-10 mt-7 w-full bg-white rounded-2xl max-md:px-5 max-md:max-w-full">
           <div className="flex flex-wrap gap-5 justify-between max-md:max-w-full">
-            <button onClick={handleAddStoreClick} className="flex overflow-hidden flex-col justify-center items-center py-1 pr-3 pl-2 my-auto text-sm font-semibold tracking-normal leading-6 bg-red-100 rounded-md text-pink-950">
+            <button
+              onClick={handleAddStoreClick}
+              className="flex overflow-hidden flex-col justify-center items-center py-1 pr-3 pl-2 my-auto text-sm font-semibold tracking-normal leading-6 bg-red-100 rounded-md text-pink-950"
+            >
               <div className="flex overflow-hidden gap-2 items-start">
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets/TEMP/1e95660b64d80ec70fafcd1a47dbccf9a97e8de4?placeholderIfAbsent=true&apiKey=33cf6ee4ee4e4cdd8b24ad2c5832d456"
@@ -66,24 +69,12 @@ function Shopes() {
               address="الشرائع، الشارع 32، ذوات السواري، خطة 2"
               compact
             />
-            <StoreDetails
-              title="تفاصيل المتجر - الرابع"
-              storeName="جولدن جول"
-              phone="+966 53 337 3122"
-              country="المملكة العربية السعودية"
-              city="مكة المكرمة"
-              imageUrl="https://cdn.builder.io/api/v1/image/assets/TEMP/295ada8b-f25e-4acf-9c61-e6bd8d3efdd2?placeholderIfAbsent=true&apiKey=33cf6ee4ee4e4cdd8b24ad2c5832d456"
-              address="الشرائع، الشارع 32، ذوات السواري، خطة 2"
-              compact
-            />
           </div>
         </div>
-           {/* عرض المودال عند النقر */}
-      {activeModal === true && (
-        <AddStoreModal 
-          onClose={() => setActiveModal(null)} 
-        />
-      )}
+        {/* عرض المودال عند النقر */}
+        {activeModal === true && (
+          <AddStoreModal onClose={() => setActiveModal(null)} />
+        )}
       </section>
     </div>
   );
