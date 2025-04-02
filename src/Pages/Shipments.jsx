@@ -1,6 +1,7 @@
-import ShipmentForm from "../Components/ShipmentForm";
-import ShipmentTable from "../Components/ShipmentTable";
+
 //import ShipmentEmpty from "../Components/ShipmentEmpty";
+import ShipmentForm from './../Components/Shipment/ShipmentForm';
+import ShipmentTable from './../Components/Shipment/ShipmentTable';
 
 const Shipments = () => {
   return (

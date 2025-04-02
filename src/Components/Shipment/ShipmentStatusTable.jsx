@@ -1,8 +1,8 @@
 // ShipmentStatusTable.js
-import { Button } from "./Button";
-import { StatusBadge } from "./StatusBadge";
+import { Button } from "../Button";
+import { StatusBadge } from "../StatusBadge";
 import { useState } from "react";
-import Menu from "./Menu/Menu";
+import Menu from "../Menu/Menu";
 
 export const ShipmentStatusTable = () => {
   const shipments = [

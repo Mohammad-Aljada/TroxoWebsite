@@ -1,4 +1,4 @@
-import { FilterButton, AddProductButton } from "./ActionButtons";
+import { FilterButton, AddProductButton } from "../ActionButtons";
 
 const classificationsData = [
   {

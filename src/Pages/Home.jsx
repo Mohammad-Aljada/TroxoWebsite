@@ -1,5 +1,5 @@
 import StatCard from "./../Components/StatCard";
-// import ProductTable from "./../Components/ProductTable";
+// import ProductTable from "./../Components/Product/ProductTable";
 // import SalesChart from "./../Components/SalesCart";
 import { useLocation } from "react-router";
 import { useState } from "react";

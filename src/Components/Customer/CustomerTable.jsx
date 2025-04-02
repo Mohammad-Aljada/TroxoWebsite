@@ -1,7 +1,7 @@
 import CustomerTableRow from "./CustomerTableRow";
-import { FilterButton, AddCustomerButton } from "./ActionButtons";
+import { FilterButton, AddCustomerButton } from "../ActionButtons";
 import { useState } from "react";
-import AddClientModal from './Modal/AddClientModal';
+import AddClientModal from '../Modal/AddClientModal';
 
 function CustomerTable() {
 

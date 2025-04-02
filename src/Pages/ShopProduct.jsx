@@ -1,5 +1,5 @@
-import { ProductList } from "../Components/ProductList";
 
+import { ProductList } from './../Components/Product/ProductList';
 export default function ShopProduct() {
   return (
     <div className="w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12" dir="rtl">

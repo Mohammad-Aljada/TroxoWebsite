@@ -50,10 +50,10 @@ const Sidebar = () => {
     {
       icon: "/Icones/WalletIcone.svg",
       text: "المحفظة",
-      path: "/wallet",
+      path: "/home/wallet",
       icone: "/Icones/ArrowRight.svg",
     },
-    { icon: "/Icones/BillsIcone.svg", text: "فواتيري", path: "/bills" },
+    { icon: "/Icones/BillsIcone.svg", text: "فواتيري", path: "/home/bills" },
     {
       icon: "/Icones/SuggestedIcone.svg",
       text: "الاقتراحات",

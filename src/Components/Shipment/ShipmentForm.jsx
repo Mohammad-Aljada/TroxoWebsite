@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { useState } from "react";
 const FormSection = ({ label, children, required }) => (
   <div className="flex flex-col w-full">
     <div className="flex gap-2 self-start">
@@ -12,20 +13,21 @@ const FormSection = ({ label, children, required }) => (
 );
 
 const ShipmentForm = () => {
+  const [activeDetails, setActiveDetails] = useState(null); // يمكن أن تكون 'store' أو 'client' أو null
+
+  const toggleDetails = (type) => {
+    setActiveDetails(activeDetails === type ? null : type);
+  };
   return (
-    <section className="flex flex-col p-4 md:p-5 w-full rounded-xl bg-slate-50" dir="rtl">
+    <section
+      className="flex flex-col p-4 md:p-5 w-full rounded-xl bg-slate-50"
+      dir="rtl"
+    >
       {/* Header */}
       <div className="flex flex-wrap justify-between items-center gap-4">
         <h2 className="text-base md:text-lg text-zinc-800">
           شحنتك معنا تصل بأمان إلى كل مكان..!!
         </h2>
-        <button className="p-2 w-10 h-10 rounded-lg bg-gray-200/30">
-          <img
-            src="/images/AarrowDown.svg"
-            alt="arrow down"
-            className="w-5 h-5 md:w-6 md:h-6"
-          />
-        </button>
       </div>
 
       {/* Store Section */}
@@ -52,25 +54,46 @@ const ShipmentForm = () => {
 
         {/* Store Details */}
         <div className="space-y-2">
-          <h3 className="text-sm md:text-base font-semibold text-slate-950 opacity-80">
-            تفاصيل المتجر
-          </h3>
-          <div className="grid grid-cols-2 gap-3 p-4 bg-red-50 rounded-2xl">
-            <div className="flex items-center gap-2">
-              <img src="/Icones/Location.svg" alt="location" className="w-5 h-5" />
-              <span className="text-sm md:text-base">العنوان</span>
-            </div>
-            <p className="text-sm md:text-base text-gray-500">
-              حي بدر، الدمام، المملكة العربية السعودية
-            </p>
-            <div className="flex items-center gap-2">
-              <img src="/Icones/phone.svg" alt="phone" className="w-5 h-5" />
-              <span className="text-sm md:text-base">الهاتف المحمول</span>
-            </div>
-            <p className="text-sm md:text-base text-gray-500">
-              +966 50 000 0000
-            </p>
+          <div className="flex justify-between">
+            <h3 className="text-sm md:text-base font-semibold text-slate-950 opacity-80">
+              تفاصيل المتجر
+            </h3>
+            <button
+              onClick={() => toggleDetails("store")}
+              className="p-2 w-10 h-10 rounded-lg bg-gray-200/30 hover:bg-gray-200/50 transition-colors"
+            >
+              <img
+                src="/Icones/ArrowRight.svg"
+                alt="arrow right"
+                className={`w-5 h-5 md:w-6 md:h-6 transition-transform duration-200 ${
+                  activeDetails === "store" ? "rotate-90" : ""
+                }`}
+              />
+            </button>
           </div>
+          {activeDetails === "store" && (
+            <div className="grid grid-cols-2 gap-3 p-4 bg-red-50 rounded-2xl">
+              {/* محتوى تفاصيل المتجر */}
+              <div className="flex items-center gap-2">
+                <img
+                  src="/Icones/Location.svg"
+                  alt="location"
+                  className="w-5 h-5"
+                />
+                <span className="text-sm md:text-base">العنوان</span>
+              </div>
+              <p className="text-sm md:text-base text-gray-500">
+                حي بدر، الدمام، المملكة العربية السعودية
+              </p>
+              <div className="flex items-center gap-2">
+                <img src="/Icones/phone.svg" alt="phone" className="w-5 h-5" />
+                <span className="text-sm md:text-base">هاتف المتجر</span>
+              </div>
+              <p className="text-sm md:text-base text-gray-500">
+                +966 50 000 0000
+              </p>
+            </div>
+          )}
         </div>
       </div>
 
@@ -97,26 +120,48 @@ const ShipmentForm = () => {
         </div>
 
         {/* Customer Details */}
-        <div className="space-y-2">
-          <h3 className="text-sm md:text-base font-semibold text-slate-950 opacity-80">
-            تفاصيل العميل
-          </h3>
-          <div className="grid grid-cols-2 gap-3 p-4 bg-red-50 rounded-2xl">
-            <div className="flex items-center gap-2">
-              <img src="/Icones/Location.svg" alt="location" className="w-5 h-5" />
-              <span className="text-sm md:text-base">العنوان</span>
-            </div>
-            <p className="text-sm md:text-base text-gray-500">
-              حي بدر، الدمام، المملكة العربية السعودية
-            </p>
-            <div className="flex items-center gap-2">
-              <img src="/Icones/phone.svg" alt="phone" className="w-5 h-5" />
-              <span className="text-sm md:text-base">الهاتف المحمول</span>
-            </div>
-            <p className="text-sm md:text-base text-gray-500">
-              +966 50 000 0000
-            </p>
+        <div className="space-y-2 mt-4">
+          <div className="flex justify-between">
+            <h3 className="text-sm md:text-base font-semibold text-slate-950 opacity-80">
+              تفاصيل العميل
+            </h3>
+            <button
+              onClick={() => toggleDetails("client")}
+              className="p-2 w-10 h-10 rounded-lg bg-gray-200/30 hover:bg-gray-200/50 transition-colors"
+            >
+              <img
+                src="/Icones/ArrowRight.svg"
+                alt="arrow right"
+                className={`w-5 h-5 md:w-6 md:h-6 transition-transform duration-200 ${
+                  activeDetails === "client" ? "rotate-90" : ""
+                }`}
+              />
+            </button>
           </div>
+
+          {activeDetails === "client" && (
+            <div className="grid grid-cols-2 gap-3 p-4 bg-red-50 rounded-2xl">
+              {/* محتوى تفاصيل العميل */}
+              <div className="flex items-center gap-2">
+                <img
+                  src="/Icones/Location.svg"
+                  alt="location"
+                  className="w-5 h-5"
+                />
+                <span className="text-sm md:text-base">العنوان</span>
+              </div>
+              <p className="text-sm md:text-base text-gray-500">
+                حي النخيل، الرياض، المملكة العربية السعودية
+              </p>
+              <div className="flex items-center gap-2">
+                <img src="/Icones/phone.svg" alt="phone" className="w-5 h-5" />
+                <span className="text-sm md:text-base">الهاتف المحمول</span>
+              </div>
+              <p className="text-sm md:text-base text-gray-500">
+                +966 55 123 4567
+              </p>
+            </div>
+          )}
         </div>
       </div>
 
@@ -168,7 +213,10 @@ const ShipmentForm = () => {
               id="pickup"
               className="w-5 h-5 bg-white rounded border border-neutral-400"
             />
-            <label htmlFor="pickup" className="text-sm md:text-base text-gray-500">
+            <label
+              htmlFor="pickup"
+              className="text-sm md:text-base text-gray-500"
+            >
               استلام الشحنة من المرسل
             </label>
           </div>
@@ -184,11 +232,7 @@ const ShipmentForm = () => {
         {/* Length */}
         <FormSection label="الطول (سم)">
           <div className="flex items-center gap-2 p-3 bg-white rounded-lg border border-neutral-400">
-            <img
-              src="/Icones/length.svg"
-              alt="length"
-              className="w-5 h-5"
-            />
+            <img src="/Icones/length.svg" alt="length" className="w-5 h-5" />
             <input
               type="number"
               placeholder="ادخل الطول"
@@ -200,11 +244,7 @@ const ShipmentForm = () => {
         {/* Height */}
         <FormSection label="الارتفاع (سم)">
           <div className="flex items-center gap-2 p-3 bg-white rounded-lg border border-neutral-400">
-            <img
-              src="/Icones/height.svg"
-              alt="height"
-              className="w-5 h-5"
-            />
+            <img src="/Icones/height.svg" alt="height" className="w-5 h-5" />
             <input
               type="number"
               placeholder="ادخل الارتفاع"
@@ -216,11 +256,7 @@ const ShipmentForm = () => {
         {/* Width */}
         <FormSection label="العرض (سم)">
           <div className="flex items-center gap-2 p-3 bg-white rounded-lg border border-neutral-400">
-            <img
-              src="/Icones/width.svg"
-              alt="width"
-              className="w-5 h-5"
-            />
+            <img src="/Icones/width.svg" alt="width" className="w-5 h-5" />
             <input
               type="number"
               placeholder="ادخل العرض"
@@ -232,11 +268,7 @@ const ShipmentForm = () => {
         {/* Weight */}
         <FormSection label="الوزن (كجم)">
           <div className="flex items-center gap-2 p-3 bg-white rounded-lg border border-neutral-400">
-            <img
-              src="/Icones/weight.svg"
-              alt="weight"
-              className="w-5 h-5"
-            />
+            <img src="/Icones/weight.svg" alt="weight" className="w-5 h-5" />
             <input
               type="number"
               placeholder="ادخل الوزن"
@@ -291,7 +323,9 @@ const ShipmentForm = () => {
           </div>
         </FormSection>
       </div>
-   
+      <button className="px-4 py-2 self-center mt-4 cursor-pointer md:px-6 md:py-4 text-sm md:text-base font-extrabold bg-red-100 text-pink-950 rounded-xl w-full sm:w-auto min-w-[200px]">
+        إضافة شحنة
+      </button>
     </section>
   );
 };

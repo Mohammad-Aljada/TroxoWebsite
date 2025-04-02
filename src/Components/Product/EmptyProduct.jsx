@@ -1,98 +1,13 @@
-import { FilterButton, ExcelButton, AddProductButton } from "./ActionButtons";
-import AddProductModal from './Modal/AddProductModal';
-import { useState } from 'react';
+import { FilterButton, ExcelButton, AddProductButton } from "../ActionButtons";
 
-const productData = [
-  {
-    id: "P-12345",
-    name: "أحذية رياضية",
-    length: "25 سم",
-    weight: "0.5 كغ",
-    height: "15 سم",
-    width: "20 سم",
-    price: "250 ر.س",
-    quantity: "25",
-  },
-  {
-    id: "P-67890",
-    name: "عدة رياضية",
-    length: "35 سم",
-    weight: "1.0 كغ",
-    height: "25 سم",
-    width: "30 سم",
-    price: "150 ر.س",
-    quantity: "15",
-  },
-  {
-    id: "P-13579",
-    name: "قبعة رياضية",
-    length: "50 سم",
-    weight: "0.3 كغ",
-    height: "23 سم",
-    width: "15 سم",
-    price: "300 ر.س",
-    quantity: "150",
-  },
-  {
-    id: "P-12345",
-    name: "أحذية رياضية",
-    length: "25 سم",
-    weight: "0.5 كغ",
-    height: "15 سم",
-    width: "20 سم",
-    price: "250 ر.س",
-    quantity: "25",
-  },
-  {
-    id: "P-67890",
-    name: "عدة رياضية",
-    length: "35 سم",
-    weight: "1.0 كغ",
-    height: "25 سم",
-    width: "30 سم",
-    price: "150 ر.س",
-    quantity: "15",
-  },
-  {
-    id: "P-13579",
-    name: "قبعة رياضية",
-    length: "50 سم",
-    weight: "0.3 كغ",
-    height: "23 سم",
-    width: "15 سم",
-    price: "300 ر.س",
-    quantity: "150",
-  },
-  {
-    id: "P-12345",
-    name: "أحذية رياضية",
-    length: "25 سم",
-    weight: "0.5 كغ",
-    height: "15 سم",
-    width: "20 سم",
-    price: "250 ر.س",
-    quantity: "25",
-  },
-  {
-    id: "P-67890",
-    name: "عدة رياضية",
-    length: "35 سم",
-    weight: "1.0 كغ",
-    height: "25 سم",
-    width: "30 سم",
-    price: "150 ر.س",
-    quantity: "15",
-  },
-];
+const productData = [];
 
-export const ProductList = () => {
-    const [activeModal, setActiveModal] = useState(null);
-    
-    const handleAddProductClick = () => {
-      setActiveModal('product');
-    };
+const EmptyProduct = () => {
   return (
-    <section className="flex flex-col w-full  bg-white rounded-2xl p-4 sm:p-6">
+    <section
+      className="flex flex-col w-full  bg-white rounded-2xl p-4 sm:p-6"
+      dir="rtl"
+    >
       {/* Header Section */}
       <div className="flex flex-col gap-4 w-full mb-6 lg:flex-row lg:justify-between lg:items-center">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -128,14 +43,8 @@ export const ProductList = () => {
             <FilterButton />
             <ExcelButton />
           </div>
-          <AddProductButton onClick={handleAddProductClick} />
+          <AddProductButton />
         </div>
-           {/* عرض المودال عند النقر */}
-      {activeModal === 'product' && (
-        <AddProductModal 
-          onClose={() => setActiveModal(null)} 
-        />
-      )}
       </div>
 
       {/* Info Message */}
@@ -255,46 +164,32 @@ export const ProductList = () => {
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {productData.map((product, index) => (
-                <tr key={index} className="hover:bg-gray-50">
-                  <td className="px-3 py-4 whitespace-nowrap text-sm text-center text-gray-800">
-                    Po-{index + 1}
-                  </td>
-                  <td className="px-3 py-4 whitespace-nowrap text-sm font-medium text-center text-gray-800">
-                    {product.name}
-                  </td>
-                  <td className="px-3 py-4 whitespace-nowrap text-sm text-center text-gray-800">
-                    {product.length}
-                  </td>
-                  <td className="px-3 py-4 whitespace-nowrap text-sm text-center text-gray-800">
-                    {product.weight}
-                  </td>
-                  <td className="px-3 py-4 whitespace-nowrap text-sm text-center text-gray-800">
-                    {product.height}
-                  </td>
-                  <td className="px-3 py-4 whitespace-nowrap text-sm text-center text-gray-800">
-                    {product.width}
-                  </td>
-                  <td className="px-3 py-4 whitespace-nowrap text-sm font-medium text-center text-gray-800">
-                    {product.price}
-                  </td>
-                  <td className="px-3 py-4 whitespace-nowrap text-sm text-center text-gray-800">
-                    {product.quantity}
-                  </td>
-                  <td className="px-3 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <button className="text-gray-400 hover:text-red-900">
-                      <svg
-                        className="w-6 h-6 rotate-90 bg-red-100 rounded-lg"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
-                      </svg>
-                    </button>
+            <tbody>
+              {productData.length > 0 ? (
+                productData.map((product) => (
+                  <tr
+                    key={product.id}
+                    className="border-b border-gray-200 hover:bg-gray-50"
+                  >
+                    {/* خلايا الجدول العادية */}
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="9" className="py-12 text-center">
+                    <div className="flex flex-col items-center justify-center gap-4">
+                      <img
+                        src="/images/EmptyProduct.png"
+                        alt="لا يوجد منتجات"
+                        className="w-40 h-40 object-contain"
+                      />
+                      <div className="text-xl font-semibold text-pink-950">
+                        أضف منتجًا للعرض
+                      </div>
+                    </div>
                   </td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
         </div>
@@ -311,13 +206,13 @@ export const ProductList = () => {
           </select>
         </div>
         <div className="flex space-x-2">
-          <button className="px-3 py-1 border rounded-md text-sm font-medium text-gray-700 ">
+          <button className="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
             <img src="/Icones/ArrowRight.svg" alt="السابق" />
           </button>
           <button className="px-3 py-1 bg-gray-100 text-black rounded-md text-sm font-medium">
             1
           </button>
-          <button className="px-3 py-1 border  rounded-md text-sm font-medium text-gray-700 ">
+          <button className="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
             <img src="/Icones/ArrowLeft.svg" alt="تالي" />
           </button>
         </div>
@@ -325,3 +220,5 @@ export const ProductList = () => {
     </section>
   );
 };
+
+export default EmptyProduct;

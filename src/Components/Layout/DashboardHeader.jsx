@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import { useState, useRef, useEffect } from "react";
-import NotificationsPanel from "../Components/Notifications/NotificationsPanel";
-import SettingsMenu from "../Components/Settings/SettingsMenu";
+import NotificationsPanel from "../Notifications/NotificationsPanel";
+import SettingsMenu from "../Settings/SettingsMenu";
 import { NavLink } from "react-router";
 
 const DashboardHeader = ({ toggleSidebar }) => {

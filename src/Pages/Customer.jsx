@@ -1,5 +1,5 @@
-import CustomerTable from "./../Components/CustomerTable";
 
+import CustomerTable from './../Components/Customer/CustomerTable';
 export default function Customer() {
   return (
     <div className="w-full px-4 md:px-6" dir="rtl">

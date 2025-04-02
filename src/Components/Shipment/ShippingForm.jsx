@@ -1,8 +1,8 @@
 import { useState } from "react";
-import DropDownMenu from "./DropDownMenu";
-import AlertMessage from "../Components/Alert/AlertMessage";
-import { ProductSelector } from "./ProductSelector";
+import DropDownMenu from "../DropDownMenu";
+import AlertMessage from "../Alert/AlertMessage";
 import { NavLink } from "react-router";
+import { ProductSelector } from './../ProductSelector';
 
 const ShippingForm = () => {
   const [quantity, setQuantity] = useState(0);

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 const AlertMessage = ({ icon, title, description }) => {
   return (
     <div

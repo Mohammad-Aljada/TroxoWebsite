@@ -1,6 +1,5 @@
 // ShipmentStatus.js
-import ShipmentStatusTable from "../Components/ShipmentStatusTable";
-
+import ShipmentStatusTable from "../Components/Shipment/ShipmentStatusTable";
 export const ShipmentStatus = () => {
   return (
     <div

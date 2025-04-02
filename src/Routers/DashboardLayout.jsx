@@ -1,8 +1,8 @@
-import DashboardHeader from "../Components/DashboardHeader";
 import { Outlet } from "react-router";
-import Sidebar from "../Components/Sidebar";
 import { useState } from "react";
 import WelcomeModal from "../Components/Modal/WelcomeModal";
+import Sidebar from './../Components/Layout/Sidebar';
+import DashboardHeader from './../Components/Layout/DashboardHeader';
 const DashboardLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [showWelcomeModal, setShowWelcomeModal] = useState(false);

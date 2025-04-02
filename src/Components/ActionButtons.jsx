@@ -90,7 +90,7 @@ export const AddProductButton = ({onClick}) => (
 );
 export const AddShipmentButton = () => (
   <button className="flex overflow-hidden flex-col justify-center items-center py-1 pr-3 pl-2 text-xs font-medium tracking-normal bg-red-100 rounded-md text-pink-950">
-    <div className="flex overflow-hidden gap-2 items-start cursor-pointer">
+    <div className="flex overflow-hidden gap-2 items-center cursor-pointer">
       <img
         src="https://cdn.builder.io/api/v1/image/assets/TEMP/1e95660b64d80ec70fafcd1a47dbccf9a97e8de4?placeholderIfAbsent=true&apiKey=33cf6ee4ee4e4cdd8b24ad2c5832d456"
         alt=""

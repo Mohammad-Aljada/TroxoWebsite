@@ -1,5 +1,4 @@
-import ClassificationList from "../Components/ClassificationList";
-
+import ClassificationList from "../Components/Classification/ClassificationList";
 export default function Classification() {
   return (
     <div className="w-full px-4 md:px-6" dir="rtl">
