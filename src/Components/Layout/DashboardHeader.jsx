@@ -62,6 +62,11 @@ const DashboardHeader = ({ toggleSidebar }) => {
 
         {/* الأيقونات (للجوال فقط) */}
         <div className="flex items-center gap-3 md:hidden">
+          <NavLink to="/admin">
+            <button className="flex items-center cursor-pointer justify-center gap-2 px-4 py-2  rounded-lg shadow-sm border border-solid border-pink-950 text-sm md:text-base hover:bg-gray-50 transition-colors">
+              <span>إدارة</span>
+            </button>
+          </NavLink>
           <button
             aria-label="Notifications"
             onClick={toggleNotifications}
@@ -73,6 +78,7 @@ const DashboardHeader = ({ toggleSidebar }) => {
               className="w-5 h-5"
             />
           </button>
+
           {showNotifications && (
             <div className="absolute top-13 right-20 mt-2 z-50">
               <NotificationsPanel />
@@ -121,19 +127,26 @@ const DashboardHeader = ({ toggleSidebar }) => {
 
         {/* الأزرار */}
         <div className="flex items-center gap-2 w-full md:w-auto">
-          <NavLink to="/home/shipments/addnewstore">
-            <button className="flex items-center cursor-pointer justify-center gap-2 px-4 py-2  rounded-lg shadow-sm border border-solid border-pink-950 text-sm md:text-base hover:bg-gray-50 transition-colors">
+          <NavLink to="/home/shipments">
+            <button className="flex items-center cursor-pointer justify-center gap-2 px-3 py-2  rounded-lg shadow-sm border border-solid border-pink-950 text-sm md:text-base hover:bg-gray-50 transition-colors">
               <span>إضافة شحنة</span>
             </button>
           </NavLink>
-          <button className="flex items-center cursor-pointer justify-center gap-2 px-4 py-2  rounded-lg shadow-sm border border-solid border-pink-950 text-sm md:text-base hover:bg-gray-50 transition-colors">
-            <span>إضافة رصيد</span>
-          </button>
+          <NavLink to="/home/wallet">
+            <button className="flex items-center cursor-pointer justify-center gap-2 px-3 py-2  rounded-lg shadow-sm border border-solid border-pink-950 text-sm md:text-base hover:bg-gray-50 transition-colors">
+              <span>إضافة رصيد</span>
+            </button>
+          </NavLink>
         </div>
       </div>
 
       {/* الأيقونات (لشاشات الكمبيوتر) */}
       <div className="hidden md:flex items-center gap-3 ml-4">
+        <NavLink to="/admin">
+          <button className="flex items-center cursor-pointer justify-center gap-2 px-4 py-2  rounded-lg shadow-sm border border-solid border-pink-950 text-sm md:text-base hover:bg-gray-50 transition-colors">
+            <span>إدارة</span>
+          </button>
+        </NavLink>
         <div className="relative" ref={notificationsRef}>
           <button
             aria-label="Notifications"

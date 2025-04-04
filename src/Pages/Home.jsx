@@ -33,7 +33,7 @@ const Home = () => {
 
       {/* بطاقات الإحصائيات - الصف الأول */}
       <div className="mt-4 md:mt-6 w-full">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-3">
+        <div className="grid grid-cols-3 max-sm:grid-cols-1 max-lg:grid-cols-2  gap-2 md:gap-3">
           <StatCard
             title="الشحنات شهريًا"
             value="155"
@@ -44,17 +44,7 @@ const Home = () => {
             textColor="text-indigo-500"
             compact
           />
-          <StatCard
-            title="الربح"
-            value="32,218"
-            change="5.39%"
-            period="فترة التغيير"
-            icon="/images/Win.svg"
-            borderColor="border-rose-400"
-            textColor="text-rose-400"
-            showCurrency
-            compact
-          />
+       
           <StatCard
             title="إجمالي العملاء"
             value="298"
@@ -65,12 +55,9 @@ const Home = () => {
             textColor="text-slate-400"
             compact
           />
-        </div>
-      </div>
+       
 
-      {/* بطاقات الإحصائيات - الصف الثاني */}
-      <div className="mt-4 md:mt-6 max-md:mb-2 w-full">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5">
+
           <StatCard
             title="إجمالي الشحنات"
             value="250"
@@ -82,16 +69,7 @@ const Home = () => {
             borderOpacity="border-opacity-60"
             compact
           />
-          <StatCard
-            title="تم الاستلام"
-            value="520"
-            change="5.39%"
-            period="فترة التغيير"
-            icon="/images/DeliveryTime.svg"
-            borderColor="border-orange-500"
-            textColor="text-orange-500"
-            compact
-          />
+       
           <StatCard
             title="مرتجع"
             value="15"

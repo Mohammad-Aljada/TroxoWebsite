@@ -14,12 +14,18 @@ import Shopes from "./Pages/Shopes";
 import ShopProduct from "./Pages/ShopProduct.jsx";
 import Classification from "./Pages/Classification.jsx";
 import Shipments from "./Pages/Shipments.jsx";
+import ShipmentsAdmin from "./Pages/Admin/ShipmentsAdmin.jsx";
 import ShipmentsAddANewStore from "./Pages/ShipmentsAddANewStore";
 import ShipmentDetails from "./Pages/ShimpentDetails";
 import ShipmentStatus from "./Pages/ShipmentStatus.jsx";
 import Customer from "./Pages/Customer.jsx";
 import Bills from "./Pages/Bills.jsx";
 import Wallet from "./Pages/Wallet.jsx";
+import AdminDashLayout from "./Routers/AdminDashLayout";
+import Company from "./Pages/Admin/Company";
+import Users from "./Pages/Admin/Users.jsx";
+import HomeAdmin from "./Pages/Admin/HomeAdmin.jsx";
+import WalletAdmin from "./Pages/Admin/WalletAdmin.jsx";
 
 function App() {
   return (
@@ -61,6 +67,13 @@ function App() {
         <Route path="wallet">
           <Route index element={<Wallet />} />
         </Route>
+      </Route>
+      <Route path="/admin" element={<AdminDashLayout />}>
+        <Route index element={<HomeAdmin />} />
+        <Route path="company" element={<Company />} />
+        <Route path="users" element={<Users />} />
+        <Route path="shipments" element={<ShipmentsAdmin />} />
+        <Route path="wallet" element={<WalletAdmin />} />
       </Route>
     </Routes>
   );

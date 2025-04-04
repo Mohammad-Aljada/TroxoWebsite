@@ -36,21 +36,6 @@ export default function ShipmentDetails() {
 
         {/* المحتوى الرئيسي */}
         <div className="w-full mt-6 lg:mt-8 p-6 lg:p-8 xl:p-10 bg-white rounded-xl lg:rounded-2xl shadow-sm">
-          {/* عنوان طريقة الشحن */}
-          <h3 className="text-center text-lg md:text-xl lg:text-2xl text-zinc-800 mb-6 lg:mb-8">
-            يرجى اختيار طريقة الشحن
-          </h3>
-
-          {/* أزرار طريقة الشحن */}
-          <div className="flex justify-center gap-6 lg:gap-10 mx-auto w-full md:w-4/5 lg:w-3/5 xl:w-2/5 bg-slate-50 rounded-full p-1 lg:p-2">
-            <button className="px-8 lg:px-12 py-3 lg:py-4 text-lg lg:text-xl bg-white rounded-full shadow-md text-pink-950 font-medium hover:bg-pink-50 transition-colors">
-              شحن المنتجات
-            </button>
-            <button className="px-6 lg:px-10 py-3 lg:py-4 text-base lg:text-lg text-neutral-600 hover:text-neutral-800 transition-colors">
-              الشحن حسب الأبعاد
-            </button>
-          </div>
-
           {/* مكونات الطلب والدفع */}
           <div className="mt-8 lg:mt-10">
             <OrderDetails />

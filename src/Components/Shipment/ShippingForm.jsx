@@ -2,28 +2,33 @@ import { useState } from "react";
 import DropDownMenu from "../DropDownMenu";
 import AlertMessage from "../Alert/AlertMessage";
 import { NavLink } from "react-router";
-import { ProductSelector } from './../ProductSelector';
+import { ProductSelector } from "./../ProductSelector";
 
 const ShippingForm = () => {
   const [quantity, setQuantity] = useState(0);
   const [activeTab, setActiveTab] = useState("products");
-  const [selectedCustomer, setSelectedCustomer] = useState(null);
   const [selectedStore, setSelectedStore] = useState(null);
+  const [selectedCustomers, setSelectedCustomers] = useState([]);
+
+  const handleSelectCustomer = (customer) => {
+    setSelectedCustomers((prev) => {
+      if (prev.some((c) => c.name === customer)) {
+        return prev.filter((c) => c.name !== customer);
+      } else {
+        return [
+          ...prev,
+          {
+            name: customer,
+            address: "حي بدر، الدمام", // يمكن جلب هذه البيانات من API
+            phone: "+966 50 000 0000",
+          },
+        ];
+      }
+    });
+  };
 
   const handleStoreSelect = (store) => {
     setSelectedStore(store);
-  };
-
-  const handleCustomerSelect = (customer) => {
-    setSelectedCustomer(
-      customer
-        ? {
-            name: customer,
-            address: "حي بدر، الدمام، المملكة العربية السعودية",
-            phone: "+966 50 000 0000",
-          }
-        : null
-    );
   };
 
   return (
@@ -86,11 +91,16 @@ const ShippingForm = () => {
                 </label>
                 <DropDownMenu
                   options={["عبد الرحمن", "محمد", "علي"]}
-                  placeholder="يرجى اختيار العميل"
+                  placeholder={
+                    selectedCustomers.length > 0
+                      ? `${selectedCustomers.length} عميل مختار`
+                      : "يرجى اختيار العميل"
+                  }
                   icon="/Icones/Profile.svg"
                   title="العميل"
-                  selected={selectedCustomer?.name}
-                  onSelect={handleCustomerSelect}
+                  selectedItems={selectedCustomers.map((c) => c.name)} // تمرير الأسماء فقط
+                  onSelectMulti={handleSelectCustomer} // استخدام دالة الاختيار المتعدد
+                  isMulti={true} // تفعيل وضع الاختيار المتعدد
                 />
               </div>
 
@@ -106,42 +116,52 @@ const ShippingForm = () => {
               description="أضف متجرك الآن لعرض تفاصيله الكاملة لعملائنا، بما في ذلك رقم الهاتف والعنوان لسهولة الاتصال والوصول!"
             />
 
-            {selectedCustomer ? (
-              <div className="mt-6">
-                <h4 className="text-sm md:text-base font-semibold text-slate-950 mb-2">
-                  عميل المتجر
-                </h4>
-
-                <div className="mt-4 bg-red-50 rounded-2xl p-4 transition-all">
-                  <h3 className="text-sm md:text-base font-semibold text-slate-950">
-                    تفاصيل العميل: {selectedCustomer.name}
-                  </h3>
-
-                  <div className="grid grid-cols-2 gap-3 mt-2">
-                    <div className="flex items-center gap-2">
-                      <img
-                        src="/Icones/Location.svg"
-                        alt="location"
-                        className="w-4 h-4"
-                      />
-                      <span className="text-xs md:text-sm">العنوان</span>
+            {selectedCustomers.length > 0 ? (
+              <div className="mt-4">
+                <h3>تفاصيل العميل</h3>
+                {selectedCustomers.map((customer, index) => (
+                  <div
+                    key={index}
+                    className="bg-red-50 rounded-2xl mt-4 p-4 transition-all"
+                  >
+                    <div className="flex justify-between items-start">
+                      <h3 className="text-sm md:text-base font-semibold text-slate-950">
+                        {customer.name}
+                      </h3>
+                      <button
+                        onClick={() => handleSelectCustomer(customer.name)}
+                        className="text-red-500 text-xs"
+                      >
+                        إزالة
+                      </button>
                     </div>
-                    <p className="text-xs md:text-sm text-gray-500">
-                      {selectedCustomer.address}
-                    </p>
-                    <div className="flex items-center gap-2">
-                      <img
-                        src="/Icones/phone.svg"
-                        alt="phone"
-                        className="w-4 h-4"
-                      />
-                      <span className="text-xs md:text-sm">الهاتف</span>
+
+                    <div className="grid grid-cols-2 gap-3 mt-2">
+                      <div className="flex items-center gap-2">
+                        <img
+                          src="/Icones/Location.svg"
+                          alt="location"
+                          className="w-4 h-4"
+                        />
+                        <span className="text-xs md:text-sm">العنوان</span>
+                      </div>
+                      <p className="text-xs md:text-sm text-gray-500">
+                        {customer.address}
+                      </p>
+                      <div className="flex items-center gap-2">
+                        <img
+                          src="/Icones/phone.svg"
+                          alt="phone"
+                          className="w-4 h-4"
+                        />
+                        <span className="text-xs md:text-sm">الهاتف</span>
+                      </div>
+                      <p className="text-xs md:text-sm text-gray-500">
+                        {customer.phone}
+                      </p>
                     </div>
-                    <p className="text-xs md:text-sm text-gray-500">
-                      {selectedCustomer.phone}
-                    </p>
                   </div>
-                </div>
+                ))}
               </div>
             ) : (
               <div className="mt-6">

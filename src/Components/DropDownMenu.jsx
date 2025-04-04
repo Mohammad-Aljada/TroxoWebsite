@@ -9,18 +9,22 @@ const DropdownMenu = ({
   placeholder,
   title,
   icon,
-  selected,
+  selectedItems = [], // الجديد
+  onSelectMulti, // الجديد
+  isMulti = false,
   onSelect,
+  selected, // الجديد
   modalToOpen = "store",
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeModal, setActiveModal] = useState(null);
 
   const handleSelect = (option) => {
-    // إذا كان الخيار المحدد هو نفسه المختار مسبقاً، يتم إلغاء الاختيار
-    const newSelection = option === selected ? null : option;
-    if (onSelect) onSelect(newSelection);
-    setIsOpen(false);
+    if (isMulti) {
+      onSelectMulti && onSelectMulti(option);
+    } else {
+      onSelect && onSelect(option);
+    }
   };
 
   const handleAddNew = () => {
@@ -72,22 +76,21 @@ const DropdownMenu = ({
           {options.map((option, index) => (
             <div
               key={index}
-              className={`flex items-center gap-1 px-4 py-2.5 hover:bg-gray-50 cursor-pointer ${
-                selected === option ? "bg-blue-100" : ""
+              className={`flex items-center px-4 py-2.5 hover:bg-gray-50 cursor-pointer ${
+                (isMulti ? selectedItems.includes(option) : selected === option)
+                  ? "bg-blue-50"
+                  : ""
               }`}
               onClick={() => handleSelect(option)}
-              role="option"
-              aria-selected={selected === option}
             >
-              {/* CheckBox يظهر فقط إذا كان الخيار هو "المتجر" أو "العميل" */}
-              {title === "العميل" && (
-                <CheckBox
-                  checked={selected === option}
-                  onChange={() => handleSelect(option)}
-                  onClick={
-                    selected === option ? null : () => handleSelect(option)
-                  } // لمنع تنفيذ onClick الخاص بالعنصر الأب
-                />
+              {/* عرض Checkbox فقط إذا كان النوع "عميل" وفي وضع الاختيار المتعدد */}
+              {title === "العميل" && isMulti && (
+                <div className="mr-2" onClick={(e) => e.stopPropagation()}>
+                  <CheckBox
+                    checked={selectedItems.includes(option)}
+                    onChange={() => handleSelect(option)}
+                  />
+                </div>
               )}
               <span className="flex-1 text-right">{option}</span>
             </div>

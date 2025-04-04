@@ -2,7 +2,7 @@
 import InvoicesTable from './../Components/Bills/InvoicesTable';
 export default function Bills() {
   return (
-    <div className="w-full px-4 md:px-6" dir="rtl">
+    <div className="w-full  px-4 md:px-6" dir="rtl">
       <div className="flex flex-col items-start mt-3 md:mt-4 w-full max-w-screen-2xl mx-auto">
         {/* العنوان وشريط التنقل */}
         <div className="w-full mb-6">

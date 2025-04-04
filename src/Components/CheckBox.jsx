@@ -3,7 +3,7 @@ const CheckBox = ({ checked, onChange }) => {
   return (
     <div
       className={`w-5 h-5 border-2 rounded flex items-center justify-center cursor-pointer ${
-        checked ? "bg-red-100 border-gray-100" : "border-gray-400"
+        checked ? "bg-blue-500 border-blue-500" : "border-gray-300"
       }`}
       onClick={onChange}
     >
@@ -13,11 +13,7 @@ const CheckBox = ({ checked, onChange }) => {
           viewBox="0 0 20 20"
           fill="currentColor"
         >
-          <path
-            fillRule="evenodd"
-            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-            clipRule="evenodd"
-          />
+          <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
         </svg>
       )}
     </div>

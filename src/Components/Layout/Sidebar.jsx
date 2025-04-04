@@ -37,7 +37,7 @@ const Sidebar = () => {
     {
       icon: "/Icones/ShipmentsIcone.svg",
       text: "الشحنات",
-      path: "/home/shipments",
+      path: "/home/shipments/shipmentstatus",
       icone: "/Icones/ArrowRight.svg",
       subMenu: [
         {

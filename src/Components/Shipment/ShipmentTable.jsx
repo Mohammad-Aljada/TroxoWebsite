@@ -1,12 +1,17 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import Button from "../Button";
 import { NavLink } from "react-router";
+import MenuShipment from './../Menu/MenuShipment';
 
 const ShipmentTable = () => {
   const [expandedRow, setExpandedRow] = useState(null);
   const handleRowClick = (rowId) => {
     setExpandedRow(expandedRow === rowId ? null : rowId);
+  };
+  const [selectedRow, setSelectedRow] = useState(false);
+
+  const handleMenuToggle = () => {
+    setSelectedRow(!selectedRow);
   };
   const shipmentData = [
     {
@@ -61,7 +66,7 @@ const ShipmentTable = () => {
         dir="rtl"
       >
         {/* Header Section - معدل للاستجابة */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 mb-4">
+        <div className="flex flex-row justify-between items-start md:items-center gap-3 mb-4">
           <div className="flex flex-col">
             <h2 className="text-lg font-bold text-gray-800">
               قائمة طلبات الشحن
@@ -71,28 +76,18 @@ const ShipmentTable = () => {
             </time>
           </div>
 
-          <div className="flex flex-wrap gap-2">
-            <Button
-              variant="primary"
-              icon="/Icones/Copy.svg"
-              className="py-1 px-2 text-xs md:text-sm"
+          <div className="flex justify-center relative">
+            <button
+              onClick={ handleMenuToggle}
+              className="p-1 text-xl bg-[#FC746C] text-white hover:bg-red-500 rounded-lg transition-colors"
             >
-              نسخ
-            </Button>
-            <Button
-              variant="primary"
-              icon="/Icones/print2.svg"
-              className="py-1 px-2 text-xs md:text-sm"
-            >
-              طباعة
-            </Button>
-            <Button
-              variant="secondary"
-              icon="/Icones/Download.svg"
-              className="py-1 px-2 text-xs md:text-sm"
-            >
-              ملف إكسل
-            </Button>
+              ...
+            </button>
+            {selectedRow && (
+              <div className="absolute left-5 top-[75%] mt-1 z-50">
+                <MenuShipment onClose={() => setSelectedRow(true)} />
+              </div>
+            )}
           </div>
         </div>
 
@@ -255,7 +250,7 @@ const ShipmentTable = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
           <NavLink to="/home/shipments/details">
             <button className="px-4 py-2 cursor-pointer md:px-6 md:py-4 text-sm md:text-base font-extrabold bg-red-100 text-pink-950 rounded-xl w-full sm:w-auto min-w-[200px]">
-              إضافة شحنة
+              متابعة الدفع
             </button>
           </NavLink>
         </div>

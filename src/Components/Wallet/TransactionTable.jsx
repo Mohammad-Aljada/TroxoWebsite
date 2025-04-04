@@ -57,8 +57,21 @@ export default function TransactionTable() {
                   <td className="p-3 md:p-4 text-sm text-blue-950 text-center">
                     {transaction.id}
                   </td>
-                  <td className="p-3 md:p-4 text-sm text-blue-950 text-center">
-                    {transaction.description}
+                  <td
+                    className={`p-3 md:p-4 text-sm text-center `}
+                  >
+                    <div className="flex items-center justify-center gap-1">
+                      <span>{transaction.description}</span>
+                      <img
+                        src={
+                          transaction.amount.type === "credit"
+                            ? "/Icones/Charging.svg"
+                            : "/Icones/request.svg"
+                        }
+                        alt="عملة"
+                        className="w-4 h-4"
+                      />
+                    </div>
                   </td>
                   <td className="p-3 md:p-4 text-sm text-blue-950 text-center">
                     {transaction.date}

@@ -1,7 +1,11 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 const FormSection = ({ label, children, required }) => (
-  <div className="flex flex-col w-full">
+  <div
+    className={`flex mt-4  flex-col  ${
+      label === "عدد البوكسات" || label === "الكمية" ? "items-start gap-2 " : ""
+    }    `}
+  >
     <div className="flex gap-2 self-start">
       <label className="text-sm md:text-base font-semibold text-slate-950">
         {label}
@@ -13,7 +17,7 @@ const FormSection = ({ label, children, required }) => (
 );
 
 const ShipmentForm = () => {
-  const [activeDetails, setActiveDetails] = useState(null); // يمكن أن تكون 'store' أو 'client' أو null
+  const [activeDetails, setActiveDetails] = useState(null); 
 
   const toggleDetails = (type) => {
     setActiveDetails(activeDetails === type ? null : type);
@@ -188,7 +192,7 @@ const ShipmentForm = () => {
 
         {/* Quantity */}
         <FormSection label="الكمية">
-          <div className="flex justify-between items-center p-2 bg-white rounded-lg border border-neutral-400">
+          <div className="flex justify-between gap-10 items-center p-2 bg-white rounded-lg border border-neutral-400">
             <button
               className="flex justify-center items-center w-7 h-7 bg-red-50 rounded-lg"
               aria-label="Decrease quantity"
@@ -223,106 +227,163 @@ const ShipmentForm = () => {
         </FormSection>
       </div>
 
+      <FormSection label="عدد البوكسات">
+        <div className="flex justify-between gap-10  items-center p-2 bg-white rounded-lg border border-neutral-400">
+          <button
+            className="flex justify-center items-center w-7 h-7 bg-red-50 rounded-lg"
+            aria-label="Decrease quantity"
+          >
+            -
+          </button>
+          <span className="text-lg md:text-xl font-bold">3</span>
+          <button
+            className="flex justify-center items-center w-7 h-7 bg-red-50 rounded-lg"
+            aria-label="Increase quantity"
+          >
+            +
+          </button>
+        </div>
+      </FormSection>
+
       {/* Shipment Details */}
-      <h3 className="mt-6 md:mt-8 text-base md:text-lg text-zinc-800">
-        تفاصيل الشحنة (الطول، الارتفاع، العرض)
-      </h3>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mt-4">
-        {/* Length */}
-        <FormSection label="الطول (سم)">
-          <div className="flex items-center gap-2 p-3 bg-white rounded-lg border border-neutral-400">
-            <img src="/Icones/length.svg" alt="length" className="w-5 h-5" />
-            <input
-              type="number"
-              placeholder="ادخل الطول"
-              className="w-full bg-transparent outline-none"
-            />
-          </div>
-        </FormSection>
-
-        {/* Height */}
-        <FormSection label="الارتفاع (سم)">
-          <div className="flex items-center gap-2 p-3 bg-white rounded-lg border border-neutral-400">
-            <img src="/Icones/height.svg" alt="height" className="w-5 h-5" />
-            <input
-              type="number"
-              placeholder="ادخل الارتفاع"
-              className="w-full bg-transparent outline-none"
-            />
-          </div>
-        </FormSection>
-
-        {/* Width */}
-        <FormSection label="العرض (سم)">
-          <div className="flex items-center gap-2 p-3 bg-white rounded-lg border border-neutral-400">
-            <img src="/Icones/width.svg" alt="width" className="w-5 h-5" />
-            <input
-              type="number"
-              placeholder="ادخل العرض"
-              className="w-full bg-transparent outline-none"
-            />
-          </div>
-        </FormSection>
-
-        {/* Weight */}
-        <FormSection label="الوزن (كجم)">
-          <div className="flex items-center gap-2 p-3 bg-white rounded-lg border border-neutral-400">
-            <img src="/Icones/weight.svg" alt="weight" className="w-5 h-5" />
-            <input
-              type="number"
-              placeholder="ادخل الوزن"
-              className="w-full bg-transparent outline-none"
-            />
-          </div>
-        </FormSection>
+      <div className="flex justify-between items-center">
+        <h3 className="mt-6 md:mt-8 text-base md:text-lg text-zinc-800">
+          تفاصيل الشحنة (الطول، الارتفاع، العرض)
+        </h3>
+        <button
+          onClick={() => toggleDetails("shipment")}
+          className="p-2 w-10 h-10 rounded-lg bg-gray-200/30 hover:bg-gray-200/50 transition-colors"
+        >
+          <img
+            src="/Icones/ArrowRight.svg"
+            alt="arrow right"
+            className={`w-5 h-5 md:w-6 md:h-6 transition-transform duration-200 ${
+              activeDetails === "shipment" ? "rotate-90" : ""
+            }`}
+          />
+        </button>
       </div>
+      {activeDetails === "shipment" && (
+        <div className="space-y-6">
+          {/* أبعاد الشحنة */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            {/* الطول */}
+            <FormSection label="الطول (سم)" required>
+              <div className="flex items-center gap-2 p-3 bg-white rounded-lg border border-neutral-400 hover:border-neutral-500 transition-colors">
+                <img
+                  src="/Icones/length.svg"
+                  alt="length"
+                  className="w-5 h-5 opacity-70"
+                />
+                <input
+                  type="number"
+                  placeholder="ادخل الطول"
+                  className="w-full bg-transparent outline-none placeholder:text-neutral-400"
+                  min="1"
+                />
+              </div>
+            </FormSection>
 
-      {/* Shipping Type */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mt-6 md:mt-8">
-        {/* Shipment Type */}
-        <FormSection label="نوع الشحنة" required>
-          <div className="flex justify-between items-center p-3 bg-white rounded-lg border border-neutral-400">
-            <span className="text-zinc-400">نوع الشحنة</span>
-            <img
-              src="/images/AarrowDown.svg"
-              alt="arrow"
-              className="w-5 h-5 md:w-6 md:h-6"
-            />
-          </div>
-        </FormSection>
+            {/* الارتفاع */}
+            <FormSection label="الارتفاع (سم)" required>
+              <div className="flex items-center gap-2 p-3 bg-white rounded-lg border border-neutral-400 hover:border-neutral-500 transition-colors">
+                <img
+                  src="/Icones/height.svg"
+                  alt="height"
+                  className="w-5 h-5 opacity-70"
+                />
+                <input
+                  type="number"
+                  placeholder="ادخل الارتفاع"
+                  className="w-full bg-transparent outline-none placeholder:text-neutral-400"
+                  min="1"
+                />
+              </div>
+            </FormSection>
 
-        {/* Shipping Company */}
-        <FormSection label="شركة الشحن" required>
-          <div className="flex justify-between items-center p-3 bg-white rounded-lg border border-neutral-400">
-            <div className="flex items-center gap-3">
-              <img
-                src="/Icones/ShipmentsIcone.svg"
-                alt="shipping"
-                className="w-5 h-5"
-              />
-              <span className="text-zinc-400">SMSA</span>
-            </div>
-            <img
-              src="/images/AarrowDown.svg"
-              alt="arrow"
-              className="w-5 h-5 md:w-6 md:h-6"
-            />
-          </div>
-        </FormSection>
+            {/* العرض */}
+            <FormSection label="العرض (سم)" required>
+              <div className="flex items-center gap-2 p-3 bg-white rounded-lg border border-neutral-400 hover:border-neutral-500 transition-colors">
+                <img
+                  src="/Icones/width.svg"
+                  alt="width"
+                  className="w-5 h-5 opacity-70"
+                />
+                <input
+                  type="number"
+                  placeholder="ادخل العرض"
+                  className="w-full bg-transparent outline-none placeholder:text-neutral-400"
+                  min="1"
+                />
+              </div>
+            </FormSection>
 
-        {/* Service Type */}
-        <FormSection label="نوع الخدمة">
-          <div className="flex justify-between items-center p-3 bg-white rounded-lg border border-neutral-400">
-            <span className="text-zinc-400">الدفع عند الاستلام</span>
-            <img
-              src="/images/AarrowDown.svg"
-              alt="arrow"
-              className="w-5 h-5 md:w-6 md:h-6"
-            />
+            {/* الوزن */}
+            <FormSection label="الوزن (كجم)" required>
+              <div className="flex items-center gap-2 p-3 bg-white rounded-lg border border-neutral-400 hover:border-neutral-500 transition-colors">
+                <img
+                  src="/Icones/weight.svg"
+                  alt="weight"
+                  className="w-5 h-5 opacity-70"
+                />
+                <input
+                  type="number"
+                  placeholder="ادخل الوزن"
+                  className="w-full bg-transparent outline-none placeholder:text-neutral-400"
+                  min="0.1"
+                  step="0.1"
+                />
+              </div>
+            </FormSection>
           </div>
-        </FormSection>
-      </div>
+
+          {/* معلومات الشحن */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+            {/* نوع الشحنة */}
+            <FormSection label="نوع الشحنة" required>
+              <div className="flex justify-between items-center p-3 bg-white rounded-lg border border-neutral-400 hover:border-neutral-500 transition-colors cursor-pointer">
+                <span className="text-neutral-400">اختر النوع</span>
+                <img
+                  src="/images/AarrowDown.svg"
+                  alt="arrow"
+                  className="w-5 h-5 transition-transform"
+                />
+              </div>
+            </FormSection>
+
+            {/* شركة الشحن */}
+            <FormSection label="شركة الشحن" required>
+              <div className="flex justify-between items-center p-3 bg-white rounded-lg border border-neutral-400 hover:border-neutral-500 transition-colors cursor-pointer">
+                <div className="flex items-center gap-3">
+                  <img
+                    src="/Icones/ShipmentsIcone.svg"
+                    alt="shipping"
+                    className="w-5 h-5"
+                  />
+                  <span className="text-neutral-400">اختر الشركة</span>
+                </div>
+                <img
+                  src="/images/AarrowDown.svg"
+                  alt="arrow"
+                  className="w-5 h-5 transition-transform"
+                />
+              </div>
+            </FormSection>
+
+            {/* نوع الخدمة */}
+            <FormSection label="نوع الخدمة" required>
+              <div className="flex justify-between items-center p-3 bg-white rounded-lg border border-neutral-400 hover:border-neutral-500 transition-colors cursor-pointer">
+                <span className="text-neutral-400">اختر الخدمة</span>
+                <img
+                  src="/images/AarrowDown.svg"
+                  alt="arrow"
+                  className="w-5 h-5 transition-transform"
+                />
+              </div>
+            </FormSection>
+          </div>
+        </div>
+      )}
       <button className="px-4 py-2 self-center mt-4 cursor-pointer md:px-6 md:py-4 text-sm md:text-base font-extrabold bg-red-100 text-pink-950 rounded-xl w-full sm:w-auto min-w-[200px]">
         إضافة شحنة
       </button>

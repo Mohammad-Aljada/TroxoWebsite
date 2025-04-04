@@ -1,4 +1,4 @@
-import { FilterButton, AddShipmentButton } from "../ActionButtons";
+import { FilterButton } from "../ActionButtons";
 import { useState } from "react";
 import MenuBills from "../Menu/MenuBills";
 
@@ -8,7 +8,6 @@ export default function InvoicesTable() {
       id: "#125758",
       store: "جولدن جول",
       customer: "مشاري الذبياني",
-      shippingCompany: "/Icones/Company.png",
       date: "12-03-2024",
       price: "646",
     },
@@ -16,7 +15,6 @@ export default function InvoicesTable() {
       id: "#128547",
       store: "جولدن جول",
       customer: "أحمد أحمد",
-      shippingCompany: "/Icones/Company.png",
       date: "22-03-2024",
       price: "646",
     },
@@ -24,7 +22,6 @@ export default function InvoicesTable() {
       id: "#125760",
       store: "جولدن جول",
       customer: "مشاري الذبياني",
-      shippingCompany: "/Icones/Company.png",
       date: "12-03-2024",
       price: "646",
     },
@@ -32,7 +29,6 @@ export default function InvoicesTable() {
       id: "#128550",
       store: "جولدن جول",
       customer: "أحمد أحمد",
-      shippingCompany: "/Icones/Company.png",
       date: "22-03-2024",
       price: "646",
     },
@@ -40,7 +36,6 @@ export default function InvoicesTable() {
       id: "#125759",
       store: "جولدن جول",
       customer: "مشاري الذبياني",
-      shippingCompany: "/Icones/Company.png",
       date: "12-03-2024",
       price: "646",
     },
@@ -52,7 +47,7 @@ export default function InvoicesTable() {
   };
 
   return (
-    <section className="flex flex-col w-full p-4 mt-2 bg-white rounded-2xl md:p-6">
+    <section className="flex flex-col mb-4 w-full p-4 mt-2 bg-white rounded-2xl md:p-6">
       {/* Header Section */}
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-5">
         <h2 className="text-2xl lg:text-3xl font-bold text-gray-800">
@@ -73,9 +68,8 @@ export default function InvoicesTable() {
           </div>
 
           {/* Buttons */}
-          <div className="flex gap-2 justify-end max-md:justify-start">
+          <div className="flex justify-end max-md:justify-start">
             <FilterButton />
-            <AddShipmentButton />
           </div>
         </div>
       </div>
@@ -109,16 +103,7 @@ export default function InvoicesTable() {
                     <span>اسم العميل</span>
                   </div>
                 </th>
-                <th className="px-3 py-3 text-sm lg:text-base font-semibold text-zinc-800 ">
-                  <div className="flex max-md:flex-col max-md:gap-1 items-center justify-center gap-2">
-                    <img
-                      src="/Icones/shipment.svg"
-                      alt="شحن"
-                      className="w-4 h-4"
-                    />
-                    <span>شركة الشحن</span>
-                  </div>
-                </th>
+              
                 <th className="px-3 py-3 text-sm lg:text-base font-semibold text-zinc-800 ">
                   <div className="flex max-md:flex-col max-md:gap-1 items-center justify-center gap-2">
                     <img
@@ -154,15 +139,7 @@ export default function InvoicesTable() {
                   <td className="px-3 py-3 text-sm text-blue-950 text-center">
                     {invoice.customer}
                   </td>
-                  <td className="px-3 py-3 text-sm text-blue-950">
-                    <div className="flex justify-center">
-                      <img
-                        src={invoice.shippingCompany}
-                        alt="شركة شحن"
-                        className="h-7 rounded-md w-16 object-contain"
-                      />
-                    </div>
-                  </td>
+                
                   <td className="px-3 py-3 text-sm text-blue-950 text-center">
                     {invoice.date}
                   </td>
