@@ -41,7 +41,7 @@ function Shopes() {
             نستخدم عناوين المتاجر وتفاصيل الاتصال لاستقبال الشحنات من ممثلي
             التوصيل. يرجى التأكد من صحة البيانات لتسهيل الوصول إليك.
           </p>
-          <div className="flex overflow-hidden items-start flex-col px-11 pt-10 mt-12 w-full rounded-2xl bg-slate-50 max-md:px-5 max-md:mt-10 max-md:max-w-full" dir="ltr">
+          <div className="flex overflow-hidden items-end flex-col px-11 pt-10 mt-12 w-full rounded-2xl bg-slate-50 max-md:px-5 max-md:mt-10 max-md:max-w-full" dir="ltr">
             <StoreDetails
               title="تفاصيل المتجر - الأول"
               storeName="جولدن جول"
