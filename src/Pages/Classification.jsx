@@ -10,7 +10,7 @@ export default function Classification() {
           <ol className="flex gap-1">
             <li>الرئيسية</li>
             <li aria-hidden="true">&gt;</li>
-            <li>المتاجر</li>
+            <li>التصنيفات</li>
             <li aria-hidden="true">&gt;</li>
             <li aria-current="page">التصنيفات</li>
           </ol>

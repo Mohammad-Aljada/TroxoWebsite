@@ -56,7 +56,7 @@ function App() {
 
         <Route path="shipments">
           <Route path="addshipment" element={<AddShipments />} />
-          <Route path="details" element={<ShipmentDetails />} />
+          <Route path="checkout" element={<ShipmentDetails />} />
           <Route index element={<Shipments />} />
           <Route path="customer" element={<Customer />} />
           <Route path="bills" element={<Bills />} />

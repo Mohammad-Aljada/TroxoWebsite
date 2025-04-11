@@ -1,17 +1,10 @@
-import { useState } from "react";
 import OrderDetails from "../Components/OrderDetails";
 import PaymentSection from "../Components/PaymentSection";
-import SuccessShimpentModal from "../Components/Modal/SuccessShimpentModel";
 
 export default function ShipmentDetails() {
-  const [showSuccessShipmentModal, setShowSuccessShipmentModal] = useState(false);
-
-  const OnSumbit = (e) => {
-    e.preventDefault();
-    setShowSuccessShipmentModal(true);
-  };
+ 
   return (
-    <section className="ml-5 w-[95%] max-md:ml-0 max-md:w-full" dir="rtl">
+    <section className="w-full mb-4 px-4 md:px-6" dir="rtl">
       <div className="flex flex-col items-end  mt-6">
         {/* العنوان والمسار */}
         <div className="w-full px-4 lg:px-0">
@@ -23,12 +16,20 @@ export default function ShipmentDetails() {
             className="mt-2 text-sm md:text-base lg:text-lg text-neutral-500"
           >
             <ol className="flex items-center space-x-2 rtl:space-x-reverse">
-              <li className="hover:text-gray-700">الرئيسية</li>
-              <li aria-hidden="true" className="mx-1">
-                /
+            <li className="flex items-center ">
+                <span className="hover:text-gray-700">الرئيسية</span>
+                <li aria-hidden="true">&gt;</li>
               </li>
-              <li className="text-gray-700" aria-current="page">
-                الشحنات
+              <li className="flex items-center ">
+                <span className="hover:text-gray-700">الشحنات</span>
+                <li aria-hidden="true">&gt;</li>
+              </li>
+              <li className="flex items-center ">
+                <span className="hover:text-gray-700">اضافة شحنة</span>
+                <li aria-hidden="true">&gt;</li>
+              </li>
+              <li className="flex items-center ">
+                <span className="hover:text-gray-700">تاكيد الدفع</span>
               </li>
             </ol>
           </nav>
@@ -40,19 +41,6 @@ export default function ShipmentDetails() {
           <div className="mt-8 lg:mt-10">
             <OrderDetails />
             <PaymentSection />
-          </div>
-
-          {/* أزرار الإجراءات */}
-          <div className="flex flex-col sm:flex-row gap-4 lg:gap-6 justify-center mt-8 lg:mt-10 w-full">
-            <button onClick={OnSumbit} className="w-full sm:w-auto px-8 lg:px-12 py-3 lg:py-4 text-base lg:text-lg font-semibold bg-red-100 rounded-lg lg:rounded-xl hover:bg-red-200 text-pink-950 transition-colors">
-              دفع
-            </button>
-            <button className="w-full sm:w-auto px-8 lg:px-12 py-3 lg:py-4 text-base lg:text-lg font-semibold bg-gray-200 rounded-lg lg:rounded-xl hover:bg-gray-300 text-neutral-600 transition-colors">
-              إلغاء الطلب
-            </button>
-            {showSuccessShipmentModal &&   <SuccessShimpentModal 
-                      onClose={() => setShowSuccessShipmentModal(false)}
-                    /> }
           </div>
         </div>
       </div>

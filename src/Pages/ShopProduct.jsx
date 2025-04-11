@@ -2,11 +2,11 @@
 import { ProductList } from './../Components/Product/ProductList';
 export default function ShopProduct() {
   return (
-    <div className="w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12" dir="rtl">
+    <div className="w-full px-4 md:px-6" dir="rtl">
       <div className="flex flex-col items-start mt-6 md:mt-8 lg:mt-10">
-        <div className="w-full md:mr-10">
+        <div className="w-full md:mr-4">
           <h1 className="text-xl font-black text-gray-800 uppercase max-lg:mr-[12%] sm:text-2xl">
-            متاجر
+            منتجات
           </h1>
           <nav aria-label="breadcrumb" className="mt-2">
             <ol className="flex flex-wrap max-lg:mr-[12%]  items-center gap-x-2 text-sm text-neutral-500 sm:text-base">

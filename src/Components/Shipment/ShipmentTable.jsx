@@ -248,7 +248,7 @@ const ShipmentTable = () => {
 
         {/* Confirm Button - معدل للاستجابة */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-          <NavLink to="/home/shipments/details">
+          <NavLink to="/home/shipments/checkout">
             <button className="px-4 py-2 cursor-pointer md:px-6 md:py-4 text-sm md:text-base font-extrabold bg-red-100 text-pink-950 rounded-xl w-full sm:w-auto min-w-[200px]">
               متابعة الدفع
             </button>
