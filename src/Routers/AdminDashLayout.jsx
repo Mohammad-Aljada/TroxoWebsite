@@ -10,21 +10,17 @@ const AdminDashLayout = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100" dir="rtl">
       <div className="flex flex-col md:flex-row">
         {/* السايدبار - ارتفاع تلقائي */}
         <aside
-          className={`w-[280px] max-md:w-[70%] max-lg:w-[300px] bg-white shadow-lg md:shadow-none
-            transform transition-transform duration-300 md:transform-none
-            ${
-              isSidebarOpen
-                ? "translate-x-0"
-                : "-translate-x-full md:translate-x-0"
-            }
-            fixed md:static z-50 h-[100vh] md:h-auto`}
-        >
-          <AdminSidebar />
-        </aside>
+  className={`w-[280px] max-md:w-[70%] max-lg:w-[300px] bg-white shadow-lg md:shadow-none
+    transform transition-transform duration-300 md:transform-none
+    ${isSidebarOpen ? "translate-x-0" : "translate-x-full md:translate-x-0"}
+    fixed md:static z-50 h-[100vh] md:h-auto`}
+>
+  <AdminSidebar />
+</aside>
 
         {/* المحتوى الرئيسي */}
         <main className="flex-1 max-md:ml-0 min-h-screen">

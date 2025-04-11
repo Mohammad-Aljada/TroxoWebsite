@@ -10,7 +10,7 @@ export default function Statistics() {
   };
 
   return (
-    <main className="p-4 md:p-8">
+    <main className="p-4 md:p-8" dir="rtl">
       <div className="flex flex-col md:flex-row justify-end gap-2 items-center mb-6">
         <span className="text-sm text-neutral-500">
           الرئيسية &gt; الإحصائيات

@@ -20,6 +20,7 @@ const SettingsMenu = () => {
         className="bg-white rounded-lg shadow-sm h-[319px] w-[370px]"
         role="navigation"
         aria-label="Settings menu"
+        dir="ltr"
       >
         <header className="w-full text-lg font-bold leading-9 bg-rose-200 rounded-lg h-[59px] text-pink-950 flex items-center justify-center">
           مؤسسة عبد الله

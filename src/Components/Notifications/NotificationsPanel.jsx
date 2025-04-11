@@ -7,6 +7,7 @@ const NotificationsPanel = () => {
       className="bg-white rounded-lg shadow-sm w-[370px] max-md:mx-auto max-md:my-0  max-md:max-w-[250px] max-md:shadow-none"
       role="region"
       aria-label="Notifications panel"
+      dir="ltr"
     >
       <header className="px-0 py-2 text-lg font-bold text-center bg-rose-200 rounded-[8px_8px_0_0] text-pink-950">
         <h2>الاشعارات</h2>

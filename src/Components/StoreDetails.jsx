@@ -1,4 +1,6 @@
 /* eslint-disable react/prop-types */
+import { useState } from "react";
+import EditStoreModal from "./Modal/EditStoreModal";
 function StoreDetails({
   storeName,
   country,
@@ -8,9 +10,13 @@ function StoreDetails({
   address,
   imageUrl,
 }) {
+  const [activeModal, setActiveModal] = useState(false);
+
+  const handleEditStoreClick = () => {
+    setActiveModal(true);
+  };
   return (
-    <div className="rtl text-right mb-4">
-      {" "}
+    <div className="text-right mb-4" dir="ltr">
       {/* إضافة اتجاه RTL هنا */}
       <h3 className="text-base mb-2 font-semibold text-gray-800">{title}</h3>
       <div className="rtl flex flex-col gap-2 bg-white p-6 rounded-2xl shadow-sm">
@@ -35,7 +41,12 @@ function StoreDetails({
             </div>
           </div>
           {imageUrl && (
-            <img src={imageUrl} alt={storeName} className="w-6 h-6 " />
+            <button onClick={handleEditStoreClick} className="cursor-pointer">
+              <img src={imageUrl} alt={storeName} className="w-6 h-6 " />
+            </button>
+          )}
+          {activeModal === true && (
+            <EditStoreModal onClose={() => setActiveModal(null)} />
           )}
         </div>
 

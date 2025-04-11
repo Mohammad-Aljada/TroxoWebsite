@@ -9,8 +9,8 @@ function Shopes() {
     setActiveModal(true);
   };
   return (
-    <div className="ml-5 w-[95%] max-md:ml-0 max-md:w-full">
-      <section className="flex flex-col grow items-end mt-10  max-md:max-w-full">
+    <div className="w-full px-4 md:px-6" dir="rtl">
+      <section className="flex flex-col grow items-start mt-10  max-md:max-w-full">
         <h1 className="text-2xl font-black leading-tight text-gray-800 uppercase">
           المتاجر
         </h1>
@@ -19,6 +19,9 @@ function Shopes() {
         </nav>
         <div className="flex overflow-hidden flex-col self-stretch px-7 pt-5 pb-10 mt-7 w-full bg-white rounded-2xl max-md:px-5 max-md:max-w-full">
           <div className="flex flex-wrap gap-5 justify-between max-md:max-w-full">
+          <h2 className="text-3xl font-bold tracking-tighter leading-relaxed text-gray-800">
+              المتاجر
+            </h2>
             <button
               onClick={handleAddStoreClick}
               className="flex overflow-hidden flex-col justify-center items-center py-1 pr-3 pl-2 my-auto text-sm font-semibold tracking-normal leading-6 bg-red-100 rounded-md text-pink-950"
@@ -32,15 +35,13 @@ function Shopes() {
                 <span>إضافة متاجر</span>
               </div>
             </button>
-            <h2 className="text-3xl font-bold tracking-tighter leading-relaxed text-gray-800">
-              المتاجر
-            </h2>
+           
           </div>
-          <p className="self-end mt-2 text-sm text-neutral-500 max-md:max-w-full">
+          <p className="self-start mt-2 text-sm text-neutral-500 max-md:max-w-full">
             نستخدم عناوين المتاجر وتفاصيل الاتصال لاستقبال الشحنات من ممثلي
             التوصيل. يرجى التأكد من صحة البيانات لتسهيل الوصول إليك.
           </p>
-          <div className="flex overflow-hidden items-end flex-col px-11 pt-10 mt-12 w-full rounded-2xl bg-slate-50 max-md:px-5 max-md:mt-10 max-md:max-w-full">
+          <div className="flex overflow-hidden items-start flex-col px-11 pt-10 mt-12 w-full rounded-2xl bg-slate-50 max-md:px-5 max-md:mt-10 max-md:max-w-full" dir="ltr">
             <StoreDetails
               title="تفاصيل المتجر - الأول"
               storeName="جولدن جول"
@@ -48,7 +49,7 @@ function Shopes() {
               address="الشرائع، الشارع 32، ذوات السواري، خطة 2"
               country="المملكة العربية السعودية"
               city="مكة المكرمة"
-              imageUrl="https://cdn.builder.io/api/v1/image/assets/TEMP/81d07e90-f50c-4e57-9003-dcb315423bc0?placeholderIfAbsent=true&apiKey=33cf6ee4ee4e4cdd8b24ad2c5832d456"
+              imageUrl="/Icones/ButtonArrowRight.svg"
             />
             <StoreDetails
               title="تفاصيل المتجر - الثاني"
@@ -57,7 +58,7 @@ function Shopes() {
               country="المملكة العربية السعودية"
               city="مكة المكرمة"
               address="الشرائع، الشارع 32، ذوات السواري، خطة 2"
-              imageUrl="https://cdn.builder.io/api/v1/image/assets/TEMP/22a8a9c7-5e64-4c84-b5f6-dafb7e54edbb?placeholderIfAbsent=true&apiKey=33cf6ee4ee4e4cdd8b24ad2c5832d456"
+              imageUrl="/Icones/ButtonArrowRight.svg"
             />
             <StoreDetails
               title="تفاصيل المتجر - الثالث"
@@ -65,7 +66,7 @@ function Shopes() {
               phone="+966 53 337 3122"
               country="المملكة العربية السعودية"
               city="مكة المكرمة"
-              imageUrl="https://cdn.builder.io/api/v1/image/assets/TEMP/295ada8b-f25e-4acf-9c61-e6bd8d3efdd2?placeholderIfAbsent=true&apiKey=33cf6ee4ee4e4cdd8b24ad2c5832d456"
+              imageUrl="/Icones/ButtonArrowRight.svg"
               address="الشرائع، الشارع 32، ذوات السواري، خطة 2"
               compact
             />

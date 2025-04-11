@@ -77,11 +77,11 @@ const AddProductModal = ({ onClose }) => {
           </button>
         </header>
         {/* Form Content */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-8">
+        <form onSubmit={handleSubmit} className="p-2 ">
           {/* Section 1: Basic Info */}
 
-          <div className=" mx-auto p-4 font-sans arabic-font" dir="ltr">
-            <div className="p-5  rounded-xl bg-gray-50 border border-gray-200">
+          <div className=" mx-auto p-2 font-sans arabic-font" dir="ltr">
+            <div className="p-5  rounded-xl bg-gray-50 0">
               <h3 className="text-lg font-semibold text-[#FC746C] pb-4 border-b border-gray-300 text-right">
                 بطاقة البيانات الشخصية
               </h3>
@@ -226,7 +226,7 @@ const AddProductModal = ({ onClose }) => {
           </div>
 
           {/* Section 2: Storage Info */}
-          <div className="p-5 mb-6 rounded-xl bg-gray-50">
+          <div className="p-5 mb-2 rounded-xl bg-gray-50">
             <h3 className="text-lg font-semibold text-gray-800 border-b border-gray-300 mb-6 pb-2">
               بيانات تخزين المنتج
             </h3>

@@ -16,14 +16,6 @@ const Sidebar = () => {
       icon: "/Icones/HomeIcone.svg",
       text: "لوحة التحكم",
       path: "/home",
-      icone: "/Icones/ArrowRight.svg",
-      subMenu: [
-        {
-          icon: "/Icones/StatIcone.png",
-          text: "احصائيات",
-          path: "/home/statistics",
-        },
-      ],
     },
 
     {
@@ -47,7 +39,7 @@ const Sidebar = () => {
     {
       icon: "/Icones/ShipmentsIcone.svg",
       text: "الشحنات",
-      path: "/home/shipments/shipmentstatus",
+      path: "/home/shipments",
       icone: "/Icones/ArrowRight.svg",
       subMenu: [
         {
@@ -55,21 +47,46 @@ const Sidebar = () => {
           text: "العميل",
           path: "/home/shipments/customer",
         },
+        {
+          icon: "/Icones/StatIcone.png",
+          text: "فواتيري",
+          path: "/home/shipments/bills",
+        },
+        {
+          icon: "/Icones/StatIcone.png",
+          text: "تذكرة ",
+          path: "/home/shipments/ticket",
+        },
       ],
     },
     {
       icon: "/Icones/WalletIcone.svg",
       text: "المحفظة",
       path: "/home/wallet",
-      icone: "/Icones/ArrowRight.svg",
     },
-    { icon: "/Icones/BillsIcone.svg", text: "فواتيري", path: "/home/bills" },
     {
-      icon: "/Icones/SuggestedIcone.svg",
-      text: "الاقتراحات",
-      path: "/suggestions",
+      icon: "/Icones/Statistics.svg",
+      text: "الاحصائيات و تقارير",
+      path: "/home/statistics",
+      icone: "/Icones/ArrowRight.svg",
+      subMenu: [
+        {
+          icon: "/Icones/StatIcone.png",
+          text: "احصائيات مالية",
+          path: "/home/statistics/financial",
+        },
+        {
+          icon: "/Icones/StatIcone.png",
+          text: "احصائيات متجر",
+          path: "/home/statistics/store",
+        },
+      ],
     },
-    { icon: "/Icones/SettingIcone.svg", text: "الإعدادات", path: "/settings" },
+    {
+      icon: "/Icones/SettingIcone.svg",
+      text: "الإعدادات",
+      path: "/home/settings",
+    },
   ];
 
   return (
@@ -84,7 +101,7 @@ const Sidebar = () => {
       </div>
 
       {/* القائمة الرئيسية مع إمكانية التمرير */}
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 ">
         <ul className="flex flex-col gap-5 items-start px-8 mt-8 w-full text-base max-md:px-5 pb-4">
           {/* العناصر الرئيسية */}
           {menuItems.map((item, index) => (
@@ -94,10 +111,10 @@ const Sidebar = () => {
                   end
                   to={item.path}
                   className={({ isActive }) =>
-                    `flex items-start gap-5 w-full px-4 py-2 -mx-4 ${
+                    `flex items-start  w-full px-4 py-2 -mx-4 ${
                       isActive
-                        ? "text-pink-950 font-semibold bg-red-100 rounded-lg"
-                        : "text-emerald-900"
+                        ? "text-pink-950 gap-4 font-semibold bg-red-100 rounded-lg"
+                        : "text-emerald-900 gap-2"
                     }`
                   }
                   onClick={() => {
@@ -114,8 +131,8 @@ const Sidebar = () => {
                     <img
                       src={item.icone}
                       alt="Down arrow icon"
-                      className={`object-contain shrink-0 w-5 aspect-square ${
-                        openMenus[item.text] ? "rotate-90" : ""
+                      className={`object-contain  shrink-0 w-5 aspect-square ${
+                        openMenus[item.text] ? "rotate-90" : "rotate-180"
                       }`}
                     />
                   )}

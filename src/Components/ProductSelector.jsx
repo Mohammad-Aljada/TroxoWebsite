@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+
 import AddProductModal from "./Modal/AddProductModal";
 
 export const ProductSelector = () => {
@@ -6,6 +7,20 @@ export const ProductSelector = () => {
   const [showSubDropdown, setShowSubDropdown] = useState(null);
   const [isProductModalOpen, setIsProductModalOpen] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
+  const dropdownRef = useRef(null);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+        setShowSubDropdown(null); // إغلاق قائمة العناصر الفرعية أيضًا
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const selectSubItem = (product, subItem, e) => {
     e.stopPropagation();
@@ -23,6 +38,8 @@ export const ProductSelector = () => {
 
       return [...prev, { ...product, selectedSubItem: subItem }];
     });
+    setIsOpen(false);
+    setShowSubDropdown(null);
   };
 
   const handleAddNew = () => {
@@ -64,9 +81,7 @@ export const ProductSelector = () => {
   };
 
   return (
-    <div className="relative w-full">
-    
-
+    <div className="relative w-full" ref={dropdownRef}>
       <button
         className="flex justify-between items-center w-full  text-sm sm:text-base font-semibold "
         onClick={() => setIsOpen(!isOpen)}

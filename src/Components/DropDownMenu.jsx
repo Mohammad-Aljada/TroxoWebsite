@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import AddStoreModal from "./Modal/AddStoreModal";
 import AddClientModal from "./Modal/AddClientModal";
 import CheckBox from "./CheckBox";
@@ -19,12 +19,28 @@ const DropdownMenu = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeModal, setActiveModal] = useState(null);
+  const dropdownRef = useRef(null);
+
+  // يغلق القائمة إذا تم الضغط خارجها
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleSelect = (option) => {
     if (isMulti) {
       onSelectMulti && onSelectMulti(option);
     } else {
       onSelect && onSelect(option);
+      setIsOpen(false); // يغلق لما نختار في الوضع العادي
     }
   };
 
@@ -34,7 +50,7 @@ const DropdownMenu = ({
   };
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center justify-between w-full px-3 py-2 sm:px-4 sm:py-3 text-sm sm:text-base bg-white rounded-lg border border-neutral-400 hover:border-neutral-500 transition-colors"

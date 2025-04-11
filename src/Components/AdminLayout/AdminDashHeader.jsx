@@ -76,7 +76,7 @@ const AdminDashHeader = ({ toggleSidebar }) => {
           </button>
 
           {showNotifications && (
-            <div className="absolute max-md:-left-18 max-md:top-7 right-16 top-6 mt-2 max-md:w-72 w-80 z-50">
+            <div className="absolute max-md:-right-18 max-md:top-7 left-16 top-6 mt-2 max-md:w-72 w-80 z-50">
               <NotificationsPanel />
             </div>
           )}

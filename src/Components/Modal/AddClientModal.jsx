@@ -76,10 +76,10 @@ export default function AddClientModal({ onClose }) {
         </header>
 
         {/* Modal Content */}
-        <div className="p-6 md:p-8">
+        <div className="p-2 md:p-4">
           <form onSubmit={handleSubmit}>
             {/* Store Info Section */}
-            <section className="p-5 mb-6 rounded-xl bg-gray-50">
+            <section className="p-5 mb-1 rounded-xl bg-gray-50">
               <div className="flex justify-between">
                 <h3 className="mb-4 text-lg font-semibold text-[#FC746C]">
                   بطاقة بيانات العميل

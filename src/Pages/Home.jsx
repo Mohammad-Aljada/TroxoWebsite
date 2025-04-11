@@ -17,12 +17,12 @@ const Home = () => {
     }
   }, [location.state]);
   return (
-    <section className="flex flex-col px-4 md:px-8 mt-4 md:mt-6 w-full">
+    <section className="flex flex-col px-4 md:px-8 mt-4 md:mt-6 w-full" dir="rtl">
       {showWelcomeModal && (
         <WelcomeModal onClose={() => setShowWelcomeModal(false)} />
       )}
       {/* العنوان والمسار */}
-      <div className="self-end text-right">
+      <div className="self-start text-right">
         <h1 className="text-xl md:text-2xl font-black text-gray-800 uppercase">
           لوحة التحكم
         </h1>

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import SuccessAddStoreModal from "./SuccessAddStoreModal";
 
@@ -17,11 +18,10 @@ export default function AddStoreModal({ onClose }) {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
- 
   const onSubmit = (e) => {
     e.preventDefault(); // لمنع إعادة تحميل الصفحة
     // هنا ضع منطق إضافة المتجر (API call أو أي شيء آخر)
-    
+
     // بعد نجاح الإضافة، عرض modal النجاح
     setShowSuccessModal(true);
   };
@@ -69,73 +69,72 @@ export default function AddStoreModal({ onClose }) {
         </header>
 
         {/* Modal Content */}
-        <div className="p-6 md:p-8">
-          <form >
+        <div className="p-2 md:p-4">
+          <form className="">
             {/* Store Info Section */}
-            <section className="p-5 mb-6 rounded-xl bg-gray-50">
+            <section className="p-5 mb-1 rounded-xl bg-gray-50">
               <h3 className="mb-4 text-lg font-semibold text-[#FC746C]">
                 بطاقة بيانات المتجر
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-  {/* حقل اسم المتجر */}
-  <div>
-    <label
-      htmlFor="storeName"
-      className="block mb-2 text-sm font-medium text-gray-700"
-    >
-      اسم المتجر <span className="text-red-600">*</span>
-    </label>
-    <div className="relative">
-      <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-        <img
-          src="/Icones/store.svg"
-          alt="أيقونة المتجر"
-          className="w-5 h-5 text-gray-400"
-        />
-      </div>
-      <input
-        id="storeName"
-        name="storeName"
-        type="text"
-        placeholder="أدخل اسم المتجر"
-        className="w-full px-4 py-2 pr-10 text-gray-700 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
-        required
-        value={formData.storeName}
-        onChange={handleChange}
-      />
-    </div>
-  </div>
+                {/* حقل اسم المتجر */}
+                <div>
+                  <label
+                    htmlFor="storeName"
+                    className="block mb-2 text-sm font-medium text-gray-700"
+                  >
+                    اسم المتجر <span className="text-red-600">*</span>
+                  </label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                      <img
+                        src="/Icones/store.svg"
+                        alt="أيقونة المتجر"
+                        className="w-5 h-5 text-gray-400"
+                      />
+                    </div>
+                    <input
+                      id="storeName"
+                      name="storeName"
+                      type="text"
+                      placeholder="أدخل اسم المتجر"
+                      className="w-full px-4 py-2 pr-10 text-gray-700 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
+                      required
+                      value={formData.storeName}
+                      onChange={handleChange}
+                    />
+                  </div>
+                </div>
 
-  {/* حقل رقم الهاتف */}
-  <div>
-    <label
-      htmlFor="phone"
-      className="block mb-2 text-sm font-medium text-gray-700"
-    >
-      رقم الهاتف <span className="text-red-600">*</span>
-    </label>
-    <div className="relative">
-      <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-        <img
-          src="/Icones/phone.svg"
-          alt="أيقونة هاتف"
-          className="w-5 h-5 text-gray-400"
-        />
-      </div>
-      <input
-        id="phone"
-        name="phone"
-        type="tel"
-        placeholder="+966"
-        className="w-full px-4 py-2 pl-10 text-gray-700 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
-        required
-        value={formData.phone}
-        onChange={handleChange}
-      />
-    </div>
-  </div>
-</div>
-           
+                {/* حقل رقم الهاتف */}
+                <div>
+                  <label
+                    htmlFor="phone"
+                    className="block mb-2 text-sm font-medium text-gray-700"
+                  >
+                    رقم الهاتف <span className="text-red-600">*</span>
+                  </label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                      <img
+                        src="/Icones/phone.svg"
+                        alt="أيقونة هاتف"
+                        className="w-5 h-5 text-gray-400"
+                      />
+                    </div>
+                    <input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      placeholder="+966"
+                      className="w-full px-4 py-2 pl-10 text-gray-700 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
+                      required
+                      value={formData.phone}
+                      onChange={handleChange}
+                    />
+                  </div>
+                </div>
+              </div>
             </section>
 
             {/* Address Section */}
@@ -281,8 +280,11 @@ export default function AddStoreModal({ onClose }) {
               >
                 إلغاء الطلب
               </button>
-              {showSuccessModal && <SuccessAddStoreModal onClose={() => setShowSuccessModal(false)} />}
-
+              {showSuccessModal && (
+                <SuccessAddStoreModal
+                  onClose={() => setShowSuccessModal(false)}
+                />
+              )}
             </div>
           </form>
         </div>

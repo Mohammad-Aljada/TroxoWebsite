@@ -97,6 +97,7 @@ const ShipmentForm = () => {
               selected={selectedStore.map((s) => s.name)}
               onSelect={handleStoreSelect}
               isone={true}
+              modalToOpen="store"
             />
           </div>
         </div>
@@ -212,7 +213,8 @@ const ShipmentForm = () => {
               title="العميل"
               selectedItems={selectedCustomers.map((c) => c.name)} // تمرير الأسماء فقط
               onSelectMulti={handleSelectCustomer} // استخدام دالة الاختيار المتعدد
-              isMulti={true} // تفعيل وضع الاختيار المتعدد
+              isMulti={true} 
+              modalToOpen="client"
             />
           </div>
         </div>

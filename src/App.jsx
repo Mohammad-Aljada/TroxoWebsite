@@ -8,15 +8,12 @@ import ConfirmEmail from "./Pages/Auth/ConfirmEmail.jsx";
 import ResetPassword from "./Pages/Auth/ResetPassword.jsx";
 import Home from "./Pages/Home";
 import DashboardLayout from "./Routers/DashboardLayout.jsx";
-import Statistics from "./Pages/Statistics";
 import StatStore from "./Pages/StatStore";
 import Shopes from "./Pages/Shopes";
 import ShopProduct from "./Pages/ShopProduct.jsx";
 import Classification from "./Pages/Classification.jsx";
-import Shipments from "./Pages/Shipments.jsx";
 import ShipmentsAdmin from "./Pages/Admin/ShipmentsAdmin.jsx";
 import ShipmentDetails from "./Pages/ShimpentDetails";
-import ShipmentStatus from "./Pages/ShipmentStatus.jsx";
 import Customer from "./Pages/Customer.jsx";
 import Bills from "./Pages/Bills.jsx";
 import Wallet from "./Pages/Wallet.jsx";
@@ -25,6 +22,8 @@ import Company from "./Pages/Admin/Company";
 import Users from "./Pages/Admin/Users.jsx";
 import HomeAdmin from "./Pages/Admin/HomeAdmin.jsx";
 import WalletAdmin from "./Pages/Admin/WalletAdmin.jsx";
+import AddShipments from "./Pages/AddShipments.jsx";
+import Shipments from "./Pages/Shipments.jsx";
 
 function App() {
   return (
@@ -35,16 +34,18 @@ function App() {
       </Route>
 
       <Route path="/signin" element={<SignIn />} />
-      <Route path="/forget-password" element={<ForgetPassword />} />
-      <Route path="/confirm-email" element={<ConfirmEmail />} />
-      <Route path="/reset-password" element={<ResetPassword />} />
+      <Route path="/forgetpassword" element={<ForgetPassword />} />
+      <Route path="/confirmemail" element={<ConfirmEmail />} />
+      <Route path="/resetpassword" element={<ResetPassword />} />
 
       <Route path="/home" element={<DashboardLayout />}>
         <Route index element={<Home />} />
 
         <Route path="statistics">
-          <Route index element={<Statistics />} />
+          <Route index />
           <Route path="statstore" element={<StatStore />} />
+          <Route path="financial" />
+          <Route path="store" />
         </Route>
 
         <Route path="stores">
@@ -54,14 +55,14 @@ function App() {
         </Route>
 
         <Route path="shipments">
-          <Route index element={<Shipments />} />
+          <Route path="addshipment" element={<AddShipments />} />
           <Route path="details" element={<ShipmentDetails />} />
-          <Route path="shipmentstatus" element={<ShipmentStatus />} />
+          <Route index element={<Shipments />} />
           <Route path="customer" element={<Customer />} />
+          <Route path="bills" element={<Bills />} />
+          <Route path="ticket" />
         </Route>
-        <Route path="bills">
-          <Route index element={<Bills />} />
-        </Route>
+
         <Route path="wallet">
           <Route index element={<Wallet />} />
         </Route>

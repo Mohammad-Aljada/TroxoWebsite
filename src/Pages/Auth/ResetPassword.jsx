@@ -2,8 +2,8 @@ import { NavLink } from "react-router";
 
 const ResetPassword = () => {
   return (
-    <div className="flex  items-center min-h-screen bg-gray-100 ">
-      <div className="w-full max-w-5xl overflow-hidden flex flex-col md:flex-row  rounded-lg">
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 ">
+      <div className="w-full max-w-6xl xl:max-w-full  overflow-hidden flex flex-col md:flex-row  rounded-lg">
         {/* Left Side Image */}
         <div className="hidden md:flex  items-center p-6">
           <img
