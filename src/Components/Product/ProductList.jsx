@@ -1,6 +1,7 @@
 import { FilterButton, ExcelButton, AddProductButton } from "../ActionButtons";
-import AddProductModal from '../Modal/AddProductModal';
-import { useState } from 'react';
+import AddProductModal from "../Modal/AddProductModal";
+import { useState } from "react";
+import MenuProduct from "./../Menu/MenuProduct";
 
 const productData = [
   {
@@ -14,7 +15,7 @@ const productData = [
     quantity: "25",
   },
   {
-    id: "P-67890",
+    id: "P-67990",
     name: "عدة رياضية",
     length: "35 سم",
     weight: "1.0 كغ",
@@ -34,7 +35,7 @@ const productData = [
     quantity: "150",
   },
   {
-    id: "P-12345",
+    id: "P-12325",
     name: "أحذية رياضية",
     length: "25 سم",
     weight: "0.5 كغ",
@@ -54,7 +55,7 @@ const productData = [
     quantity: "15",
   },
   {
-    id: "P-13579",
+    id: "P-19579",
     name: "قبعة رياضية",
     length: "50 سم",
     weight: "0.3 كغ",
@@ -64,7 +65,7 @@ const productData = [
     quantity: "150",
   },
   {
-    id: "P-12345",
+    id: "P-12145",
     name: "أحذية رياضية",
     length: "25 سم",
     weight: "0.5 كغ",
@@ -86,11 +87,16 @@ const productData = [
 ];
 
 export const ProductList = () => {
-    const [activeModal, setActiveModal] = useState(null);
-    
-    const handleAddProductClick = () => {
-      setActiveModal('product');
-    };
+  const [activeModal, setActiveModal] = useState(null);
+  const [selectedRow, setSelectedRow] = useState(null);
+
+  const handleMenuToggle = (rowId) => {
+    setSelectedRow(selectedRow === rowId ? null : rowId);
+  };
+
+  const handleAddProductClick = () => {
+    setActiveModal("product");
+  };
   return (
     <section className="flex flex-col w-full  bg-white rounded-2xl p-4 sm:p-6">
       {/* Header Section */}
@@ -130,12 +136,10 @@ export const ProductList = () => {
           </div>
           <AddProductButton onClick={handleAddProductClick} />
         </div>
-           {/* عرض المودال عند النقر */}
-      {activeModal === 'product' && (
-        <AddProductModal 
-          onClose={() => setActiveModal(null)} 
-        />
-      )}
+        {/* عرض المودال عند النقر */}
+        {activeModal === "product" && (
+          <AddProductModal onClose={() => setActiveModal(null)} />
+        )}
       </div>
 
       {/* Info Message */}
@@ -282,8 +286,11 @@ export const ProductList = () => {
                   <td className="px-3 py-4 whitespace-nowrap text-sm text-center text-gray-800">
                     {product.quantity}
                   </td>
-                  <td className="px-3 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <button className="text-gray-400 hover:text-red-900">
+                  <td className="px-3 py-4 whitespace-nowrap text-right text-sm relative font-medium">
+                    <button
+                      onClick={() => handleMenuToggle(product.id)}
+                      className="text-gray-400 hover:text-red-900"
+                    >
                       <svg
                         className="w-6 h-6 rotate-90 bg-red-100 rounded-lg"
                         fill="currentColor"
@@ -292,6 +299,12 @@ export const ProductList = () => {
                         <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
                       </svg>
                     </button>
+
+                    {selectedRow === product.id && (
+                      <div className="absolute left-2 top-10 mt-1 z-50">
+                        <MenuProduct onClose={() => setSelectedRow(null)} />
+                      </div>
+                    )}
                   </td>
                 </tr>
               ))}

@@ -3,6 +3,7 @@ import { useState } from "react";
 import ShipmentStatusTable from "../Components/Shipment/ShipmentStatusTable";
 import ShipmentReturn from "../Components/Shipment/ShipmentReturn";
 import { FilterButton } from "../Components/ActionButtons";
+import ShipmentCanceled from "./../Components/Shipment/ShipmentCanceled";
 
 export const Shipments = () => {
   const [activeTab, setActiveTab] = useState("status"); // status | return
@@ -23,7 +24,11 @@ export const Shipments = () => {
             <li>الرئيسية</li>
             <li aria-hidden="true">&gt;</li>
             <li className="text-gray-700">
-              {activeTab === "status" ? "الشحنات" : "الشحنات الملغاة"}
+              {activeTab === "status"
+                ? "الشحنات"
+                : activeTab === "canceled"
+                ? "الشحنات الملغاة"
+                : "شحنات المرتجعة"}{" "}
             </li>
           </ol>
         </nav>
@@ -41,7 +46,7 @@ export const Shipments = () => {
                       : "text-neutral-600"
                   }`}
                 >
-                  صفحة الشحنات
+                  الشحنات
                 </button>
                 <button
                   onClick={() => setActiveTab("return")}
@@ -51,7 +56,17 @@ export const Shipments = () => {
                       : "text-neutral-600"
                   }`}
                 >
-                  صفحة الشحنات الملغاة
+                  الشحنات المرتجعة
+                </button>
+                <button
+                  onClick={() => setActiveTab("canceled")}
+                  className={`px-4 py-2 text-sm font-medium rounded-full ${
+                    activeTab === "canceled"
+                      ? "bg-white shadow-md text-pink-950"
+                      : "text-neutral-600"
+                  }`}
+                >
+                  الشحنات الملغاة
                 </button>
               </div>
 
@@ -83,9 +98,11 @@ export const Shipments = () => {
             <div className="min-w-[600px] md:min-w-full">
               {activeTab === "status" ? (
                 <ShipmentStatusTable />
-              ) : (
+              ) : activeTab === "canceled" ? (
+                <ShipmentCanceled />
+              ) : activeTab === "return" ? (
                 <ShipmentReturn />
-              )}
+              ) : null}
             </div>
           </div>
         </article>

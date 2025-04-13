@@ -1,8 +1,7 @@
-import StatCardAdmin from "./../../Components/StatCardAdmin";
-import PrintReportModal from "./../../Components/Modal/PrintReportModal";
+import StatCardAdmin from "./../Components/StatCardAdmin";
 import { useState } from "react";
-
-const ShipmentsAdmin = () => {
+import PrintReportModal from "./../Components/Modal/PrintReportModal";
+const StateFinancial = () => {
   // تنسيق التاريخ باللغة العربية
   const options = {
     weekday: "long",
@@ -31,7 +30,7 @@ const ShipmentsAdmin = () => {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mt-6 mb-8">
           <div>
             <h2 className="text-xl md:text-2xl font-medium text-gray-700">
-              إحصائيات الشحن
+              إحصائيات المالية
             </h2>
             <time className="text-sm text-gray-500 mt-1 block">
               {arabicDate}
@@ -55,79 +54,82 @@ const ShipmentsAdmin = () => {
         </div>
 
         {/* بطاقات الإحصائيات */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 bg-white p-6 gap-4 mb-8">
           <StatCardAdmin
-            title="عدد الشحنات الدولية"
+            title="مبالغ الشحن المحلي"
             value="155"
             change="+5%"
             period="مقارنة باليوم السابق"
             iconSrc="/images/ShippingMonth.svg"
             borderColor="border-indigo-500"
             textColor="text-indigo-500"
+            currency="/Icones/Currency.svg"
           />
-
           <StatCardAdmin
-            title="عدد الشحنات المبردة"
+            title="سحوبات المحفظة"
             value="144"
             change="5.39%"
             period="فترة التغيير"
-            iconSrc="/Icones/ShippingAverage.svg"
-            borderColor="border-rose-400"
+            iconSrc="/Icones/withdrawWallet.svg"
+            borderColor="border-rose-400 border-opacity-60"
             textColor="text-rose-400"
+            currency="/Icones/Currency.svg"
           />
-
           <StatCardAdmin
-            title="إجمالي عدد الشحنات المجمدة"
+            title="رسوم الشحن عند التسليم"
             value="298"
             change="+5%"
             period="مقارنة باليوم السابق"
-            iconSrc="/Icones/Frozen.svg"
+            iconSrc="/Icones/FeesShipment.svg"
             borderColor="border-[#7BAED3]"
             textColor="text-[#7BAED3]"
+            currency="/Icones/Currency.svg"
           />
-
           <StatCardAdmin
-            title="عدد الشحنات المحلية"
+            title="مبالغ الشحن"
             value="250"
             change="5.39%"
             period="فترة التغيير"
             iconSrc="/images/AllShipping.svg"
-            borderColor="border-pink-950 border-opacity-60"
-            textColor="text-pink-950"
+            borderColor="border-[#4D1A2D]/62"
+            textColor="text-[#4D1A2D]/62"
+            currency="/Icones/Currency.svg"
           />
 
           <StatCardAdmin
-            title="عدد الشحنات المعبأة"
+            title="مبالغ الشحن الدولي"
             value="155"
             change="+5%"
             period="مقارنة باليوم السابق"
             iconSrc="/images/ShippingMonth.svg"
             borderColor="border-indigo-500"
             textColor="text-indigo-500"
+            currency="/Icones/Currency.svg"
           />
 
           <StatCardAdmin
-            title="عدد الشحنات الملغاة"
+            title="اجمالي تكلفة  العينة"
             value="15"
-            change="6.84%"
+            change="6.39%"
             period="فترة التغيير"
-            iconSrc="/images/Rebot.svg"
+            iconSrc="/Icones/SampleCost.svg"
             borderColor="border-[#7FA695]"
             textColor="text-[#7FA695]"
+            currency="/Icones/Currency.svg"
           />
 
           <StatCardAdmin
-            title="عدد التذاكر"
+            title="مبالغ رموز الخصم"
             value="298"
             change="+5%"
             period="مقارنة باليوم السابق"
             iconSrc="/Icones/Tickets.svg"
             borderColor="border-[#7BAED3]"
             textColor="text-[#7BAED3]"
+            currency="/Icones/Currency.svg"
           />
-
           <StatCardAdmin
-            title="عدد شحنات الدفع عند التسليم"
+            title="مبالغ الشحن عند التسليم"
             value="520"
             change="5.39%"
             period="فترة التغيير"
@@ -137,13 +139,14 @@ const ShipmentsAdmin = () => {
           />
 
           <StatCardAdmin
-            title="أكثر مدينة إرسالاً"
-            value="الرياض"
+            title="مبالغ المحفظة"
+            value="155"
             change=""
             period=""
-            iconSrc="/Icones/CityMost.svg"
+            iconSrc="/Icones/AmountWallet.svg"
             borderColor="border-rose-400"
             textColor="text-rose-400"
+            currency="/Icones/Currency.svg"
           />
         </div>
       </div>
@@ -151,4 +154,4 @@ const ShipmentsAdmin = () => {
   );
 };
 
-export default ShipmentsAdmin;
+export default StateFinancial;

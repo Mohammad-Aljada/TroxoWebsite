@@ -1,6 +1,8 @@
 import WalletCard from "./../../Components/Wallet/WalletCard";
 import TransactionTable from "./../../Components/Wallet/TransactionTable";
 import StatCard from "./../../Components/StatCard";
+import PrintReportModal from "./../../Components/Modal/PrintReportModal";
+import { useState } from "react";
 
 export default function WalletAdmin() {
   const arabicDate = new Date().toLocaleDateString("ar-SA", {
@@ -12,6 +14,15 @@ export default function WalletAdmin() {
     minute: "2-digit",
     hour12: true,
   });
+  const [showPrintModal, setShowPrintModal] = useState(false);
+
+  const onSubmit = (e) => {
+    e.preventDefault(); // لمنع إعادة تحميل الصفحة
+    // هنا ضع منطق إضافة المتجر (API call أو أي شيء آخر)
+
+    // بعد نجاح الإضافة، عرض modal النجاح
+    setShowPrintModal(true);
+  };
   return (
     <div className="w-full max-sm:px-4 max-md:px-5 px-6 max-lg:px-8" dir="rtl">
       <div className="flex flex-col items-start mt-3 sm:mt-4 w-full max-w-screen-2xl mx-auto">
@@ -28,6 +39,7 @@ export default function WalletAdmin() {
             <button
               className="flex items-center gap-2 px-4 py-3 text-base font-medium rounded-xl border border-gray-200 bg-white hover:bg-gray-50 transition-colors shadow-xs"
               aria-label="طباعة التقرير"
+              onClick={onSubmit}
             >
               <span>طباعة التقرير</span>
               <img
@@ -37,6 +49,9 @@ export default function WalletAdmin() {
                 aria-hidden="true"
               />
             </button>
+            {showPrintModal && (
+              <PrintReportModal onClose={() => setShowPrintModal(false)} />
+            )}
           </div>
         </div>
 

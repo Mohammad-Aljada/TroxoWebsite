@@ -7,7 +7,9 @@ const StatCardAdmin = ({
   change,
   period,
   iconSrc,
+  currency,
   textColor = "text-indigo-500",
+  borderColor,
 }) => {
   // تحديد ما إذا كان التغيير إيجابيًا أو سلبيًا لتغيير لون السهم
   const isPositiveChange = change?.startsWith("+");
@@ -16,11 +18,11 @@ const StatCardAdmin = ({
 
   return (
     <article
-      className={`flex max-md:flex-col-reverse flex-row gap-4 justify-between p-5 w-full bg-white rounded-lg  shadow-sm hover:shadow-md transition-shadow duration-200`}
+      className={`flex border ${borderColor} max-md:flex-col-reverse flex-row gap-4 justify-between p-5 w-full bg-white rounded-lg  shadow-sm hover:shadow-md transition-shadow duration-200`}
       role="region"
       aria-labelledby={`stat-card-${title.replace(/\s+/g, "-")}`}
     >
-      <div className="flex-1">
+      <div className="flex-1 ">
         <h3
           id={`stat-card-${title.replace(/\s+/g, "-")}`}
           className={`text-sm md:text-base font-semibold ${textColor}`}
@@ -29,6 +31,13 @@ const StatCardAdmin = ({
         </h3>
         <p className={`mt-2 text-2xl md:text-3xl font-bold ${textColor}`}>
           {value}
+          {currency && (
+            <img
+              src={currency}
+              alt="Currency"
+              className="inline-block ml-2 object-contain shrink-0 my-auto aspect-square w-[35px]"
+            />
+          )}
         </p>
 
         {(change || period) && (

@@ -17,7 +17,10 @@ const Home = () => {
     }
   }, [location.state]);
   return (
-    <section className="flex flex-col px-4 mb-4 md:px-8 mt-4 md:mt-6 w-full" dir="rtl">
+    <section
+      className="flex flex-col px-4 mb-4 md:px-8 mt-4 md:mt-6 w-full"
+      dir="rtl"
+    >
       {showWelcomeModal && (
         <WelcomeModal onClose={() => setShowWelcomeModal(false)} />
       )}
@@ -44,19 +47,17 @@ const Home = () => {
             textColor="text-indigo-500"
             compact
           />
-       
+
           <StatCard
             title="إجمالي العملاء"
             value="298"
             change="+5%"
             period="مقارنة باليوم السابق"
             icon="/images/AllClients.svg"
-            borderColor="border-slate-400"
-            textColor="text-slate-400"
+            borderColor="border-[#7BAED3]"
+            textColor="text-[#7BAED3]"
             compact
           />
-       
-
 
           <StatCard
             title="إجمالي الشحنات"
@@ -69,15 +70,15 @@ const Home = () => {
             borderOpacity="border-opacity-60"
             compact
           />
-       
+
           <StatCard
             title="مرتجع"
             value="15"
             change="6.84%"
             period="فترة التغيير"
             icon="/images/Rebot.svg"
-            borderColor="border-neutral-400"
-            textColor="text-neutral-400"
+            borderColor="border-[#7FA695]"
+            textColor="text-[#7FA695]"
             compact
           />
         </div>

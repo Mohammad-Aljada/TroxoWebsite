@@ -13,6 +13,8 @@ export const StatusBadge = ({ status }) => {
         return statusStyles.ready;
       case "مرتجع":
         return statusStyles.returned;
+      case "ملغاة":
+        return statusStyles.returned;
       default:
         return statusStyles.preparing;
     }

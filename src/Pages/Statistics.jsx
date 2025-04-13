@@ -11,13 +11,13 @@ export default function Statistics() {
 
   return (
     <main className="p-4 md:p-8" dir="rtl">
-      <div className="flex flex-col md:flex-row justify-end gap-2 items-center mb-6">
-        <span className="text-sm text-neutral-500">
-          الرئيسية &gt; الإحصائيات
-        </span>
+      <div className="flex flex-col  justify-end gap-2  mb-6">
         <h2 className="text-2xl text-right font-black text-gray-800">
-          لوحة التحكم
+          الاحصائيات
         </h2>
+        <span className="text-sm text-neutral-500">
+          الرئيسية &gt; إحصائيات متجر
+        </span>
       </div>
 
       <section className="p-4 md:p-8 bg-white rounded-2xl">
@@ -32,13 +32,6 @@ export default function Statistics() {
           </p>
         </div>
         <div className="w-full flex flex-col md:flex-row gap-5 justify-around items-center">
-          <div className="w-full md:w-[400px] self-center">
-            <img
-              src="/Icones/stats.png"
-              alt="Stats image"
-              className="w-full max-w-[300px] mx-auto"
-            />
-          </div>
           <div className="flex flex-col  gap-5 w-full md:w-[400px]">
             <h4 className="text-xl text-right font-semibold text-slate-900">
               اختر المتجر لعرض إحصائيات الشحن
@@ -62,12 +55,19 @@ export default function Statistics() {
               />
             </div>
           </div>
+          <div className="w-full md:w-[400px] self-center">
+            <img
+              src="/Icones/stats.png"
+              alt="Stats image"
+              className="w-full max-w-[300px] mx-auto"
+            />
+          </div>
         </div>
         <NavLink
           to="/home/statistics/statstore"
           className="flex justify-center items-center mt-6"
         >
-          <button className="mt-5 h-12 text-lg  font-semibold bg-red-100 rounded-xl text-pink-950 w-full md:w-[290px]">
+          <button className="mt-5 h-12 text-lg cursor-pointer  font-semibold bg-red-100 rounded-xl text-pink-950 w-full md:w-[290px]">
             الخطوة التالية
           </button>
         </NavLink>

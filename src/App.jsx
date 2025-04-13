@@ -24,6 +24,9 @@ import HomeAdmin from "./Pages/Admin/HomeAdmin.jsx";
 import WalletAdmin from "./Pages/Admin/WalletAdmin.jsx";
 import AddShipments from "./Pages/AddShipments.jsx";
 import Shipments from "./Pages/Shipments.jsx";
+import Statistics from "./Pages/Statistics.jsx";
+import StateShipment from "./Pages/StateShipment.jsx";
+import StateFinancial from "./Pages/StateFinancial.jsx";
 
 function App() {
   return (
@@ -42,10 +45,10 @@ function App() {
         <Route index element={<Home />} />
 
         <Route path="statistics">
-          <Route index />
+          <Route index element={<StateShipment/>} />
           <Route path="statstore" element={<StatStore />} />
-          <Route path="financial" />
-          <Route path="store" />
+          <Route path="financial" element={<StateFinancial />} />
+          <Route path="store" element={<Statistics />} />
         </Route>
 
         <Route path="stores">

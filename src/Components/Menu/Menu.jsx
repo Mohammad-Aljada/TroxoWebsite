@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import { MenuItem } from "./MenuItem";
 import { useState } from "react";
-import TicketModal from '../Modal/TicketModal';
+import TicketModal from "../Modal/TicketModal";
 
 const menuItems = [
   {
-    text: "سياسة الطباعة",
+    text: "طباعة البوليصة",
     textColor: "text-sky-600",
     icon: `/Icones/Print.svg`,
     action: "print",
@@ -23,13 +23,13 @@ const menuItems = [
     action: "processing",
   },
   {
-    text: "فتح تذكرة",
+    text: "ارجاع الشحنة",
     textColor: "text-emerald-600",
     icon: `/Icones/RiceTicket.svg`,
     action: "ticket",
   },
   {
-    text: "ملغاة",
+    text: "الغاء الشحنة",
     textColor: "text-orange-600",
     icon: `/Icones/Cancel.svg`,
     action: "cancel",
@@ -46,7 +46,7 @@ export default function Menu({ onClose }) {
     }
     console.log(action);
     // يمكنك إضافة حالات أخرى هنا
- };
+  };
   return (
     <div
       className="bg-white rounded-lg shadow-sm w-[185px] py-2 border border-gray-200"
@@ -60,19 +60,18 @@ export default function Menu({ onClose }) {
             icon={item.icon}
             textColor={item.textColor}
             className="hover:bg-gray-100 rounded px-2 py-1"
-            
             onClick={() => handleMenuItemClick(item.action)}
-            />
+          />
         ))}
-           {/* عرض المودال عند النقر */}
-           {activeModal === "ticket" && (
-        <TicketModal
-          onClose={() => {
-            setActiveModal(null);
-            onClose(); // إغلاق القائمة بعد إغلاق المودال
-          }} 
-        />
-      )}
+        {/* عرض المودال عند النقر */}
+        {activeModal === "ticket" && (
+          <TicketModal
+            onClose={() => {
+              setActiveModal(null);
+              onClose(); // إغلاق القائمة بعد إغلاق المودال
+            }}
+          />
+        )}
       </div>
     </div>
   );
