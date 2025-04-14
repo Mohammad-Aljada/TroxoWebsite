@@ -9,7 +9,7 @@ const TamplateSignUp = () => {
         <ImageSwipper />
 
         {/* Right Side Form */}
-        <div className="w-full md:w-1/2 flex flex-col justify-center items-center min-h-screen  relative">
+        <div className="w-full md:w-1/2 p-6 flex flex-col justify-center items-center min-h-screen  relative">
           {/* Logo */}
           <div className="absolute top-4 left-8">
             <img src="/images/Logo.png" alt="Logo" className="w-32" />
