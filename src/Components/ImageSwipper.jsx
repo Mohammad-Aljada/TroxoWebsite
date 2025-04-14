@@ -43,7 +43,7 @@ const ImageSwipper = () => {
             disableOnInteraction: false,
           }}
           modules={[Pagination, Autoplay]}
-          className="w-full h-[500px] rounded-xl"
+          className="w-full h-full rounded-xl"
         >
           <SwiperSlide>
             <img
