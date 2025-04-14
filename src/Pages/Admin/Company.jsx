@@ -65,7 +65,7 @@ const Company = () => {
                 </div>
                 <button
                   onClick={onSubmit}
-                  className="flex items-center justify-center gap-2 px-4 py-3 text-lg font-medium rounded-2xl border border-neutral-400 hover:bg-gray-50 transition-colors"
+                  className="flex items-center cursor-pointer justify-center gap-2 px-4 py-3 text-lg font-medium rounded-2xl border border-neutral-400 hover:bg-gray-50 transition-colors"
                 >
                   <span>طباعة التقرير</span>
                   <img

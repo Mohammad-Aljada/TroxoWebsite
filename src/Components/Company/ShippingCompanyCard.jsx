@@ -34,7 +34,7 @@ const ShippingCompanyCard = ({
   return (
     <article
       className={`flex flex-col w-full bg-white rounded-2xl border border-[#4D1A2D]/16 border-opacity-20 overflow-hidden transition-all duration-300 ${
-        isDisabled ? "" : "opacity-70"
+        isDisabled ? "opacity-70" : ""
       }`}
     >
       {/* Header Section */}
@@ -55,10 +55,10 @@ const ShippingCompanyCard = ({
           <button
             onClick={toggleCompanyStatus}
             className={`text-sm font-bold ${
-              isDisabled ? "text-stone-900" : "text-red-600"
+              isDisabled ? "text-red-600" : "text-stone-900"
             }`}
           >
-            {isDisabled ?  "تفعيل المتجر" : "تعطيل المتجر" }
+            {isDisabled ? "تعطيل المتجر" : "تفعيل المتجر"}
           </button>
 
           {/* Toggle Switch */}
@@ -69,10 +69,10 @@ const ShippingCompanyCard = ({
               onChange={toggleCompanyStatus}
               className="sr-only peer"
             />
-            <div className="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-blue-500 transition-colors">
+            <div className="w-11 h-6 bg-gray-300 rounded-full peer  peer-checked:bg-blue-500 transition-colors">
               <div
                 className={`absolute top-0.5 left-0.5 bg-white w-5 h-5 rounded-full transition-transform ${
-                  !isDisabled ? "translate-x-5" : ""
+                  !isDisabled ? "" : "translate-x-5"
                 }`}
               ></div>
             </div>
@@ -85,11 +85,9 @@ const ShippingCompanyCard = ({
         <div className="grid grid-cols-1 gap-6">
           {/* Cities Section */}
           <div className="flex justify-between items-center">
-            <h4 className="text-gray-700">
-              أهم المدن
-            </h4>
+            <h4 className="text-gray-700">أهم المدن</h4>
             <div className="text-xl font-semibold">
-            <span>{companyData.cities}</span>
+              <span>{companyData.cities}</span>
             </div>
           </div>
 
@@ -114,7 +112,6 @@ const ShippingCompanyCard = ({
               <StatValue
                 value={companyData.stats.returnedShipments.count}
                 percentage={companyData.stats.returnedShipments.percentage}
-                
               />
             </div>
 
@@ -123,7 +120,6 @@ const ShippingCompanyCard = ({
               <StatValue
                 value={companyData.stats.completedShipments.count}
                 percentage={companyData.stats.completedShipments.percentage}
-                
               />
             </div>
 
@@ -196,9 +192,6 @@ const ShippingCompanyCard = ({
 };
 
 // Helper Components
-const StatRow = ({ label }) => (
-  <div className="text-base text-pink-950">{label}</div>
-);
 
 const StatValue = ({ value, unit, percentage, color = "text-stone-900" }) => (
   <div className="flex items-baseline gap-2">

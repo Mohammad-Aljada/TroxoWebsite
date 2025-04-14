@@ -6,7 +6,7 @@ export default function OrderDetails() {
       customer: "مشاري الذبياني",
       store: "جولدن جول",
       product: "عدة الرياضيين",
-      quantity: "5",
+      company: "/Icones/Company.png",
       price: "154",
       shipping: "147",
     },
@@ -15,7 +15,7 @@ export default function OrderDetails() {
       customer: "مشاري الذبياني",
       store: "جولدن جول",
       product: "عدة الرياضيين",
-      quantity: "7",
+      company: "/Icones/Company.png",
       price: "254",
       shipping: "250",
     },
@@ -24,7 +24,7 @@ export default function OrderDetails() {
       customer: "مشاري الذبياني",
       store: "جولدن جول",
       product: "عدة الرياضيين",
-      quantity: "15",
+      company: "/Icones/Company.png",
       price: "100",
       shipping: "100",
     },
@@ -106,11 +106,11 @@ export default function OrderDetails() {
               <th className="text-center py-3 px-2 lg:px-4 text-sm lg:text-base xl:text-lg font-bold">
                 <div className="flex max-md:flex-col items-center justify-center gap-1">
                   <img
-                    src="/Icones/Quantity.svg"
+                    src="/Icones/shipment.svg"
                     alt="quantity icon"
                     className="w-4 h-4"
                   />
-                  <span>الكمية</span>
+                  <span>الشركة الشحن</span>
                 </div>
               </th>
               <th className="text-center py-3 px-2 lg:px-4 text-sm lg:text-base xl:text-lg font-bold">
@@ -155,10 +155,16 @@ export default function OrderDetails() {
                   {order.product}
                 </td>
                 <td className="py-3 px-2 lg:px-4 text-sm lg:text-base xl:text-lg text-gray-800 text-center">
-                  {order.quantity}
+                  <div className="flex items-center justify-center">
+                    <img
+                      src={order.company}
+                      alt="company icon"
+                      className="w-8 h-8"
+                    />
+                  </div>
                 </td>
                 <td className="py-3 px-2 lg:px-4 text-sm lg:text-base xl:text-lg text-gray-800">
-                  <div className="flex items-center justify-end">
+                  <div className="flex items-center justify-center">
                     <span>{order.price}</span>
                     <img
                       src="/images/CurrencyIcone.svg"

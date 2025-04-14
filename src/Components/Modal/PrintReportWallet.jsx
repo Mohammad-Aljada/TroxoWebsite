@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-export default function PrintReportModal({ onClose }) {
+export default function PrintReportWallet({ onClose }) {
   return (
     <div
       className="flex fixed inset-0 justify-center items-center bg-black/50 z-[100] p-4"
@@ -81,7 +81,7 @@ export default function PrintReportModal({ onClose }) {
 
           <div className="flex gap-2 flex-row-reverse items-center justify-end">
             <label htmlFor="local" className="text-sm text-gray-500">
-              تقرير الشحن المحلي
+              تقرير معاملات مدى
             </label>
             <input
               type="checkbox"
@@ -92,7 +92,7 @@ export default function PrintReportModal({ onClose }) {
 
           <div className="flex gap-2 flex-row-reverse items-center justify-end">
             <label htmlFor="international" className="text-sm text-gray-500">
-              تقرير الشحن الدولي
+              تقرير معاملات فيزا
             </label>
             <input
               type="checkbox"
@@ -103,7 +103,7 @@ export default function PrintReportModal({ onClose }) {
 
           <div className="flex gap-2 flex-row-reverse items-center justify-end">
             <label htmlFor="cod" className="text-sm text-gray-500">
-              تقرير شحن الدفع عند الاستلام
+              تقرير عن اقصى مبلغ
             </label>
             <input
               type="checkbox"

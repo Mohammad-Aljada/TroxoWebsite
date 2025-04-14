@@ -5,6 +5,7 @@ const BussinessSignUp = () => {
   return (
     <>
       {/* Form Fields */}
+
       <form className="mt-6 space-y-4">
         <select
           className="w-full bg-transparent  focus:outline-none px-4 py-2 text-gray-600 border rounded-lg pr-2"
@@ -15,12 +16,12 @@ const BussinessSignUp = () => {
         <input
           type="text"
           placeholder="رقم السجل التجاري"
-          className="w-full px-4 py-2 border text-right rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
+          className="w-full px-4 py-2 border text-right rounded-lg "
         />
         <input
           type="text"
           placeholder="رقم الضريبة"
-          className="w-full px-4 py-2 border text-right rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
+          className="w-full px-4 py-2 border text-right rounded-lg "
         />
 
         <div className="flex items-center  ">
@@ -51,7 +52,7 @@ const BussinessSignUp = () => {
         <NavLink to="/signIn">
           <button
             type="submit"
-            className="w-full bg-[#FFDDDD] text-gray-900 py-2 rounded-lg hover:bg-pink-300 transition duration-300"
+            className="w-full cursor-pointer bg-[#FFDDDD] text-gray-900 py-2 rounded-lg hover:bg-gray-200 transition duration-300"
           >
             انشاء حساب
           </button>

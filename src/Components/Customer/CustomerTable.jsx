@@ -1,81 +1,80 @@
 import CustomerTableRow from "./CustomerTableRow";
 import { FilterButton, AddCustomerButton } from "../ActionButtons";
 import { useState } from "react";
-import AddClientModal from '../Modal/AddClientModal';
+import AddClientModal from "../Modal/AddClientModal";
 
 function CustomerTable() {
-
   const [activeModal, setActiveModal] = useState(null);
 
   const handleAddClientClick = () => {
-    setActiveModal('client');
+    setActiveModal("client");
   };
   const customers = [
     {
-      id: "CO - 12558",
+      id: "CO - 12528",
       name: "مشاري الذبياني",
       phone: "+966 53 337 3122",
       address: "حر جَبَل النور، المملكة العربية السعودية",
       date: "12-03-2025",
     },
     {
-      id: "CO - 12558",
+      id: "CO - 12158",
       name: "أحمد أحمد",
       phone: "+966 53 852 0484",
       address: "السادة، المملكة العربية السعودية",
       date: "22-02-2025",
     },
     {
-      id: "CO - 12558",
+      id: "CO - 12458",
       name: "نواف العبسي",
       phone: "+966 55 912 3047",
       address: "رقمي، المملكة العربية السعودية",
       date: "12-01-2025",
     },
     {
-      id: "CO - 12558",
+      id: "CO - 12568",
       name: "مشاري الذبياني",
       phone: "+966 53 337 3122",
       address: "حر جَبَل النور، المملكة العربية السعودية",
       date: "12-03-2025",
     },
     {
-      id: "CO - 12558",
+      id: "CO - 12258",
       name: "أحمد أحمد",
       phone: "+966 53 852 0484",
       address: "السادة، المملكة العربية السعودية",
       date: "22-02-2025",
     },
     {
-      id: "CO - 12558",
+      id: "CO - 12658",
       name: "نواف العبسي",
       phone: "+966 55 912 3047",
       address: "رقمي، المملكة العربية السعودية",
       date: "12-01-2025",
     },
     {
-      id: "CO - 12558",
+      id: "CO - 12578",
       name: "مشاري الذبياني",
       phone: "+966 53 337 3122",
       address: "حر جَبَل النور، المملكة العربية السعودية",
       date: "12-03-2025",
     },
     {
-      id: "CO - 12558",
+      id: "CO - 12058",
       name: "أحمد أحمد",
       phone: "+966 53 852 0484",
       address: "السادة، المملكة العربية السعودية",
       date: "22-02-2025",
     },
     {
-      id: "CO - 12558",
+      id: "CO - 12958",
       name: "نواف العبسي",
       phone: "+966 55 912 3047",
       address: "رقمي، المملكة العربية السعودية",
       date: "12-01-2025",
     },
     {
-      id: "CO - 12558",
+      id: "CO - 13558",
       name: "أحمد أحمد",
       phone: "+966 53 852 0484",
       address: "السادة، المملكة العربية السعودية",
@@ -147,12 +146,10 @@ function CustomerTable() {
 
             <AddCustomerButton onClick={handleAddClientClick} />
           </div>
-             {/* عرض المودال عند النقر */}
-      {activeModal === 'client' && (
-        <AddClientModal 
-          onClose={() => setActiveModal(null)} 
-        />
-      )}
+          {/* عرض المودال عند النقر */}
+          {activeModal === "client" && (
+            <AddClientModal onClose={() => setActiveModal(null)} />
+          )}
         </div>
       </div>
 
@@ -186,7 +183,7 @@ function CustomerTable() {
               />
               <span>رقم العميل</span>
             </div>
-            <div className="col-span-3 sm:col-span-2 flex items-center gap-1 ">
+            <div className="col-span-3 sm:col-span-2 flex justify-center items-center gap-1 ">
               <img
                 src="/Icones/Profile.svg"
                 alt="client icon"
@@ -194,7 +191,7 @@ function CustomerTable() {
               />
               <span>اسم العميل</span>
             </div>
-            <div className="col-span-2 sm:col-span-2 flex items-center gap-1 ">
+            <div className="col-span-2 sm:col-span-2 flex justify-center items-center gap-1 ">
               <img
                 src="/Icones/phone.svg"
                 alt="phone icon"
@@ -202,7 +199,7 @@ function CustomerTable() {
               />
               <span>رقم الهاتف</span>
             </div>
-            <div className="col-span-2 sm:col-span-3 flex items-center gap-1 mt-2 sm:mt-0">
+            <div className="col-span-2 sm:col-span-3 flex justify-center items-center gap-1 mt-2 sm:mt-0">
               <img
                 src="/Icones/Location.svg"
                 alt="location icon"

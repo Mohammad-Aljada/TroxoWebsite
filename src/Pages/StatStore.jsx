@@ -1,8 +1,19 @@
 import StatGrid from "./../Components/StatGrid";
 // import ProductTable from "./../Components/ProductTable";
 // import CityChart from "./../Components/CityChart";
+import PrintReportModal from './../Components/Modal/PrintReportModal';
+import { useState } from 'react';
 
 export default function StatStore() {
+  const [showPrintModal, setShowPrintModal] = useState(false);
+
+  const onSubmit = (e) => {
+    e.preventDefault(); // لمنع إعادة تحميل الصفحة
+    // هنا ضع منطق إضافة المتجر (API call أو أي شيء آخر)
+
+    // بعد نجاح الإضافة، عرض modal النجاح
+    setShowPrintModal(true);
+  };
   return (
     <section className="w-full mb-6 px-4 md:px-6">
       <div className="w-full max-md:max-w-full">
@@ -19,16 +30,19 @@ export default function StatStore() {
             </nav>
           </div>
           <button
-            className="flex overflow-hidden items-center gap-1.5 px-6 py-2 my-auto text-base font-bold tracking-tight leading-none text-center bg-red-100 rounded-lg text-pink-950"
-            aria-label="Export file"
-          >
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/0b6acb5c4f6f19bf5703d6fcac436f04cd319295?placeholderIfAbsent=true&apiKey=e1766207373343d5b51643e9485c07fc"
-              alt=""
-              className="object-contain shrink-0 w-6 aspect-square"
-            />
-            <span>ملف التصدير</span>
-          </button>
+                  onClick={onSubmit}
+                  className="flex items-center gap-2 px-4 py-3 text-base font-medium rounded-2xl border border-gray-300 hover:bg-gray-50 transition-colors"
+                >
+                  <span>طباعة التقرير</span>
+                  <img
+                    src="/Icones/PrintReport.svg"
+                    alt="أيقونة الطباعة"
+                    className="w-5 h-5"
+                  />
+                </button>
+                {showPrintModal && (
+                  <PrintReportModal onClose={() => setShowPrintModal(false)} />
+                )}
         </div>
         <section className="flex flex-col pb-10 pr-10 pt-5 mx-5 mt-6 bg-white rounded-2xl max-md:px-5 max-md:mr-2.5 w-full">
           <h2 className="self-start text-2xl font-bold tracking-tighter leading-relaxed text-gray-800">

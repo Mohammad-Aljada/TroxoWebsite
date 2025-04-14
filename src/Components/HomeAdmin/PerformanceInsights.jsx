@@ -57,7 +57,7 @@ const PerformanceInsights = () => {
               </button>
             </div>
 
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto block max-h-[320px] overflow-y-auto">
               <div className="relative">
                 <table className="w-full">
                   <thead>
@@ -65,7 +65,7 @@ const PerformanceInsights = () => {
                       <th className="px-3 py-3 text-sm font-semibold text-gray-500 text-center">
                         رقم.
                       </th>
-                      <th className="px-3 py-3 text-sm font-semibold text-gray-500 text-left">
+                      <th className="px-3 py-3 text-sm font-semibold text-gray-500 text-center">
                         اسم الشركة
                       </th>
                       <th className="px-3 py-3 text-sm font-semibold text-gray-500 text-center">
@@ -82,63 +82,58 @@ const PerformanceInsights = () => {
                       </th>
                     </tr>
                   </thead>
+
+                  <tbody className="divide-y divide-gray-200">
+                    <CompanyRow
+                      number="01"
+                      name="smsa"
+                      shipments="1500 شحنة"
+                      deliveryTime="2.5 يوم"
+                      rating="4.8/5"
+                      revenue="50000 دولار"
+                    />
+                    <CompanyRow
+                      number="02"
+                      name="DHL"
+                      shipments="1200 شحنة"
+                      deliveryTime="3.0 يوم"
+                      rating="4.8/5"
+                      revenue="40000 دولار"
+                    />
+                    <CompanyRow
+                      number="03"
+                      name="aramex"
+                      shipments="900 شحنة"
+                      deliveryTime="1.8 يوم"
+                      rating="4.8/5"
+                      revenue="30000 دولار"
+                    />
+                    <CompanyRow
+                      number="04"
+                      name="fedex"
+                      shipments="1500 شحنة"
+                      deliveryTime="3.0 يوم"
+                      rating="4.8/5"
+                      revenue="20000 دولار"
+                    />
+                    <CompanyRow
+                      number="05"
+                      name="شركة 5"
+                      shipments="1800 شحنة"
+                      deliveryTime="2.2 يوم"
+                      rating="4.7/5"
+                      revenue="45000 دولار"
+                    />
+                    <CompanyRow
+                      number="06"
+                      name="شركة 6"
+                      shipments="1100 شحنة"
+                      deliveryTime="3.5 يوم"
+                      rating="4.9/5"
+                      revenue="35000 دولار"
+                    />
+                  </tbody>
                 </table>
-                <div className="block max-h-[320px] overflow-y-auto">
-                  {" "}
-                  {/* ارتفاع لـ 4 صفوف تقريبًا */}
-                  <table className="w-full">
-                    <tbody className="divide-y divide-gray-200">
-                      <CompanyRow
-                        number="01"
-                        name="smsa"
-                        shipments="1500 شحنة"
-                        deliveryTime="2.5 يوم"
-                        rating="4.8/5"
-                        revenue="50000 دولار"
-                      />
-                      <CompanyRow
-                        number="02"
-                        name="DHL"
-                        shipments="1200 شحنة"
-                        deliveryTime="3.0 يوم"
-                        rating="4.8/5"
-                        revenue="40000 دولار"
-                      />
-                      <CompanyRow
-                        number="03"
-                        name="aramex"
-                        shipments="900 شحنة"
-                        deliveryTime="1.8 يوم"
-                        rating="4.8/5"
-                        revenue="30000 دولار"
-                      />
-                      <CompanyRow
-                        number="04"
-                        name="fedex"
-                        shipments="1500 شحنة"
-                        deliveryTime="3.0 يوم"
-                        rating="4.8/5"
-                        revenue="20000 دولار"
-                      />
-                      <CompanyRow
-                        number="05"
-                        name="شركة 5"
-                        shipments="1800 شحنة"
-                        deliveryTime="2.2 يوم"
-                        rating="4.7/5"
-                        revenue="45000 دولار"
-                      />
-                      <CompanyRow
-                        number="06"
-                        name="شركة 6"
-                        shipments="1100 شحنة"
-                        deliveryTime="3.5 يوم"
-                        rating="4.9/5"
-                        revenue="35000 دولار"
-                      />
-                    </tbody>
-                  </table>
-                </div>
               </div>
             </div>
           </div>
@@ -161,10 +156,10 @@ const CompanyRow = ({
   return (
     <tr className="hover:bg-gray-50 border-b border-gray-200">
       <td className="px-4 py-3 text-xs font-bold text-center w-10">{number}</td>
-      <td className="px-4 py-3 text-sm capitalize">
-        <span className="inline-block px-3 py-1 rounded-lg bg-gray-100">
-          {name}
-        </span>
+      <td className="px-4 py-3 text-center text-sm capitalize">
+        <div className="flex items-center justify-center">
+          <span className=" px-3 py-1 rounded-lg bg-gray-100">{name}</span>
+        </div>
       </td>
       <td className="px-4 py-3 text-base font-semibold text-center">
         {shipments}
@@ -176,9 +171,11 @@ const CompanyRow = ({
         {rating}
       </td>
       <td className="px-4 py-3 text-center">
-        <span className="inline-block px-4 py-1 text-base bg-red-100 rounded-lg text-pink-950">
-          {revenue}
-        </span>
+        <div className="flex items-center justify-center">
+          <span className=" px-4 py-1 text-base bg-red-100 rounded-lg text-pink-950">
+            {revenue}
+          </span>
+        </div>
       </td>
     </tr>
   );

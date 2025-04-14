@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { NavLink } from "react-router";
-import MenuShipment from './../Menu/MenuShipment';
+import MenuShipment from "./../Menu/MenuShipment";
 
 const ShipmentTable = () => {
   const [expandedRow, setExpandedRow] = useState(null);
@@ -78,10 +78,16 @@ const ShipmentTable = () => {
 
           <div className="flex justify-center relative">
             <button
-              onClick={ handleMenuToggle}
-              className="p-1 text-xl bg-[#FC746C] text-white hover:bg-red-500 rounded-lg transition-colors"
+              onClick={() => handleMenuToggle(shipmentData.id)}
+              className="text-gray-400 hover:text-red-900"
             >
-              ...
+              <svg
+                className="w-6 h-6 rotate-90 bg-red-100 rounded-lg"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+              </svg>
             </button>
             {selectedRow && (
               <div className="absolute left-5 top-[75%] mt-1 z-50">
@@ -255,9 +261,6 @@ const ShipmentTable = () => {
           </NavLink>
         </div>
       </section>
-      <button className="px-4 py-2 mt-4 self-center cursor-pointer md:px-6 md:py-4 text-sm md:text-base font-extrabold bg-gray-200 text-neutral-500 rounded-xl w-full sm:w-auto min-w-[200px]">
-        شركة الشحن
-      </button>
     </div>
   );
 };

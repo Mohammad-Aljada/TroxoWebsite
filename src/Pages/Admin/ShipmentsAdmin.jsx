@@ -40,7 +40,7 @@ const ShipmentsAdmin = () => {
 
           <button
             onClick={onSubmit}
-            className="flex items-center gap-2 px-4 py-3 text-base font-medium rounded-2xl border border-gray-300 hover:bg-gray-50 transition-colors"
+            className="flex items-center cursor-pointer gap-2 px-4 py-3 text-base font-medium rounded-2xl border border-gray-300 hover:bg-gray-50 transition-colors"
           >
             <span>طباعة التقرير</span>
             <img

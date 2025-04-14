@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
-import { StatusBadge } from "./../StatusBadge";
-import Menu from "./../Menu/Menu";
 import { useState } from "react";
-function ShipmentRow({ shipment }) {
+import MenuTicket from "./../Menu/MenuTicket";
+function TicketTableRow({ ticket }) {
   const [selectedRow, setSelectedRow] = useState(null);
 
   const handleMenuToggle = (rowId) => {
@@ -11,25 +10,21 @@ function ShipmentRow({ shipment }) {
   return (
     <div className="grid grid-cols-12  gap-4 items-center  p-4 border-b border-gray-200 w-full">
       <div className="text-sm col-span-3 sm:col-span-2  text-center text-gray-800">
-        # {shipment.id}
+        {ticket.id}
+      </div>
+      <div className="text-sm col-span-2 sm:col-span-2  text-center text-gray-800">
+        {ticket.shipmentId}
       </div>
       <div className="text-sm col-span-3 sm:col-span-3  text-center text-gray-800">
-        <img
-          src={shipment.company}
-          alt="Shipping Company"
-          className="w-14 h-7 object-contain rounded-md mx-auto"
-        />
+        {ticket.companyName}
       </div>
-      <div className="text-sm col-span-2 sm:col-span-3  text-center text-gray-800">
-        {shipment.address}
-      </div>
-      <div className="text-sm col-span-2 sm:col-span-2  text-center text-gray-800  ">
-        <StatusBadge status={shipment.status} />
+      <div className="text-sm col-span-2 sm:col-span-3  text-center text-gray-800  ">
+        {ticket.tickettype}
       </div>
       <div className="text-sm col-span-2 sm:col-span-2  text-gray-800 text-center  ">
         <div className="relative inline-block">
           <button
-            onClick={() => handleMenuToggle(shipment.id)}
+            onClick={() => handleMenuToggle(ticket.id)}
             className="text-gray-400 hover:text-red-900"
           >
             <svg
@@ -41,9 +36,9 @@ function ShipmentRow({ shipment }) {
             </svg>
           </button>
 
-          {selectedRow === shipment.id && (
+          {selectedRow === ticket.id && (
             <div className="absolute left-2 top-full mt-1 z-50">
-              <Menu onClose={() => setSelectedRow(null)} />
+              <MenuTicket onClose={() => setSelectedRow(null)} />
             </div>
           )}
         </div>
@@ -52,4 +47,4 @@ function ShipmentRow({ shipment }) {
   );
 }
 
-export default ShipmentRow;
+export default TicketTableRow;

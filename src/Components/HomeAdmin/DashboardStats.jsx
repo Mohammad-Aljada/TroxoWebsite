@@ -1,4 +1,6 @@
+import PrintReportModal from "../Modal/PrintReportModal";
 import StatCard from "./StatCard";
+import { useState } from "react";
 
 const DashboardStats = () => {
   // تنسيق التاريخ باللغة العربية
@@ -11,6 +13,15 @@ const DashboardStats = () => {
     minute: "2-digit",
     hour12: true,
   });
+  const [showPrintModal, setShowPrintModal] = useState(false);
+
+  const onSubmit = (e) => {
+    e.preventDefault(); // لمنع إعادة تحميل الصفحة
+    // هنا ضع منطق إضافة المتجر (API call أو أي شيء آخر)
+
+    // بعد نجاح الإضافة، عرض modal النجاح
+    setShowPrintModal(true);
+  };
 
   return (
     <div className="mx-4 lg:mx-8">
@@ -23,7 +34,8 @@ const DashboardStats = () => {
         </div>
 
         <button
-          className="flex items-center gap-2 px-4 py-3 text-base font-medium rounded-xl border border-gray-200 bg-white hover:bg-gray-50 transition-colors shadow-xs"
+          onClick={onSubmit}
+          className="flex items-center cursor-pointer gap-2 px-4 py-3 text-base font-medium rounded-xl border border-black  hover:bg-gray-50 transition-colors shadow-xs"
           aria-label="طباعة التقرير"
         >
           <span>طباعة التقرير</span>
@@ -34,6 +46,9 @@ const DashboardStats = () => {
             aria-hidden="true"
           />
         </button>
+        {showPrintModal && (
+          <PrintReportModal onClose={() => setShowPrintModal(false)} />
+        )}
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* عنوان التقرير وزر التحكم */}

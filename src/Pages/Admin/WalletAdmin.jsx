@@ -1,8 +1,8 @@
 import WalletCard from "./../../Components/Wallet/WalletCard";
 import TransactionTable from "./../../Components/Wallet/TransactionTable";
 import StatCard from "./../../Components/StatCard";
-import PrintReportModal from "./../../Components/Modal/PrintReportModal";
 import { useState } from "react";
+import PrintReportWallet from "../../Components/Modal/PrintReportWallet";
 
 export default function WalletAdmin() {
   const arabicDate = new Date().toLocaleDateString("ar-SA", {
@@ -37,7 +37,7 @@ export default function WalletAdmin() {
             </div>
 
             <button
-              className="flex items-center gap-2 px-4 py-3 text-base font-medium rounded-xl border border-gray-200 bg-white hover:bg-gray-50 transition-colors shadow-xs"
+              className="flex items-center cursor-pointer gap-2 px-4 py-3 text-base font-medium rounded-xl border border-gray-200 bg-white hover:bg-gray-50 transition-colors shadow-xs"
               aria-label="طباعة التقرير"
               onClick={onSubmit}
             >
@@ -50,7 +50,7 @@ export default function WalletAdmin() {
               />
             </button>
             {showPrintModal && (
-              <PrintReportModal onClose={() => setShowPrintModal(false)} />
+              <PrintReportWallet onClose={() => setShowPrintModal(false)} />
             )}
           </div>
         </div>

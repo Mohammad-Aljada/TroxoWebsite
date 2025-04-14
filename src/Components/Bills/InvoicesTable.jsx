@@ -103,7 +103,7 @@ export default function InvoicesTable() {
                     <span>اسم العميل</span>
                   </div>
                 </th>
-              
+
                 <th className="px-3 py-3 text-sm lg:text-base font-semibold text-zinc-800 ">
                   <div className="flex max-md:flex-col max-md:gap-1 items-center justify-center gap-2">
                     <img
@@ -139,7 +139,7 @@ export default function InvoicesTable() {
                   <td className="px-3 py-3 text-sm text-blue-950 text-center">
                     {invoice.customer}
                   </td>
-                
+
                   <td className="px-3 py-3 text-sm text-blue-950 text-center">
                     {invoice.date}
                   </td>
@@ -157,9 +157,15 @@ export default function InvoicesTable() {
                     <div className="flex justify-center">
                       <button
                         onClick={() => handleMenuToggle(invoice.id)}
-                        className="p-1 text-xl bg-[#FC746C] text-white hover:bg-red-500 rounded-lg transition-colors"
+                        className="text-gray-400 hover:text-red-900"
                       >
-                        ...
+                        <svg
+                          className="w-6 h-6 rotate-90 bg-red-100 rounded-lg"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+                        </svg>
                       </button>
                       {selectedRow === invoice.id && (
                         <div className="absolute left-8 top-[75%] mt-1 z-50">
