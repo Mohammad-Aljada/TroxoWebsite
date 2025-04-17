@@ -1,6 +1,6 @@
 import { FilterButton, ExcelButton, AddProductButton } from "../ActionButtons";
 import AddProductModal from "../Modal/AddProductModal";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import MenuProduct from "./../Menu/MenuProduct";
 
 const productData = [
@@ -89,6 +89,21 @@ const productData = [
 export const ProductList = () => {
   const [activeModal, setActiveModal] = useState(null);
   const [selectedRow, setSelectedRow] = useState(null);
+  const dropdownRef = useRef(null);
+
+  // يغلق القائمة إذا تم الضغط خارجها
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setSelectedRow(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleMenuToggle = (rowId) => {
     setSelectedRow(selectedRow === rowId ? null : rowId);
@@ -286,7 +301,10 @@ export const ProductList = () => {
                   <td className="px-3 py-4 whitespace-nowrap text-sm text-center text-gray-800">
                     {product.quantity}
                   </td>
-                  <td className="px-3 py-4 whitespace-nowrap text-right text-sm relative font-medium">
+                  <td
+                    className="px-3 py-4 whitespace-nowrap text-right text-sm relative font-medium"
+                    ref={dropdownRef}
+                  >
                     <button
                       onClick={() => handleMenuToggle(product.id)}
                       className="text-gray-400 hover:text-red-900"

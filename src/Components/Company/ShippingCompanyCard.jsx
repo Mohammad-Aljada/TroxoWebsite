@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
+import { NavLink } from "react-router";
 
 const ShippingCompanyCard = ({
   logo,
@@ -8,7 +9,6 @@ const ShippingCompanyCard = ({
   additionalNotes = "ملاحظات إضافية",
 }) => {
   const [isDisabled, setIsDisabled] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false);
 
   const companyData = {
     cities: "الرياض",
@@ -25,10 +25,6 @@ const ShippingCompanyCard = ({
 
   const toggleCompanyStatus = () => {
     setIsDisabled(!isDisabled);
-  };
-
-  const toggleExpand = () => {
-    setIsExpanded(!isExpanded);
   };
 
   return (
@@ -152,13 +148,6 @@ const ShippingCompanyCard = ({
             </div>
           </div>
         </div>
-
-        {/* Expanded Content (Optional) */}
-        {isExpanded && (
-          <div className="mt-6 pt-4 border-t border-gray-200">
-            {/* Additional details can be added here */}
-          </div>
-        )}
       </div>
 
       {/* Footer */}
@@ -166,26 +155,23 @@ const ShippingCompanyCard = ({
         <p className="text-sm text-pink-950 font-medium">
           اكتشف المزيد عن الشركة الآن!
         </p>
-        <button
-          onClick={toggleExpand}
-          className="flex items-center gap-1 px-3 py-2 bg-red-100 hover:bg-red-200 rounded-md text-pink-950 font-medium transition-colors"
-        >
-          {isExpanded ? "إخفاء التفاصيل" : "اقرأ المزيد"}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className={`h-4 w-4 transition-transform ${
-              isExpanded ? "rotate-180" : ""
-            }`}
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </button>
+        <NavLink to="/admin/company/details">
+          <button className="flex items-center gap-1 px-3 py-2 bg-red-100 hover:bg-red-200 rounded-md text-pink-950 font-medium transition-colors">
+            اقرأ المزيد
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className={`h-4 w-4 transition-transform `}
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </button>
+        </NavLink>
       </footer>
     </article>
   );

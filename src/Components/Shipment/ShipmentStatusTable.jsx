@@ -42,7 +42,6 @@ function ShipmentStatusTable() {
 
   return (
     <>
-      {" "}
       {/* Header Section */}
       {/* Table Container */}
       <div className="w-full overflow-x-auto">

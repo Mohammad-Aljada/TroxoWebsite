@@ -1,8 +1,21 @@
 /* eslint-disable react/prop-types */
 import MenuCustomer from "../Menu/MenuCustomer";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 function CustomerTableRow({ customer }) {
   const [selectedRow, setSelectedRow] = useState(null);
+  const dropdownRef = useRef(null);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setSelectedRow(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleMenuToggle = (rowId) => {
     setSelectedRow(selectedRow === rowId ? null : rowId);
@@ -25,7 +38,10 @@ function CustomerTableRow({ customer }) {
       <div className="text-sm col-span-1 sm:col-span-2  text-gray-800 text-center  ">
         {customer.date}
       </div>
-      <div className="text-center col-span-1 sm:col-span-1 relative ">
+      <div
+        className="text-center col-span-1 sm:col-span-1 relative "
+        ref={dropdownRef}
+      >
         <button
           onClick={() => handleMenuToggle(customer.id)}
           className="text-gray-400 hover:text-red-900"

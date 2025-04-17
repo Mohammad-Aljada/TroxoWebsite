@@ -1,8 +1,21 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import MenuTicket from "./../Menu/MenuTicket";
 function TicketTableRow({ ticket }) {
   const [selectedRow, setSelectedRow] = useState(null);
+  const dropdownRef = useRef(null);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setSelectedRow(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleMenuToggle = (rowId) => {
     setSelectedRow(selectedRow === rowId ? null : rowId);
@@ -21,7 +34,10 @@ function TicketTableRow({ ticket }) {
       <div className="text-sm col-span-2 sm:col-span-3  text-center text-gray-800  ">
         {ticket.tickettype}
       </div>
-      <div className="text-sm col-span-2 sm:col-span-2  text-gray-800 text-center  ">
+      <div
+        className="text-sm col-span-2 sm:col-span-2  text-gray-800 text-center  "
+        ref={dropdownRef}
+      >
         <div className="relative inline-block">
           <button
             onClick={() => handleMenuToggle(ticket.id)}

@@ -1,6 +1,6 @@
+import PrintReportCompany from "../../Components/Modal/PrintReportCompany";
 import DashboardStats from "./../../Components/Company/DashboardStats";
 import ShippingCompanyCard from "./../../Components/Company/ShippingCompanyCard";
-import PrintReportModal from "./../../Components/Modal/PrintReportModal";
 import { useState } from "react";
 
 const Company = () => {
@@ -75,7 +75,7 @@ const Company = () => {
                   />
                 </button>
                 {showPrintModal && (
-                  <PrintReportModal onClose={() => setShowPrintModal(false)} />
+                  <PrintReportCompany onClose={() => setShowPrintModal(false)} />
                 )}
               </div>
 

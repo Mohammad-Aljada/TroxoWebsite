@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 import ShipmentRow from "./ShipmentRow";
-function ShipmentReturn() {
+function ShipmentReturn({ activeTab = "return" }) {
   const shipments = [
     {
       id: "1258",
@@ -67,7 +68,7 @@ function ShipmentReturn() {
           <div className="bg-slate-50 rounded-lg">
             {shipments.map((shipment, index) => (
               <div key={index}>
-                <ShipmentRow shipment={shipment} />
+                <ShipmentRow shipment={shipment} activeTab={activeTab} />
                 {index < shipments.length - 1 && (
                   <div className="h-px mx-4 bg-neutral-300" />
                 )}

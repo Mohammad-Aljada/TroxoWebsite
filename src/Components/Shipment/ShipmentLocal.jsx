@@ -1,47 +1,83 @@
-/* eslint-disable react/prop-types */
-import ShipmentRow from "./ShipmentRow";
-function ShipmentCanceled({ activeTab = "canceled" }) {
+import ShipmentAdminRow from "./ShipmentAdminRow";
+function ShipmentLocal() {
   const shipments = [
     {
       id: "1258",
       company: "/Icones/Company.png",
       address: "جبل النور، السعودية",
-      status: "ملغاة",
+      status: "قيد التحضير",
+      weight: "5 كجم",
+      length: "50 سم",
+      width: "15 سم",
+      height: "30 سم",
+      print: "/Icones/Print.svg",
+      more: "/Icones/more.svg",
     },
     {
       id: "1668",
       company: "/Icones/Company.png",
       address: "السادة، السعودية",
-      status: "ملغاة",
+      status: "مرتجع",
+      weight: "5 كجم",
+      length: "50 سم",
+      width: "15 سم",
+      height: "30 سم",
+      print: "/Icones/Print.svg",
+      more: "/Icones/more.svg",
     },
     {
       id: "1785",
       company: "/Icones/Company.png",
       address: "رقمي، السعودية",
-      status: "ملغاة",
+      status: "جاهز للاستلام",
+      weight: "5 كجم",
+      length: "50 سم",
+      width: "15 سم",
+      height: "30 سم",
+      print: "/Icones/Print.svg",
+      more: "/Icones/more.svg",
     },
     {
       id: "1251",
       company: "/Icones/Company.png",
       address: "جبل النور، السعودية",
-      status: "ملغاة",
+      status: "قيد التحضير",
+      weight: "5 كجم",
+      length: "50 سم",
+      width: "15 سم",
+      height: "30 سم",
+      print: "/Icones/Print.svg",
+      more: "/Icones/more.svg",
     },
     {
       id: "1663",
       company: "/Icones/Company.png",
       address: "السادة، السعودية",
-      status: "ملغاة",
+      status: "مرتجع",
+      weight: "5 كجم",
+      length: "50 سم",
+      width: "15 سم",
+      height: "30 سم",
+      print: "/Icones/Print.svg",
+      more: "/Icones/more.svg",
     },
     {
       id: "1784",
       company: "/Icones/Company.png",
       address: "رقمي، السعودية",
-      status: "ملغاة",
+      status: "جاهز للاستلام",
+      weight: "5 كجم",
+      length: "50 سم",
+      width: "15 سم",
+      height: "30 سم",
+      print: "/Icones/Print.svg",
+      more: "/Icones/more.svg",
     },
   ];
 
   return (
     <>
+      {/* Header Section */}
       {/* Table Container */}
       <div className="w-full overflow-x-auto">
         <div className="min-w-full">
@@ -59,8 +95,11 @@ function ShipmentCanceled({ activeTab = "canceled" }) {
             <div className=" col-span-2 sm:col-span-2  font-semibold text-center ">
               حالة الشحنة
             </div>
-            <div className=" col-span-2 sm:col-span-2  font-semibold text-center ">
-              الإجراءات
+            <div className=" col-span-1 sm:col-span-1  font-semibold text-center ">
+              طباعة
+            </div>
+            <div className=" col-span-1 sm:col-span-1  font-semibold text-center">
+              تفاصيل
             </div>
           </div>
 
@@ -68,7 +107,7 @@ function ShipmentCanceled({ activeTab = "canceled" }) {
           <div className="bg-slate-50 rounded-lg">
             {shipments.map((shipment, index) => (
               <div key={index}>
-                <ShipmentRow shipment={shipment} activeTab={activeTab} />
+                <ShipmentAdminRow shipment={shipment} />
                 {index < shipments.length - 1 && (
                   <div className="h-px mx-4 bg-neutral-300" />
                 )}
@@ -77,7 +116,6 @@ function ShipmentCanceled({ activeTab = "canceled" }) {
           </div>
         </div>
       </div>
-
       {/* Pagination */}
       <div className="flex flex-col items-center w-full gap-4 mt-6 sm:flex-row sm:justify-between">
         <div className="flex items-center gap-2 text-sm text-black whitespace-nowrap">
@@ -105,4 +143,4 @@ function ShipmentCanceled({ activeTab = "canceled" }) {
   );
 }
 
-export default ShipmentCanceled;
+export default ShipmentLocal;

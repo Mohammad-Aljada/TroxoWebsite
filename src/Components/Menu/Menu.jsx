@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
 import { MenuItem } from "./MenuItem";
 import { useState } from "react";
-import TicketModal from "../Modal/TicketModal";
+import { useNavigate } from "react-router";
+import CancelShipmentModal from "../Modal/CancelShipmentModal";
 
 const menuItems = [
   {
@@ -26,7 +27,7 @@ const menuItems = [
     text: "ارجاع الشحنة",
     textColor: "text-emerald-600",
     icon: `/Icones/RiceTicket.svg`,
-    action: "ticket",
+    action: "return",
   },
   {
     text: "الغاء الشحنة",
@@ -38,13 +39,15 @@ const menuItems = [
 
 export default function Menu({ onClose }) {
   const [activeModal, setActiveModal] = useState(null);
+  const navigate = useNavigate();
 
   const handleMenuItemClick = (action) => {
-    if (action === "ticket") {
-      console.log(action);
-      setActiveModal("ticket");
+    if (action === "cancel") {
+      setActiveModal("cancel");
     }
-    console.log(action);
+    if (action === "return") {
+      setActiveModal("return");
+    }
     // يمكنك إضافة حالات أخرى هنا
   };
   return (
@@ -64,14 +67,15 @@ export default function Menu({ onClose }) {
           />
         ))}
         {/* عرض المودال عند النقر */}
-        {activeModal === "ticket" && (
-          <TicketModal
+        {activeModal === "cancel" && (
+          <CancelShipmentModal
             onClose={() => {
               setActiveModal(null);
               onClose(); // إغلاق القائمة بعد إغلاق المودال
             }}
           />
         )}
+        {activeModal === "return" && navigate("/home/shipments/checkout")}
       </div>
     </div>
   );

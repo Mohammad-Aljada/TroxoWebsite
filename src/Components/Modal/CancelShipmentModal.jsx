@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 
-const TicketModal = ({ onClose }) => {
+const CancelShipmentModal = ({ onClose }) => {
   const [formData, setFormData] = useState({
     ticketNumber: "T-1234567",
     shipmentNumber: "",
@@ -23,11 +23,13 @@ const TicketModal = ({ onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/60 z-[1000] flex justify-center items-center p-4 overflow-y-auto">
+    <div className="fixed inset-0 bg-black/60 z-[10000] flex justify-center items-center p-4 overflow-y-auto">
       <div className="bg-white rounded-2xl w-full max-w-4xl max-h-[90vh] flex flex-col">
         {/* Header */}
         <div className="flex justify-between items-center px-5 py-4 bg-slate-50 rounded-t-2xl">
-          <span className="text-base font-medium text-red-500">رفع تذكرة</span>
+          <span className="text-base font-medium text-red-500">
+            الغاء الشحنة
+          </span>
           <button
             onClick={onClose}
             className="p-2 hover:bg-slate-100 rounded-full transition-colors"
@@ -73,30 +75,14 @@ const TicketModal = ({ onClose }) => {
           className="p-4 md:p-6 lg:p-8 flex flex-col overflow-y-auto"
         >
           <h2 className="text-xl font-bold text-right mb-2 text-indigo-950">
-            رفع تذكرة
+            الغاء الشحنة
           </h2>
           <p className="text-gray-600 mb-6 text-right">
-            هذا القسم يقدم أمثلة على الشكاوى الشائعة التي قد تواجهها. استخدم هذه
-            المراجع لتحديد مشكلتك وتبسيط عملية الشكوى.
+            يمكنك الغاء الشحنة من هنا
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Ticket Number */}
-            <div className=" text-start mb-4">
-              <label
-                htmlFor="ticketNumber"
-                className="block mb-2 font-bold text-indigo-950"
-              >
-                رقم التذكرة
-              </label>
-              <input
-                id="ticketNumber"
-                type="text"
-                value={formData.ticketNumber}
-                onChange={handleChange}
-                className="p-3 w-full rounded-lg border border-gray-200 transition-colors"
-              />
-            </div>
 
             {/* Shipment Number */}
             <div className=" text-start mb-4">
@@ -117,22 +103,6 @@ const TicketModal = ({ onClose }) => {
             </div>
 
             {/* Company Name */}
-            <div className=" text-start mb-4">
-              <label
-                htmlFor="companyName"
-                className="block mb-2 font-bold text-indigo-950"
-              >
-                اسم الشركة
-              </label>
-              <input
-                id="companyName"
-                type="text"
-                placeholder="اسم الشركة"
-                value={formData.companyName}
-                onChange={handleChange}
-                className="p-3 w-full rounded-lg border border-gray-200 transition-colors"
-              />
-            </div>
 
             {/* Ticket Type */}
             <div className=" text-start mb-4">
@@ -140,7 +110,7 @@ const TicketModal = ({ onClose }) => {
                 htmlFor="ticketType"
                 className="block mb-2 font-bold text-indigo-950"
               >
-                نوع التذكرة
+                سبب الغاء الشحنة
               </label>
               <select
                 id="ticketType"
@@ -149,40 +119,23 @@ const TicketModal = ({ onClose }) => {
                 className="p-3 w-full rounded-lg border border-gray-200 transition-colors"
               >
                 <option value="" disabled>
-                  نوع التذكرة
+                  سبب الغاء الشحنة
                 </option>
-                <option value="complaint">شكوى</option>
-                <option value="inquiry">استفسار</option>
-                <option value="suggestion">اقتراح</option>
-                <option value="other">أخرى</option>
+                <option value="noShipment">لم اعد الشحن</option>
+                <option value="changeCompany">اريد تغير شركة الشحن</option>
               </select>
             </div>
 
             {/* Additional Complaints - Full width */}
-            <div className=" text-start mb-4 md:col-span-2">
-              <label
-                htmlFor="additionalComplaints"
-                className="block mb-2 font-bold text-indigo-950"
-              >
-                شكوى إضافية
-              </label>
-              <textarea
-                id="additionalComplaints"
-                placeholder="إذا كان لديك أي ملاحظات إضافية، يرجى كتابتها هنا..."
-                value={formData.additionalComplaints}
-                onChange={handleChange}
-                className="p-3 max-md:w-full  w-[80%] rounded-lg border border-gray-200 transition-colors resize-none h-32"
-              />
-            </div>
           </div>
 
           {/* Submit Button */}
           <div className="flex justify-center mt-6">
             <button
               type="submit"
-              className="px-8 py-3 w-full md:w-auto text-base font-bold bg-red-100 rounded-2xl text-pink-950 hover:bg-red-200 transition-colors focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-2"
+              className="px-8 py-3 w-full md:w-auto text-base font-bold bg-red-100 rounded-2xl text-pink-950 hover:bg-red-200 transition-colors  "
             >
-              إرسال الرد
+              الغاء الشحنة
             </button>
           </div>
         </form>
@@ -191,4 +144,4 @@ const TicketModal = ({ onClose }) => {
   );
 };
 
-export default TicketModal;
+export default CancelShipmentModal;

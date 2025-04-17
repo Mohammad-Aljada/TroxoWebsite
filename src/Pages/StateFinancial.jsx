@@ -66,6 +66,26 @@ const StateFinancial = () => {
             currency="/Icones/Currency.svg"
           />
           <StatCardAdmin
+            title="مبالغ الشحن الدولي"
+            value="155"
+            change="+5%"
+            period="مقارنة باليوم السابق"
+            iconSrc="/images/ShippingMonth.svg"
+            borderColor="border-indigo-500"
+            textColor="text-indigo-500"
+            currency="/Icones/Currency.svg"
+          />
+          <StatCardAdmin
+            title="مبالغ الدفع عند التسليم"
+            value="520"
+            change="5.39%"
+            period="فترة التغيير"
+            iconSrc="/images/DeliveryTime.svg"
+            borderColor="border-orange-500"
+            textColor="text-orange-500"
+          />
+
+          <StatCardAdmin
             title="سحوبات المحفظة"
             value="144"
             change="5.39%"
@@ -97,17 +117,6 @@ const StateFinancial = () => {
           />
 
           <StatCardAdmin
-            title="مبالغ الشحن الدولي"
-            value="155"
-            change="+5%"
-            period="مقارنة باليوم السابق"
-            iconSrc="/images/ShippingMonth.svg"
-            borderColor="border-indigo-500"
-            textColor="text-indigo-500"
-            currency="/Icones/Currency.svg"
-          />
-
-          <StatCardAdmin
             title="اجمالي تكلفة  العينة"
             value="15"
             change="6.39%"
@@ -127,15 +136,6 @@ const StateFinancial = () => {
             borderColor="border-[#7BAED3]"
             textColor="text-[#7BAED3]"
             currency="/Icones/Currency.svg"
-          />
-          <StatCardAdmin
-            title="مبالغ الشحن عند التسليم"
-            value="520"
-            change="5.39%"
-            period="فترة التغيير"
-            iconSrc="/images/DeliveryTime.svg"
-            borderColor="border-orange-500"
-            textColor="text-orange-500"
           />
 
           <StatCardAdmin

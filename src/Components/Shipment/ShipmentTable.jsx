@@ -166,7 +166,6 @@ const ShipmentTable = () => {
               </tr>
             </thead>
 
-            {/* Table Body - معدل للاستجابة */}
             <tbody className="divide-y divide-gray-100">
               {shipmentData.map((shipment) => (
                 <>

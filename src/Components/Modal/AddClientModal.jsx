@@ -115,7 +115,7 @@ export default function AddClientModal({ onClose }) {
                       name="clientName"
                       type="text"
                       placeholder="أدخل اسم العميل"
-                      className="w-full px-4 py-2 pr-10 text-gray-700 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-2 pr-10 text-gray-700 bg-white border border-gray-300 rounded-lg  transition-all"
                       required
                       value={formData.clientName}
                       onChange={handleChange}
@@ -123,15 +123,17 @@ export default function AddClientModal({ onClose }) {
                   </div>
                 </div>
 
-                <div>
+                <div className="mb-4">
                   <label
-                    htmlFor="phone"
+                    htmlFor="phoneNumber"
                     className="block mb-2 text-sm font-medium text-gray-700"
                   >
                     رقم الهاتف <span className="text-red-600">*</span>
                   </label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+
+                  <div className="relative flex gap-2">
+                    {/* أيقونة الهاتف داخل حقل الإدخال */}
+                    <div className="absolute inset-y-0 left-1 flex items-center pointer-events-none">
                       <img
                         src="/Icones/phone.svg"
                         alt="أيقونة هاتف"
@@ -139,18 +141,28 @@ export default function AddClientModal({ onClose }) {
                       />
                     </div>
                     <select
-                      id="phone"
-                      name="phone"
-                      placeholder="+966"
-                      className="w-full px-4 py-2 pr-10 text-gray-700 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
-                      required
-                      value={formData.phone}
+                      id="countryCode"
+                      name="countryCode"
+                      className="w-24 px-3 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg transition-all"
+                      value={formData.countryCode}
                       onChange={handleChange}
                     >
                       <option value="+966">🇸🇦 +966</option>
                       <option value="+1">🇺🇸 +1</option>
                       <option value="+44">🇬🇧 +44</option>
                     </select>
+
+                    {/* حقل إدخال رقم الهاتف مع رمز الدولة المدمج */}
+                    <input
+                      id="phoneNumber"
+                      name="phoneNumber"
+                      type="tel"
+                      placeholder="+966 50 123 4567"
+                      className="w-full pl-4 pr-10 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg transition-all"
+                      value={formData.phoneNumber}
+                      onChange={handleChange}
+                      required
+                    />
                   </div>
                 </div>
                 <div>
@@ -173,7 +185,7 @@ export default function AddClientModal({ onClose }) {
                       name="email"
                       type="email"
                       placeholder="ادخل البريد الالكتروني"
-                      className="w-full px-4 py-2 pr-10 text-gray-700 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-2 pr-10 text-gray-700 bg-white border border-gray-300 rounded-lg  transition-all"
                       required
                       value={formData.email}
                       onChange={handleChange}
@@ -208,7 +220,7 @@ export default function AddClientModal({ onClose }) {
                     <select
                       id="country"
                       name="country"
-                      className="w-full px-4 py-2 pr-10 text-gray-700 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-2 pr-10 text-gray-700 bg-white border border-gray-300 rounded-lg  transition-all"
                       required
                       value={formData.country}
                       onChange={handleChange}
@@ -239,7 +251,7 @@ export default function AddClientModal({ onClose }) {
                     <select
                       id="city"
                       name="city"
-                      className="w-full px-4 py-2 pr-10 text-gray-700 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-2 pr-10 text-gray-700 bg-white border border-gray-300 rounded-lg  transition-all"
                       required
                       value={formData.city}
                       onChange={handleChange}
@@ -272,7 +284,7 @@ export default function AddClientModal({ onClose }) {
                       name="postalCode"
                       type="text"
                       placeholder="أدخل الرمز البريدي"
-                      className="w-full px-4 py-2 pr-10 text-gray-700 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-2 pr-10 text-gray-700 bg-white border border-gray-300 rounded-lg  transition-all"
                       required
                       value={formData.postalCode}
                       onChange={handleChange}
@@ -300,7 +312,7 @@ export default function AddClientModal({ onClose }) {
                       name="address"
                       type="text"
                       placeholder="أدخل العنوان بالتفصيل"
-                      className="w-full px-4 py-2 pr-10 text-gray-700 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-2 pr-10 text-gray-700 bg-white border border-gray-300 rounded-lg  transition-all"
                       required
                       value={formData.address}
                       onChange={handleChange}
@@ -315,14 +327,14 @@ export default function AddClientModal({ onClose }) {
               <button
                 type="submit"
                 onClick={onSubmit}
-                className="px-6 py-3 text-sm font-semibold bg-red-100 text-pink-950 rounded-lg hover:bg-red-200 transition-colors focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
+                className="px-6 py-3 text-sm font-semibold bg-red-100 text-pink-950 rounded-lg hover:bg-red-200 transition-colors "
               >
                 حفظ البيانات
               </button>
               <button
                 type="button"
                 onClick={onClose}
-                className="px-6 py-3 text-sm font-semibold bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+                className="px-6 py-3 text-sm font-semibold bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors "
               >
                 الغاء الطلب
               </button>

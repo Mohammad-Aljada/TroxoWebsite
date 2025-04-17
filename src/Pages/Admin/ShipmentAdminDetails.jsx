@@ -1,13 +1,14 @@
 // ShipmentStatus.js
 import { useState } from "react";
-import ShipmentStatusTable from "../Components/Shipment/ShipmentStatusTable";
-import ShipmentReturn from "../Components/Shipment/ShipmentReturn";
-import { FilterButton } from "../Components/ActionButtons";
-import ShipmentCanceled from "./../Components/Shipment/ShipmentCanceled";
+import { FilterButton } from "./../../Components/ActionButtons";
+import ShipmentGlobal from "../../Components/Shipment/ShipmentGlobal";
+import ShipmentLocal from "../../Components/Shipment/ShipmentLocal";
+import ShipmentAdminTable from "../../Components/Shipment/ShipmentAdminTable";
+import ShipmentAdminCanceled from "../../Components/Shipment/ShipmentAdminCanceled";
+import ShipmentAdminReturn from "../../Components/Shipment/ShipmentAdminReturn";
 
-export const Shipments = () => {
+export const ShipmentAdminDetails = () => {
   const [activeTab, setActiveTab] = useState("status"); // status | return
-  
 
   return (
     <div className="w-full px-4 mb-6 md:px-6" dir="rtl">
@@ -29,6 +30,10 @@ export const Shipments = () => {
                 ? "الشحنات"
                 : activeTab === "canceled"
                 ? "الشحنات الملغاة"
+                : activeTab === "global"
+                ? "الشحنات الدولية"
+                : activeTab === "local"
+                ? "الشحنات المحلية"
                 : "شحنات المرتجعة"}
             </li>
           </ol>
@@ -38,7 +43,7 @@ export const Shipments = () => {
         <article className="flex flex-col w-full p-4 mt-6 bg-white rounded-2xl md:p-6">
           <div className="flex flex-col w-full gap-4 mb-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="flex flex-col w-full justify-between lg:flex-row items-start gap-3 lg:items-center ">
-              <div className="flex bg-slate-50 rounded-full p-1 mt-4">
+              <div className="grid grid-cols-5 max-md:grid-cols-3 bg-slate-50 rounded-full p-1 mt-4">
                 <button
                   onClick={() => setActiveTab("status")}
                   className={`px-4 py-2 text-sm font-medium rounded-full ${
@@ -48,6 +53,26 @@ export const Shipments = () => {
                   }`}
                 >
                   الشحنات
+                </button>
+                <button
+                  onClick={() => setActiveTab("global")}
+                  className={`px-4 py-2 text-sm font-medium rounded-full ${
+                    activeTab === "global"
+                      ? "bg-white shadow-md text-pink-950"
+                      : "text-neutral-600"
+                  }`}
+                >
+                  الشحنات الدولية
+                </button>
+                <button
+                  onClick={() => setActiveTab("local")}
+                  className={`px-4 py-2 text-sm font-medium rounded-full ${
+                    activeTab === "local"
+                      ? "bg-white shadow-md text-pink-950"
+                      : "text-neutral-600"
+                  }`}
+                >
+                  الشحنات المحلية
                 </button>
                 <button
                   onClick={() => setActiveTab("return")}
@@ -88,7 +113,7 @@ export const Shipments = () => {
               </div>
 
               {/* Filter and Add Buttons */}
-              <div className="lg:self-end self-start">
+              <div className="lg:self-center self-start">
                 <FilterButton />
               </div>
             </div>
@@ -98,11 +123,15 @@ export const Shipments = () => {
           <div className="w-full mt-4 md:mt-6 overflow-x-auto">
             <div className="min-w-[600px] md:min-w-full">
               {activeTab === "status" ? (
-                <ShipmentStatusTable />
+                <ShipmentAdminTable />
+              ) : activeTab === "global" ? (
+                <ShipmentGlobal />
+              ) : activeTab === "local" ? (
+                <ShipmentLocal />
               ) : activeTab === "canceled" ? (
-                <ShipmentCanceled activeTab="canceled" />
+                <ShipmentAdminCanceled />
               ) : activeTab === "return" ? (
-                <ShipmentReturn activeTab="return" />
+                <ShipmentAdminReturn />
               ) : null}
             </div>
           </div>
@@ -112,4 +141,4 @@ export const Shipments = () => {
   );
 };
 
-export default Shipments;
+export default ShipmentAdminDetails;

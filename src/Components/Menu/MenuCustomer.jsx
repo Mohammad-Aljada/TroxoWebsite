@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
+import EditClientModal from "../Modal/EditClientModal";
 import { MenuItem } from "./MenuItem";
+import { useState } from "react";
 
 const menuItems = [
   {
@@ -15,6 +17,15 @@ const menuItems = [
 ];
 
 export default function MenuCustomer() {
+  const [activeModal, setActiveModal] = useState(null);
+  const handleMenuItemClick = (action) => {
+    if (action === "Edit") {
+      console.log(action);
+      setActiveModal("Edit");
+    }
+    console.log(action);
+    // يمكنك إضافة حالات أخرى هنا
+  };
   return (
     <div
       className="bg-white rounded-lg shadow-sm w-[185px] py-2 border border-gray-200"
@@ -28,8 +39,13 @@ export default function MenuCustomer() {
             icon={item.icon}
             textColor={item.textColor}
             className="hover:bg-gray-100 rounded px-2 py-1"
+            onClick={() => handleMenuItemClick(item.action)}
           />
         ))}
+        {/* عرض المودال عند النقر */}
+        {activeModal === "Edit" && (
+          <EditClientModal onClose={() => setActiveModal(null)} />
+        )}
       </div>
     </div>
   );

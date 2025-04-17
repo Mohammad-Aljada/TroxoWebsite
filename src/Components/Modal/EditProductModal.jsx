@@ -2,22 +2,22 @@
 import { useState } from "react";
 import SuccessAddProductModal from "./SuccessAddProductModal";
 
-const AddProductModal = ({ onClose }) => {
+const EditProductModal = ({ onClose }) => {
   const [formData, setFormData] = useState({
-    productName: "",
+    productName: "احذية رياضية",
     productType: "",
-    price: "",
-    length: "",
-    height: "",
-    width: "",
-    weight: "",
-    isFragile: false,
-    hasLiquid: false,
+    price: "250 ريال سعودي",
+    length: "15 سم",
+    height: "15 سم",
+    width: "20 سم",
+    weight: "0.5 كغ",
+    isFragile: true,
+    hasLiquid: true,
     isHazardous: false,
     mainImage: null,
     dimensionImages: null,
   });
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(5);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const onSubmit = (e) => {
@@ -53,7 +53,7 @@ const AddProductModal = ({ onClose }) => {
         {/* Header */}
         <header className="sticky top-0 flex justify-between items-center px-6 py-4 bg-red-50 border-b border-gray-200 z-10">
           <h2 id="modal-title" className="text-xl font-bold text-pink-900">
-            إضافة منتج جديد
+            تعديل المنتج
           </h2>
           <button
             onClick={onClose}
@@ -167,7 +167,7 @@ const AddProductModal = ({ onClose }) => {
                         value={formData.productName}
                         onChange={handleChange}
                         placeholder="أدخل اسم المنتج"
-                        className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg  text-right"
+                        className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-right"
                       />
                     </div>
                   </div>
@@ -188,7 +188,7 @@ const AddProductModal = ({ onClose }) => {
                         name="productType1"
                         value={formData.productType1}
                         onChange={handleChange}
-                        className="w-full px-4 pr-10 py-2 border border-gray-300 rounded-lg  text-right"
+                        className="w-full px-4 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-right"
                       >
                         <option value="">نوع المنتج</option>
                         <option value="type1">النوع 1</option>
@@ -216,7 +216,7 @@ const AddProductModal = ({ onClose }) => {
                         value={formData.price}
                         onChange={handleChange}
                         placeholder="أدخل السعر"
-                        className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg  text-right"
+                        className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-right"
                       />
                     </div>
                   </div>
@@ -251,7 +251,7 @@ const AddProductModal = ({ onClose }) => {
                     value={formData.length}
                     onChange={handleChange}
                     placeholder="أدخل الطول"
-                    className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg "
+                    className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     required
                   />
                 </div>
@@ -276,7 +276,7 @@ const AddProductModal = ({ onClose }) => {
                     value={formData.weight}
                     onChange={handleChange}
                     placeholder="أدخل الوزن"
-                    className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg "
+                    className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     required
                   />
                 </div>
@@ -322,7 +322,7 @@ const AddProductModal = ({ onClose }) => {
                     value={formData.height}
                     onChange={handleChange}
                     placeholder="أدخل الارتفاع"
-                    className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg "
+                    className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     required
                   />
                 </div>
@@ -347,7 +347,7 @@ const AddProductModal = ({ onClose }) => {
                     value={formData.width}
                     onChange={handleChange}
                     placeholder="أدخل العرض"
-                    className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg "
+                    className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     required
                   />
                 </div>
@@ -425,4 +425,4 @@ const AddProductModal = ({ onClose }) => {
   );
 };
 
-export default AddProductModal;
+export default EditProductModal;

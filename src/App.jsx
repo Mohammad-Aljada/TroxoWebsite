@@ -29,6 +29,8 @@ import StateShipment from "./Pages/StateShipment.jsx";
 import StateFinancial from "./Pages/StateFinancial.jsx";
 import BankAccount from "./Pages/BankAccount.jsx";
 import { Ticket } from "./Pages/Ticket";
+import CompanyDetails from "./Pages/Admin/CompanyDetails.jsx";
+import ShipmentAdminDetails from "./Pages/Admin/ShipmentAdminDetails.jsx";
 
 function App() {
   return (
@@ -75,9 +77,15 @@ function App() {
       </Route>
       <Route path="/admin" element={<AdminDashLayout />}>
         <Route index element={<HomeAdmin />} />
-        <Route path="company" element={<Company />} />
+        <Route path="company">
+          <Route index element={<Company />} />
+          <Route path="details" element={<CompanyDetails />} />
+        </Route>
         <Route path="users" element={<Users />} />
-        <Route path="shipments" element={<ShipmentsAdmin />} />
+        <Route path="shipments">
+          <Route index element={<ShipmentsAdmin />} />
+          <Route path="details" element={<ShipmentAdminDetails />} />
+        </Route>
         <Route path="wallet" element={<WalletAdmin />} />
       </Route>
     </Routes>

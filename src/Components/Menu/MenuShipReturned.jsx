@@ -1,33 +1,28 @@
 /* eslint-disable react/prop-types */
-import EditProductModal from "../Modal/EditProductModal";
 import { MenuItem } from "./MenuItem";
 import { useState } from "react";
+import TicketModal from "../Modal/TicketModal";
 
 const menuItems = [
   {
-    text: "تعديل منتج",
-    icon: `/Icones/Edit.svg`,
-    action: "Edit",
-  },
-  {
-    text: "حذف منتج",
-    icon: `/Icones/Delete.svg`,
-    action: "Delete",
+    text: "طباعة البوليصة",
+    textColor: "text-sky-600",
+    icon: `/Icones/Print.svg`,
+    action: "print",
   },
 ];
 
-export default function MenuProduct() {
+export default function MenuShipReturned({ onClose }) {
   const [activeModal, setActiveModal] = useState(null);
 
   const handleMenuItemClick = (action) => {
-    if (action === "Edit") {
+    if (action === "ticket") {
       console.log(action);
-      setActiveModal("Edit");
+      setActiveModal("ticket");
     }
     console.log(action);
     // يمكنك إضافة حالات أخرى هنا
   };
-
   return (
     <div
       className="bg-white rounded-lg shadow-sm w-[185px] py-2 border border-gray-200"
@@ -45,8 +40,13 @@ export default function MenuProduct() {
           />
         ))}
         {/* عرض المودال عند النقر */}
-        {activeModal === "Edit" && (
-          <EditProductModal onClose={() => setActiveModal(null)} />
+        {activeModal === "ticket" && (
+          <TicketModal
+            onClose={() => {
+              setActiveModal(null);
+              onClose(); // إغلاق القائمة بعد إغلاق المودال
+            }}
+          />
         )}
       </div>
     </div>

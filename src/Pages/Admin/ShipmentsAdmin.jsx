@@ -1,6 +1,7 @@
 import StatCardAdmin from "./../../Components/StatCardAdmin";
 import PrintReportModal from "./../../Components/Modal/PrintReportModal";
 import { useState } from "react";
+import { NavLink } from "react-router";
 
 const ShipmentsAdmin = () => {
   // تنسيق التاريخ باللغة العربية
@@ -37,8 +38,8 @@ const ShipmentsAdmin = () => {
               {arabicDate}
             </time>
           </div>
-
-          <button
+          <div className="flex gap-2 items-center">
+            <button
             onClick={onSubmit}
             className="flex items-center cursor-pointer gap-2 px-4 py-3 text-base font-medium rounded-2xl border border-gray-300 hover:bg-gray-50 transition-colors"
           >
@@ -49,6 +50,19 @@ const ShipmentsAdmin = () => {
               className="w-5 h-5"
             />
           </button>
+          <NavLink to="/admin/shipments/details">
+          <button
+            className="flex items-center cursor-pointer gap-2 px-4 py-3 text-base font-medium rounded-2xl border border-gray-300 hover:bg-gray-50 transition-colors"
+          >
+            <span>تفاصيل</span>
+            <img
+              src="/Icones/details.svg"
+              alt="أيقونة التفاصيل"
+              className="w-5 h-5"
+            />
+          </button></NavLink>
+          </div>
+          
           {showPrintModal && (
             <PrintReportModal onClose={() => setShowPrintModal(false)} />
           )}

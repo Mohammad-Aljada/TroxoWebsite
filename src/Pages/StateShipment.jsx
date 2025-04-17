@@ -74,7 +74,7 @@ const StateShipment = () => {
             textColor="text-indigo-500"
           />
           <StatCardAdmin
-            title="عدد الشحنات الملغاة"
+            title="عدد الشحنات المغلفة"
             value="15"
             change="6.84%"
             period="فترة التغيير"
@@ -132,7 +132,7 @@ const StateShipment = () => {
           />
 
           <StatCardAdmin
-            title="أكثر مدينة إرسالاً"
+            title="المدينة الاعلى طلبات"
             value="الرياض"
             change=""
             period=""

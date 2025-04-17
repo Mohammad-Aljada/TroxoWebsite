@@ -1,30 +1,37 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import SuccessAddStoreModal from "./SuccessAddStoreModal";
+import SuccessAddClientModal from "./SuccessAddClientModal";
 
-export default function AddStoreModal({ onClose }) {
+export default function EditClientModal({ onClose }) {
   const [formData, setFormData] = useState({
-    storeName: "",
-    phone: "",
-    country: "",
-    city: "",
-    postalCode: "",
-    address: "",
+    clientName: "مشاري الذيباني",
+    email: "mashary@gmail.com",
+    phone: "+966 53 337 3122",
+    country: "مملكة سعودية",
+    city: "مكة المكرمة",
+    postalCode: "12345",
+    address: "حر جَبَل النور، المملكة العربية السعودية",
   });
+
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+
+  const onSubmit = (e) => {
+    e.preventDefault(); // لمنع إعادة تحميل الصفحة
+    setShowSuccessModal(true);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const onSubmit = (e) => {
-    e.preventDefault(); // لمنع إعادة تحميل الصفحة
-    // هنا ضع منطق إضافة المتجر (API call أو أي شيء آخر)
-
-    // بعد نجاح الإضافة، عرض modal النجاح
-    setShowSuccessModal(true);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // هنا يمكنك إضافة منطق إرسال النموذج
+    console.log("Form submitted:", formData);
+    onClose();
   };
+
   return (
     <div
       className="fixed inset-0 flex justify-center items-center p-4 z-[1000]"
@@ -44,7 +51,7 @@ export default function AddStoreModal({ onClose }) {
         {/* Modal Header */}
         <header className="sticky top-0 flex justify-between items-center px-6 py-4 bg-red-50 border-b border-gray-200 z-10">
           <h2 id="modal-title" className="text-xl font-bold text-pink-900">
-            إضافة متجر جديد
+            تعديل بيانات العميل
           </h2>
           <button
             onClick={onClose}
@@ -70,66 +77,117 @@ export default function AddStoreModal({ onClose }) {
 
         {/* Modal Content */}
         <div className="p-2 md:p-4">
-          <form className="">
+          <form onSubmit={handleSubmit}>
             {/* Store Info Section */}
             <section className="p-5 mb-1 rounded-xl bg-gray-50">
-              <h3 className="mb-4 text-lg font-semibold text-[#FC746C]">
-                بطاقة بيانات المتجر
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* حقل اسم المتجر */}
+              <div className="flex justify-between">
+                <h3 className="mb-4 text-lg font-semibold text-[#FC746C]">
+                  بطاقة بيانات العميل
+                </h3>
+                <button className="flex overflow-hidden items-center py-1 px-3 text-sm bg-red-100 rounded-md text-pink-950">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/1e95660b64d80ec70fafcd1a47dbccf9a97e8de4?placeholderIfAbsent=true&apiKey=33cf6ee4ee4e4cdd8b24ad2c5832d456"
+                    className="w-6 h-6 mr-2"
+                    alt=""
+                  />
+                  إنشاء رابط دعوة
+                </button>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                   <label
-                    htmlFor="storeName"
+                    htmlFor="clientName"
                     className="block mb-2 text-sm font-medium text-gray-700"
                   >
-                    اسم المتجر <span className="text-red-600">*</span>
+                    اسم العميل<span className="text-red-600">*</span>
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                       <img
-                        src="/Icones/store.svg"
-                        alt="أيقونة المتجر"
+                        src="/Icones/Profile.svg"
+                        alt="أيقونة العميل"
                         className="w-5 h-5 text-gray-400"
                       />
                     </div>
                     <input
-                      id="storeName"
-                      name="storeName"
+                      id="clientName"
+                      name="clientName"
                       type="text"
-                      placeholder="أدخل اسم المتجر"
+                      placeholder="أدخل اسم العميل"
                       className="w-full px-4 py-2 pr-10 text-gray-700 bg-white border border-gray-300 rounded-lg  transition-all"
                       required
-                      value={formData.storeName}
+                      value={formData.clientName}
                       onChange={handleChange}
                     />
                   </div>
                 </div>
 
-                {/* حقل رقم الهاتف */}
-                <div>
+                <div className="mb-4">
                   <label
-                    htmlFor="phone"
+                    htmlFor="phoneNumber"
                     className="block mb-2 text-sm font-medium text-gray-700"
                   >
                     رقم الهاتف <span className="text-red-600">*</span>
                   </label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+
+                  <div className="relative flex gap-2">
+                    {/* أيقونة الهاتف داخل حقل الإدخال */}
+                    <div className="absolute inset-y-0 left-1 flex items-center pointer-events-none">
                       <img
                         src="/Icones/phone.svg"
                         alt="أيقونة هاتف"
                         className="w-5 h-5 text-gray-400"
                       />
                     </div>
+                    <select
+                      id="countryCode"
+                      name="countryCode"
+                      className="w-24 px-3 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg transition-all"
+                      value={formData.countryCode}
+                      onChange={handleChange}
+                    >
+                      <option value="+966">🇸🇦 +966</option>
+                      <option value="+1">🇺🇸 +1</option>
+                      <option value="+44">🇬🇧 +44</option>
+                    </select>
+
+                    {/* حقل إدخال رقم الهاتف مع رمز الدولة المدمج */}
                     <input
-                      id="phone"
-                      name="phone"
+                      id="phoneNumber"
+                      name="phoneNumber"
                       type="tel"
-                      placeholder="+966"
-                      className="w-full px-4 py-2 pl-10 text-gray-700 bg-white border border-gray-300 rounded-lg  transition-all"
+                      placeholder="+966 50 123 4567"
+                      className="w-full pl-4 pr-10 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg transition-all"
+                      value="50 123 4567"
+                      onChange={handleChange}
                       required
-                      value={formData.phone}
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block mb-2 text-sm font-medium text-gray-700"
+                  >
+                    البريد الالكتروني<span className="text-red-600">*</span>
+                  </label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                      <img
+                        src="/Icones/email.svg"
+                        alt="أيقونة بريد الكتروني"
+                        className="w-5 h-5 text-gray-400"
+                      />
+                    </div>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      placeholder="ادخل البريد الالكتروني"
+                      className="w-full px-4 py-2 pr-10 text-gray-700 bg-white border border-gray-300 rounded-lg  transition-all"
+                      required
+                      value={formData.email}
                       onChange={handleChange}
                     />
                   </div>
@@ -139,8 +197,8 @@ export default function AddStoreModal({ onClose }) {
 
             {/* Address Section */}
             <section className="p-5 mb-6 rounded-xl bg-gray-50">
-              <h3 className="mb-4 text-lg font-semibold text-gray-800">
-                تفاصيل عنوان المتجر
+              <h3 className="mb-4 text-lg text-right font-semibold text-gray-800">
+                تفاصيل عنوان العميل
               </h3>
 
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -167,7 +225,6 @@ export default function AddStoreModal({ onClose }) {
                       value={formData.country}
                       onChange={handleChange}
                     >
-                      <option value="">اختر الدولة</option>
                       <option value="السعودية">السعودية</option>
                       <option value="مصر">مصر</option>
                       <option value="الإمارات">الإمارات</option>
@@ -198,7 +255,7 @@ export default function AddStoreModal({ onClose }) {
                       value={formData.city}
                       onChange={handleChange}
                     >
-                      <option value="">اختر المدينة</option>
+                      <option value="مكة مكرمة">مكة مكرمة</option>
                       <option value="الرياض">الرياض</option>
                       <option value="جدة">جدة</option>
                       <option value="الدمام">الدمام</option>
@@ -269,19 +326,19 @@ export default function AddStoreModal({ onClose }) {
               <button
                 type="submit"
                 onClick={onSubmit}
-                className="px-6 py-3 text-sm font-semibold bg-red-100 text-pink-950 rounded-lg hover:bg-red-200 transition-colors "
+                className="px-6 py-3 text-sm font-semibold bg-red-100 text-pink-950 rounded-lg hover:bg-red-200 transition-colors focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
               >
-                إضافة متجر
+                حفظ البيانات
               </button>
               <button
                 type="button"
                 onClick={onClose}
-                className="px-6 py-3 text-sm font-semibold bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors "
+                className="px-6 py-3 text-sm font-semibold bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
               >
-                إلغاء الطلب
+                الغاء الطلب
               </button>
               {showSuccessModal && (
-                <SuccessAddStoreModal
+                <SuccessAddClientModal
                   onClose={() => setShowSuccessModal(false)}
                 />
               )}

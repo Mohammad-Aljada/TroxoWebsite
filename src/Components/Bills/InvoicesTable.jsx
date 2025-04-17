@@ -1,5 +1,5 @@
 import { FilterButton } from "../ActionButtons";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import MenuBills from "../Menu/MenuBills";
 
 export default function InvoicesTable() {
@@ -41,6 +41,19 @@ export default function InvoicesTable() {
     },
   ];
   const [selectedRow, setSelectedRow] = useState(null);
+  const dropdownRef = useRef(null);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setSelectedRow(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleMenuToggle = (rowId) => {
     setSelectedRow(selectedRow === rowId ? null : rowId);
@@ -153,7 +166,10 @@ export default function InvoicesTable() {
                       />
                     </div>
                   </td>
-                  <td className="px-3 py-3 text-sm text-blue-950 relative">
+                  <td
+                    className="px-3 py-3 text-sm text-blue-950 relative"
+                    ref={dropdownRef}
+                  >
                     <div className="flex justify-center">
                       <button
                         onClick={() => handleMenuToggle(invoice.id)}
@@ -178,6 +194,29 @@ export default function InvoicesTable() {
               ))}
             </tbody>
           </table>
+        </div>
+      </div>
+      {/* Pagination */}
+      <div className="flex flex-col items-center w-full gap-4 mt-6 sm:flex-row sm:justify-between">
+        <div className="flex items-center gap-2 text-sm text-black whitespace-nowrap">
+          <span>عدد الصفوف في كل صفحة:</span>
+          <select className="px-3 py-1 border border-gray-300 rounded focus:outline-none focus:border-black">
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+          </select>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <button className="p-2 rounded  text-gray-700  transition-colors">
+            <img src="/Icones/ArrowRight.svg" alt="السابق" className="w-4" />
+          </button>
+          <button className="px-3 py-1 rounded bg-gray-100  font-medium hover:bg-red-200 transition-colors">
+            1
+          </button>
+          <button className="p-2 rounded 0 text-gray-700  transition-colors">
+            <img src="/Icones/ArrowLeft.svg" alt="التالي" className="w-4" />
+          </button>
         </div>
       </div>
     </section>

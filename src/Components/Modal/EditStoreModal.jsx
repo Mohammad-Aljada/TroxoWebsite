@@ -97,7 +97,7 @@ export default function EditStoreModal({ onClose }) {
                       name="storeName"
                       type="text"
                       placeholder="أدخل اسم المتجر"
-                      className="w-full px-4 py-2 pr-10 text-gray-700 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-2 pr-10 text-gray-700 bg-white border border-gray-300 rounded-lg  transition-all"
                       required
                       value={formData.storeName}
                       onChange={handleChange}
@@ -126,7 +126,7 @@ export default function EditStoreModal({ onClose }) {
                       name="phone"
                       type="tel"
                       placeholder="+966"
-                      className="w-full px-4 py-2 pl-10 text-gray-700 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-2 pl-10 text-gray-700 bg-white border border-gray-300 rounded-lg  transition-all"
                       required
                       value={formData.phone}
                       onChange={handleChange}
@@ -161,7 +161,7 @@ export default function EditStoreModal({ onClose }) {
                     <select
                       id="country"
                       name="country"
-                      className="w-full px-4 py-2 pr-10 text-gray-700 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-2 pr-10 text-gray-700 bg-white border border-gray-300 rounded-lg  transition-all"
                       required
                       value={formData.country}
                       onChange={handleChange}
@@ -191,7 +191,7 @@ export default function EditStoreModal({ onClose }) {
                     <select
                       id="city"
                       name="city"
-                      className="w-full px-4 py-2 pr-10 text-gray-700 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-2 pr-10 text-gray-700 bg-white border border-gray-300 rounded-lg  transition-all"
                       required
                       value={formData.city}
                       onChange={handleChange}
@@ -224,7 +224,7 @@ export default function EditStoreModal({ onClose }) {
                       name="postalCode"
                       type="text"
                       placeholder="أدخل الرمز البريدي"
-                      className="w-full px-4 py-2 pr-10 text-gray-700 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-2 pr-10 text-gray-700 bg-white border border-gray-300 rounded-lg  transition-all"
                       required
                       value={formData.postalCode}
                       onChange={handleChange}
@@ -252,7 +252,7 @@ export default function EditStoreModal({ onClose }) {
                       name="address"
                       type="text"
                       placeholder="أدخل العنوان بالتفصيل"
-                      className="w-full px-4 py-2 pr-10 text-gray-700 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-2 pr-10 text-gray-700 bg-white border border-gray-300 rounded-lg  transition-all"
                       required
                       value={formData.address}
                       onChange={handleChange}
