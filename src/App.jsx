@@ -31,6 +31,7 @@ import BankAccount from "./Pages/BankAccount.jsx";
 import { Ticket } from "./Pages/Ticket";
 import CompanyDetails from "./Pages/Admin/CompanyDetails.jsx";
 import ShipmentAdminDetails from "./Pages/Admin/ShipmentAdminDetails.jsx";
+import TicketsAdmin from "./Pages/Admin/TicketsAdmin.jsx";
 
 function App() {
   return (
@@ -87,6 +88,7 @@ function App() {
           <Route path="details" element={<ShipmentAdminDetails />} />
         </Route>
         <Route path="wallet" element={<WalletAdmin />} />
+        <Route path="tickets" element={<TicketsAdmin />} />
       </Route>
     </Routes>
   );

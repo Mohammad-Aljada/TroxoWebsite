@@ -31,6 +31,11 @@ const AdminSidebar = () => {
       text: "الشحنات",
       path: "/admin/shipments",
     },
+    {
+      icon: "/Icones/ticketIcone.svg",
+      text: "الشحنات",
+      path: "/admin/tickets",
+    },
     { icon: "/Icones/chart.svg", text: "المالية", path: "/admin/finance" },
     { icon: "/Icones/wallet.svg", text: "المحفظة", path: "/admin/wallet" },
     {
