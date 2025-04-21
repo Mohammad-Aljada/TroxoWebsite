@@ -1,29 +1,25 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import PropTypes from "prop-types";
-import AnswerTicketModal from "../Modal/AnswerTicketModal";
 
-function TicketDetails({
+function UserDetails({
   title,
-  ticketNumber,
-  ticketDetails,
-  shipmentNumber,
-  companyName,
-  ticketType,
-  clientNumber,
-  ticketStatus,
-  ticketDate,
-  answerticket,
+  userNumber,
+  userName,
+  wallet,
+  cashOnDelivery,
+  numberStores,
+  numberLocalShipments,
+  numberGlobalShipments,
+  dateLastShipment,
+  amountLastWallet,
+  currency,
   imageUrl,
 }) {
   const [showDetails, setShowDetails] = useState(false);
-  const [showAnswerTicketModal, setShowAnswerTicketModal] = useState(false);
 
   const toggleDetails = () => {
     setShowDetails(!showDetails);
-  };
-  const handleAnswerTicketModal = () => {
-    setShowAnswerTicketModal(!showAnswerTicketModal);
   };
 
   return (
@@ -37,18 +33,18 @@ function TicketDetails({
           <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-4 gap-4 w-full">
             <div className="min-w-[120px]">
               <label className="block text-xs md:text-sm text-gray-500 mb-1">
-                رقم التذكرة
+                رقم المستخدم
               </label>
               <span className="text-sm md:text-base font-semibold block">
-                {ticketNumber}
+                {userNumber}
               </span>
             </div>
             <div className="min-w-[120px]">
               <label className="block text-xs md:text-sm text-gray-500 mb-1">
-                رقم الشحنة
+                اسم المستخدم
               </label>
               <span className="text-sm md:text-base font-semibold block">
-                {shipmentNumber}
+                {userName}
               </span>
             </div>
             <div className="min-w-[120px] flex items-center max-md:justify-between justify-start gap-2">
@@ -74,76 +70,62 @@ function TicketDetails({
           </div>
         </div>
 
-        {/* قسم تفاصيل التذكرة تحت العناصر الأساسية */}
-
         {/* قسم تفاصيل العنوان */}
         {showDetails && (
           <div className="text-right border-t border-gray-200 pt-4 mt-4">
-            <div className="grid grid-cols-3 max-sm:grid-cols-1 max-md:grid-cols-2 max-lg:grid-cols-2 gap-3 md:gap-4">
+            <div className="grid grid-cols-3 max-sm:grid-cols-2 max-md:grid-cols-2 max-lg:grid-cols-2 gap-3 md:gap-4">
               <div className="">
                 <label className="block text-xs md:text-sm text-gray-500 mb-1">
-                  اسم الشركة
+                  المحفظة
                 </label>
                 <span className="text-sm md:text-base font-semibold block">
-                  {companyName}
+                  {wallet}
                 </span>
               </div>
               <div className="">
                 <label className="block text-xs md:text-sm text-gray-500 mb-1">
-                  نوع التذكرة
+                  الدفع عند الاستلام
                 </label>
                 <span className="text-sm md:text-base font-semibold block">
-                  {ticketType}
+                  {cashOnDelivery}
                 </span>
               </div>
               <div>
                 <label className="block text-xs md:text-sm text-gray-500 mb-1">
-                  رد على التذكرة
+                  عدد المتاجر
+                </label>
+                <span className="text-sm md:text-base">{numberStores}</span>
+              </div>
+              <div>
+                <label className="block text-xs md:text-sm text-gray-500 mb-1">
+                  عدد الشحنات المحلية
                 </label>
                 <span className="text-sm md:text-base">
-                  <button
-                    className="cursor-pointer"
-                    onClick={handleAnswerTicketModal}
-                    aria-label="الرد على التذكرة"
-                  >
-                    <img
-                      src={answerticket}
-                      alt="رد التذكرة"
-                      className="w-5 h-5 md:w-6 md:h-6"
-                    />
-                  </button>
+                  {numberLocalShipments}
                 </span>
-                {showAnswerTicketModal && (
-                  <AnswerTicketModal
-                    onClose={() => setShowAnswerTicketModal(null)}
-                  />
-                )}
               </div>
               <div>
                 <label className="block text-xs md:text-sm text-gray-500 mb-1">
-                  رقم العميل
+                  عدد الشحنات الدولية
                 </label>
-                <span className="text-sm md:text-base">{clientNumber}</span>
+                <span className="text-sm md:text-base">
+                  {numberGlobalShipments}
+                </span>
               </div>
               <div>
                 <label className="block text-xs md:text-sm text-gray-500 mb-1">
-                  حالة التذكرة
+                  تاريخ اخر شحنة
                 </label>
-                <span className="text-sm md:text-base">{ticketStatus}</span>
-              </div>
-              <div>
-                <label className="block text-xs md:text-sm text-gray-500 mb-1">
-                  تاريخ التذكرة
-                </label>
-                <span className="text-sm md:text-base">{ticketDate}</span>
+                <span className="text-sm md:text-base">{dateLastShipment}</span>
               </div>
 
-              <div className="col-span-2">
+              <div className="">
                 <label className="block text-xs md:text-sm text-gray-500 mb-1">
-                  تفاصيل التذكرة
+                  مبلغ اخر شحنة المحفظة
                 </label>
-                <div className="text-sm md:text-base bg-gray-50 border border-gray-200 pr-2 pl-12 py-3 text-right rounded-lg font-medium">
-                  {ticketDetails}
+                <div className="text-sm md:text-base flex items-center   font-medium">
+                  <span>{amountLastWallet}</span>
+                  <img src={currency} alt="currency" className="w-5 h-5" />
                 </div>
               </div>
             </div>
@@ -154,18 +136,19 @@ function TicketDetails({
   );
 }
 
-TicketDetails.propTypes = {
+UserDetails.propTypes = {
   title: PropTypes.string.isRequired,
-  ticketNumber: PropTypes.string.isRequired,
-  ticketDetails: PropTypes.string,
-  shipmentNumber: PropTypes.string,
-  companyName: PropTypes.string,
-  ticketType: PropTypes.string,
-  clientNumber: PropTypes.string,
-  ticketStatus: PropTypes.string,
-  ticketDate: PropTypes.string,
-  answerticket: PropTypes.string,
+  userNumber: PropTypes.string.isRequired,
+  userName: PropTypes.string.isRequired,
+  wallet: PropTypes.string.isRequired,
+  cashOnDelivery: PropTypes.string.isRequired,
+  numberStores: PropTypes.string.isRequired,
+  numberLocalShipments: PropTypes.string.isRequired,
+  numberGlobalShipments: PropTypes.string.isRequired,
+  dateLastShipment: PropTypes.string.isRequired,
+  amountLastWallet: PropTypes.string.isRequired,
+  currency: PropTypes.string,
   imageUrl: PropTypes.string,
 };
 
-export default TicketDetails;
+export default UserDetails;

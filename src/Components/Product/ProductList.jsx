@@ -94,7 +94,11 @@ export const ProductList = () => {
   // يغلق القائمة إذا تم الضغط خارجها
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target) &&
+        !activeModal // مهم: ما تسكر القائمة إذا المودال مفتوح
+      ) {
         setSelectedRow(null);
       }
     };
@@ -107,6 +111,14 @@ export const ProductList = () => {
 
   const handleMenuToggle = (rowId) => {
     setSelectedRow(selectedRow === rowId ? null : rowId);
+  };
+
+  const handleMenuItemClick = () => {
+    setSelectedRow(null); // أغلق القائمة
+
+    setTimeout(() => {
+      setActiveModal(true); // افتح المودال بعد تأخير
+    }, 500);
   };
 
   const handleAddProductClick = () => {
@@ -319,7 +331,11 @@ export const ProductList = () => {
                     </button>
 
                     {selectedRow === product.id && (
-                      <div className="absolute left-2 top-10 mt-1 z-50">
+                      <div
+                        ref={dropdownRef}
+                        onClick={handleMenuItemClick}
+                        className="absolute left-2 top-10 mt-1 z-50"
+                      >
                         <MenuProduct onClose={() => setSelectedRow(null)} />
                       </div>
                     )}

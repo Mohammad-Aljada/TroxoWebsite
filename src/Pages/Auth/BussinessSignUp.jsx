@@ -48,15 +48,25 @@ const BussinessSignUp = () => {
         </select>
 
         <FileUpload />
+        <div className="flex justify-between  max-md:flex-col gap-2">
+          <NavLink to="/">
+            <button
+              type="submit"
+              className="w-full cursor-pointer bg-[#FFDDDD] text-gray-900 px-12 py-2 rounded-lg hover:bg-gray-200 transition duration-300"
+            >
+              الخطوة السابقة
+            </button>
+          </NavLink>
+          <NavLink to="/otp">
+            <button
+              type="submit"
+              className="w-full cursor-pointer bg-[#FFDDDD] text-gray-900 px-12 py-2 rounded-lg hover:bg-gray-200 transition duration-300"
+            >
+              انشاء حساب
+            </button>
+          </NavLink>
+        </div>
         {/* Submit Button */}
-        <NavLink to="/signIn">
-          <button
-            type="submit"
-            className="w-full cursor-pointer bg-[#FFDDDD] text-gray-900 py-2 rounded-lg hover:bg-gray-200 transition duration-300"
-          >
-            انشاء حساب
-          </button>
-        </NavLink>
       </form>
     </>
   );

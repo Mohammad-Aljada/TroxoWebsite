@@ -19,6 +19,15 @@ const EditProductModal = ({ onClose }) => {
   });
   const [quantity, setQuantity] = useState(5);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
+  const [showSafetyDetails, setShowSafetyDetails] = useState(false);
+
+  const toggleDetails = () => {
+    setShowDetails((prevState) => !prevState); // استخدام الدالة التحديثية لضمان الحصول على أحدث قيمة
+  };
+  const toggleSafteyDetails = () => {
+    setShowSafetyDetails((prevState) => !prevState); // استخدام الدالة التحديثية لضمان الحصول على أحدث قيمة
+  };
 
   const onSubmit = (e) => {
     e.preventDefault(); // لمنع إعادة تحميل الصفحة
@@ -81,319 +90,340 @@ const EditProductModal = ({ onClose }) => {
           {/* Section 1: Basic Info */}
 
           <div className=" mx-auto p-2 font-sans arabic-font" dir="ltr">
-            <div className="p-5  rounded-xl bg-gray-50 0">
-              <h3 className="text-lg font-semibold text-[#FC746C] pb-4 border-b border-gray-300 text-right">
-                بطاقة البيانات الشخصية
-              </h3>
+            <div className="p-5 rounded-xl bg-gray-50 relative">
+              <div className="flex justify-between items-center pb-4 border-b border-gray-300">
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    toggleDetails();
+                  }}
+                  aria-expanded={showDetails}
+                  aria-label={showDetails ? "إخفاء التفاصيل" : "إظهار التفاصيل"}
+                >
+                  <img
+                    src="/Icones/ButtonArrowRight.svg"
+                    alt=""
+                    className={`w-6 h-6 md:w-7 md:h-7 transition-transform duration-200 ${
+                      showDetails ? "rotate-90" : ""
+                    }`}
+                  />
+                </button>
+                <h3 className="text-lg font-semibold text-[#FC746C] text-right">
+                  بطاقة بيانات المنتج
+                </h3>
+              </div>
 
-              <div className="mt-4 flex flex-col-reverse md:flex-row gap-6">
-                {/* الجانب الأيسر (الصورة والكمية) */}
-                <div className="md:w-1/2 flex flex-col items-end space-y-4">
-                  {/* حقل الكمية */}
+              {showDetails && (
+                <>
+                  <div className="mt-4 flex flex-col-reverse md:flex-row gap-6">
+                    {/* الجانب الأيسر (الصورة والكمية) */}
+                    <div className="md:w-1/2 flex flex-col items-end space-y-4">
+                      {/* حقل الكمية */}
+                      <label className="flex flex-col item-end text-sm text-right font-semibold text-slate-950 mb-2">
+                        الكمية
+                      </label>
+                      <div className="inline-flex self-end px-8 py-4 items-center gap-1 text-lg font-bold bg-white rounded-lg">
+                        <button
+                          className="bg-red-50 rounded-lg px-4 py-2"
+                          onClick={() => setQuantity(Math.max(0, quantity - 1))}
+                          aria-label="تقليل الكمية"
+                        >
+                          -
+                        </button>
+                        <span>{quantity}</span>
+                        <button
+                          className="bg-red-50 rounded-lg px-4 py-2"
+                          onClick={() => setQuantity(quantity + 1)}
+                          aria-label="زيادة الكمية"
+                        >
+                          +
+                        </button>
+                      </div>
 
-                  <label className="flex flex-col item-end text-sm text-right font-semibold text-slate-950 mb-2">
-                    الكمية
-                  </label>
-                  <div className="inline-flex self-end px-8 py-4  items-center gap-1 text-lg font-bold bg-white rounded-lg">
-                    <button
-                      className="bg-red-50 rounded-lg px-4 py-2"
-                      onClick={() => setQuantity(Math.max(0, quantity - 1))}
-                      aria-label="تقليل الكمية"
-                    >
-                      -
-                    </button>
-                    <span>{quantity}</span>
-                    <button
-                      className="bg-red-50 rounded-lg px-4 py-2"
-                      onClick={() => setQuantity(quantity + 1)}
-                      aria-label="زيادة الكمية"
-                    >
-                      +
-                    </button>
+                      {/* حقل الصورة */}
+                      <div className="relative flex flex-col items-center justify-center bg-white rounded-lg p-6 text-center w-full">
+                        <img
+                          src="/Icones/imagePlus.png"
+                          alt=""
+                          className="w-10 h-10 mb-2 absolute left-3 top-3"
+                        />
+                        <img
+                          src="/Icones/AddImage.png"
+                          alt="add image icon"
+                          className="w-10 h-10"
+                        />
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          أضف صورة رئيسية للمنتج
+                        </label>
+                        <p className="text-xs text-gray-500 mb-2">
+                          أسحب الصورة هنا أو انقر للاختيار يدويًا
+                        </p>
+                        <input
+                          type="file"
+                          onChange={handleFileChange}
+                          className="hidden"
+                          id="file-upload"
+                        />
+                        <label
+                          htmlFor="file-upload"
+                          className="inline-block px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-md text-sm cursor-pointer"
+                        >
+                          اختر ملف
+                        </label>
+                      </div>
+                    </div>
+
+                    {/* الجانب الأيمن (باقي الحقول) */}
+                    <div className="md:w-2/3 space-y-4">
+                      {/* اسم المنتج */}
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2 text-right">
+                          اسم المنتج
+                        </label>
+                        <div className="relative">
+                          <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                            <img
+                              src="/Icones/box.svg"
+                              alt="أيقونة منتج"
+                              className="w-5 h-5 text-gray-400"
+                            />
+                          </div>
+                          <input
+                            type="text"
+                            name="productName"
+                            value={formData.productName}
+                            onChange={handleChange}
+                            placeholder="أدخل اسم المنتج"
+                            className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg text-right"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="space-y-2" dir="rtl">
+                        <label className="block text-sm font-medium text-gray-700 mb-2 text-right">
+                          نوع المنتج
+                        </label>
+                        <div className="relative">
+                          <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                            <img
+                              src="/Icones/MainCategory.svg"
+                              alt="أيقونة نوع المنتج"
+                              className="w-5 h-5 text-gray-400"
+                            />
+                          </div>
+                          <select
+                            name="productType1"
+                            value={formData.productType1}
+                            onChange={handleChange}
+                            className="w-full px-4 pr-10 py-2 border border-gray-300 rounded-lg text-right"
+                          >
+                            <option value="">نوع المنتج</option>
+                            <option value="type1">النوع 1</option>
+                            <option value="type2">النوع 2</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      {/* السعر */}
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2 text-right">
+                          السعر
+                        </label>
+                        <div className="relative">
+                          <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                            <img
+                              src="/Icones/price.svg"
+                              alt="أيقونة السعر"
+                              className="w-5 h-5 text-gray-400"
+                            />
+                          </div>
+                          <input
+                            type="text"
+                            name="price"
+                            value={formData.price}
+                            onChange={handleChange}
+                            placeholder="أدخل السعر"
+                            className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg text-right"
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
-                  {/* حقل الصورة */}
-                  <div className=" relative flex flex-col items-center justify-center  bg-white rounded-lg p-6 text-center">
-                    <img
-                      src="/Icones/imagePlus.png"
-                      alt=""
-                      className="w-10 h-10 mb-2 absolute left-3 top-3 "
-                    />
-                    <img
-                      src="/Icones/AddImage.png"
-                      alt="add image icon"
-                      className="w-10 h-10 "
-                    />
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      أضف صورة رئيسية للمنتج
-                    </label>
+                  <div className=" mb-2 rounded-xl bg-gray-50 mt-6" dir="rtl">
+                    <h3 className="text-lg font-semibold text-gray-800 border-b border-gray-300 mb-6 pb-2">
+                      بيانات تخزين المنتج
+                    </h3>
 
-                    <p className="text-xs text-gray-500 mb-2">
-                      أسحب الصورة هنا أو انقر للاختيار يدويًا
-                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      {/* الطول */}
+                      <div className="md:col-span-1">
+                        <label className="block mb-2 text-sm font-medium text-gray-700 text-right">
+                          الطول (سم) <span className="text-red-600">*</span>
+                        </label>
+                        <div className="relative">
+                          <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                            <img
+                              src="/Icones/length.svg"
+                              alt="أيقونة الطول"
+                              className="w-5 h-5 text-gray-400"
+                            />
+                          </div>
+                          <input
+                            type="text"
+                            name="length"
+                            value={formData.length}
+                            onChange={handleChange}
+                            placeholder="أدخل الطول"
+                            className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg text-right"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      {/* الوزن */}
+                      <div className="md:col-span-1">
+                        <label className="block mb-2 text-sm font-medium text-gray-700 text-right">
+                          الوزن (كجم) <span className="text-red-600">*</span>
+                        </label>
+                        <div className="relative">
+                          <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                            <img
+                              src="/Icones/weight.svg"
+                              alt="أيقونة الوزن"
+                              className="w-5 h-5 text-gray-400"
+                            />
+                          </div>
+                          <input
+                            type="text"
+                            name="weight"
+                            value={formData.weight}
+                            onChange={handleChange}
+                            placeholder="أدخل الوزن"
+                            className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg text-right"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      {/* الارتفاع */}
+                      <div className="md:col-span-1">
+                        <label className="block mb-2 text-sm font-medium text-gray-700 text-right">
+                          الارتفاع (سم) <span className="text-red-600">*</span>
+                        </label>
+                        <div className="relative">
+                          <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                            <img
+                              src="/Icones/height.svg"
+                              alt="أيقونة الارتفاع"
+                              className="w-5 h-5 text-gray-400"
+                            />
+                          </div>
+                          <input
+                            type="text"
+                            name="height"
+                            value={formData.height}
+                            onChange={handleChange}
+                            placeholder="أدخل الارتفاع"
+                            className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg text-right"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      {/* العرض */}
+                      <div className="md:col-span-1">
+                        <label className="block mb-2 text-sm font-medium text-gray-700 text-right">
+                          العرض (سم) <span className="text-red-600">*</span>
+                        </label>
+                        <div className="relative">
+                          <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                            <img
+                              src="/Icones/width.svg"
+                              alt="أيقونة العرض"
+                              className="w-5 h-5 text-gray-400"
+                            />
+                          </div>
+                          <input
+                            type="text"
+                            name="width"
+                            value={formData.width}
+                            onChange={handleChange}
+                            placeholder="أدخل العرض"
+                            className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg text-right"
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+            <div className="mt-4" dir="rtl">
+              <div className="flex justify-between items-center">
+                <h3 className="text-lg mr-4 font-semibold text-[#FC746C]  pb-2">
+                  بيانات السلامة والأمان
+                </h3>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    toggleSafteyDetails();
+                  }}
+                  aria-expanded={showSafetyDetails}
+                  aria-label={
+                    showSafetyDetails ? "إخفاء التفاصيل" : "إظهار التفاصيل"
+                  }
+                >
+                  <img
+                    src="/Icones/ButtonArrowRight.svg"
+                    alt="arrow right icone"
+                    className={`w-6 h-6 md:w-7 md:h-7 ml-4 transition-transform duration-200 ${
+                      showSafetyDetails ? "rotate-90" : ""
+                    }`}
+                  />
+                </button>
+              </div>
+
+              {showSafetyDetails && (
+                <div className="space-y-2">
+                  <label className="flex items-center space-x-2">
                     <input
-                      type="file"
-                      onChange={handleFileChange}
-                      className="hidden"
-                      id="file-upload"
+                      type="checkbox"
+                      name="isFragile"
+                      checked={formData.isFragile}
+                      onChange={handleChange}
+                      className="rounded "
                     />
-                    <label
-                      htmlFor="file-upload"
-                      className="inline-block px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-md text-sm cursor-pointer"
-                    >
-                      اختر ملف
-                    </label>
-                  </div>
-                </div>
+                    <span>منتج هش (منتجات حساسة)</span>
+                  </label>
 
-                {/* الجانب الأيمن (باقي الحقول) */}
-                <div className="md:w-2/3 space-y-4">
-                  {/* اسم المنتج */}
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2 text-right">
-                      اسم المنتج
-                    </label>
-                    <div className="relative">
-                      <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                        <img
-                          src="/Icones/box.svg"
-                          alt="أيقونة منتج"
-                          className="w-5 h-5 text-gray-400"
-                        />
-                      </div>
-                      <input
-                        type="text"
-                        name="productName"
-                        value={formData.productName}
-                        onChange={handleChange}
-                        placeholder="أدخل اسم المنتج"
-                        className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-right"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="space-y-2 " dir="rtl">
-                    <label className="block text-sm font-medium text-gray-700 mb-2 text-right">
-                      نوع المنتج
-                    </label>
-                    <div className="relative">
-                      <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                        <img
-                          src="/Icones/MainCategory.svg"
-                          alt="أيقونة نوع المنتج"
-                          className="w-5 h-5 text-gray-400"
-                        />
-                      </div>
-                      <select
-                        name="productType1"
-                        value={formData.productType1}
-                        onChange={handleChange}
-                        className="w-full px-4 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-right"
-                      >
-                        <option value="">نوع المنتج</option>
-                        <option value="type1">النوع 1</option>
-                        <option value="type2">النوع 2</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  {/* السعر */}
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2 text-right">
-                      السعر
-                    </label>
-                    <div className="relative">
-                      <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                        <img
-                          src="/Icones/price.svg"
-                          alt="أيقونة السعر"
-                          className="w-5 h-5 text-gray-400"
-                        />
-                      </div>
-                      <input
-                        type="text"
-                        name="price"
-                        value={formData.price}
-                        onChange={handleChange}
-                        placeholder="أدخل السعر"
-                        className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-right"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Section 2: Storage Info */}
-          <div className="p-5 mb-2 rounded-xl bg-gray-50">
-            <h3 className="text-lg font-semibold text-gray-800 border-b border-gray-300 mb-6 pb-2">
-              بيانات تخزين المنتج
-            </h3>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {/* الطول */}
-              <div className="md:col-span-1">
-                <label className="block mb-2 text-sm font-medium text-gray-700">
-                  الطول (سم) <span className="text-red-600">*</span>
-                </label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                    <img
-                      src="/Icones/length.svg"
-                      alt="أيقونة الطول"
-                      className="w-5 h-5 text-gray-400"
+                  <label className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      name="hasLiquid"
+                      checked={formData.hasLiquid}
+                      onChange={handleChange}
+                      className="rounded  "
                     />
-                  </div>
-                  <input
-                    type="text"
-                    name="length"
-                    value={formData.length}
-                    onChange={handleChange}
-                    placeholder="أدخل الطول"
-                    className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    required
-                  />
-                </div>
-              </div>
+                    <span>المنتج يحتوي على مواد سائلة</span>
+                  </label>
 
-              {/* الوزن */}
-              <div className="md:col-span-1">
-                <label className="block mb-2 text-sm font-medium text-gray-700">
-                  الوزن (كجم) <span className="text-red-600">*</span>
-                </label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                    <img
-                      src="/Icones/weight.svg"
-                      alt="أيقونة الوزن"
-                      className="w-5 h-5 text-gray-400"
+                  <label className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      name="isHazardous"
+                      checked={formData.isHazardous}
+                      onChange={handleChange}
+                      className="rounded "
                     />
-                  </div>
-                  <input
-                    type="text"
-                    name="weight"
-                    value={formData.weight}
-                    onChange={handleChange}
-                    placeholder="أدخل الوزن"
-                    className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    required
-                  />
+                    <span>المنتج يحتوي على مواد خطرة</span>
+                  </label>
                 </div>
-              </div>
-
-              {/* حقل الصورة - يبقى في مكانه */}
-              <div className="md:col-span-1 bg-white flex flex-col items-center justify-center rounded-lg p-3 md:mt-0 mt-4">
-                <img
-                  src="/Icones/AddImage.png"
-                  alt="Add Image"
-                  className="w-8 h-8 mb-2"
-                />
-                <label className="block mb-2 text-sm font-medium text-gray-700 text-center">
-                  صور بأبعاد تقريبية
-                </label>
-                <p className="text-sm text-gray-500 mb-2 text-center">
-                  اسحب الصورة هنا أو انقر للاختيار يدويًا
-                </p>
-                <input
-                  type="file"
-                  onChange={(e) => handleFileChange(e, "dimensionImages")}
-                  className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 hover:file:bg-blue-100"
-                />
-              </div>
-
-              {/* الارتفاع */}
-              <div className="md:col-span-1">
-                <label className="block mb-2 text-sm font-medium text-gray-700">
-                  الارتفاع (سم) <span className="text-red-600">*</span>
-                </label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                    <img
-                      src="/Icones/height.svg"
-                      alt="أيقونة الارتفاع"
-                      className="w-5 h-5 text-gray-400"
-                    />
-                  </div>
-
-                  <input
-                    type="text"
-                    name="height"
-                    value={formData.height}
-                    onChange={handleChange}
-                    placeholder="أدخل الارتفاع"
-                    className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    required
-                  />
-                </div>
-              </div>
-
-              {/* العرض */}
-              <div className="md:col-span-1">
-                <label className="block mb-2 text-sm font-medium text-gray-700">
-                  العرض (سم) <span className="text-red-600">*</span>
-                </label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                    <img
-                      src="/Icones/width.svg"
-                      alt="أيقونة العرض"
-                      className="w-5 h-5 text-gray-400"
-                    />
-                  </div>
-                  <input
-                    type="text"
-                    name="width"
-                    value={formData.width}
-                    onChange={handleChange}
-                    placeholder="أدخل العرض"
-                    className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Section 4: Safety Info */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-[#FC746C]  pb-2">
-              بيانات السلامة والأمان
-            </h3>
-
-            <div className="space-y-2">
-              <label className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  name="isFragile"
-                  checked={formData.isFragile}
-                  onChange={handleChange}
-                  className="rounded "
-                />
-                <span>منتج هش (منتجات حساسة)</span>
-              </label>
-
-              <label className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  name="hasLiquid"
-                  checked={formData.hasLiquid}
-                  onChange={handleChange}
-                  className="rounded  "
-                />
-                <span>المنتج يحتوي على مواد سائلة</span>
-              </label>
-
-              <label className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  name="isHazardous"
-                  checked={formData.isHazardous}
-                  onChange={handleChange}
-                  className="rounded "
-                />
-                <span>المنتج يحتوي على مواد خطرة</span>
-              </label>
+              )}
             </div>
           </div>
 

@@ -3,6 +3,7 @@ import { MenuItem } from "./MenuItem";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import CancelShipmentModal from "../Modal/CancelShipmentModal";
+import TicketModal from "../Modal/TicketModal";
 
 const menuItems = [
   {
@@ -18,15 +19,15 @@ const menuItems = [
     action: "track",
   },
   {
-    text: "قيد المعالجة",
-    textColor: "text-blue-600",
-    icon: `/Icones/Processing.svg`,
-    action: "processing",
+    text: "رفع التذكرة",
+    textColor: "text-emerald-600",
+    icon: `/Icones/RiceTicket.svg`,
+    action: "ticket",
   },
   {
     text: "ارجاع الشحنة",
-    textColor: "text-emerald-600",
-    icon: `/Icones/RiceTicket.svg`,
+    textColor: "text-blue-600",
+    icon: `/Icones/Processing.svg`,
     action: "return",
   },
   {
@@ -47,6 +48,9 @@ export default function Menu({ onClose }) {
     }
     if (action === "return") {
       setActiveModal("return");
+    }
+    if (action === "ticket") {
+      setActiveModal("ticket");
     }
     // يمكنك إضافة حالات أخرى هنا
   };
@@ -69,6 +73,14 @@ export default function Menu({ onClose }) {
         {/* عرض المودال عند النقر */}
         {activeModal === "cancel" && (
           <CancelShipmentModal
+            onClose={() => {
+              setActiveModal(null);
+              onClose(); // إغلاق القائمة بعد إغلاق المودال
+            }}
+          />
+        )}
+        {activeModal === "ticket" && (
+          <TicketModal
             onClose={() => {
               setActiveModal(null);
               onClose(); // إغلاق القائمة بعد إغلاق المودال

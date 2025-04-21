@@ -19,20 +19,16 @@ const menuItems = [
 export default function MenuProduct() {
   const [activeModal, setActiveModal] = useState(null);
 
-  const handleMenuItemClick = (action) => {
+  const handleMenuItemClick = (action, e) => {
+    e.stopPropagation(); // هذه هي السطر الأساسي الذي يحل المشكلة
     if (action === "Edit") {
-      console.log(action);
       setActiveModal("Edit");
     }
-    console.log(action);
     // يمكنك إضافة حالات أخرى هنا
   };
 
   return (
-    <div
-      className="bg-white rounded-lg shadow-sm w-[185px] py-2 border border-gray-200"
-      // منع إغلاق القائمة عند النقر عليها
-    >
+    <div className="bg-white rounded-lg shadow-sm w-[185px] py-2 border border-gray-200">
       <div className="flex flex-col items-start space-y-1 px-2">
         {menuItems.map((item, index) => (
           <MenuItem
@@ -41,14 +37,15 @@ export default function MenuProduct() {
             icon={item.icon}
             textColor={item.textColor}
             className="hover:bg-gray-100 rounded px-2 py-1"
-            onClick={() => handleMenuItemClick(item.action)}
+            onClick={(e) => handleMenuItemClick(item.action, e)}
           />
         ))}
-        {/* عرض المودال عند النقر */}
-        {activeModal === "Edit" && (
-          <EditProductModal onClose={() => setActiveModal(null)} />
-        )}
       </div>
+
+      {/* عرض المودال خارج قائمة الـ MenuItem */}
+      {activeModal === "Edit" && (
+        <EditProductModal onClose={() => setActiveModal(null)} />
+      )}
     </div>
   );
 }

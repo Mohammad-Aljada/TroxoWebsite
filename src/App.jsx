@@ -32,6 +32,7 @@ import { Ticket } from "./Pages/Ticket";
 import CompanyDetails from "./Pages/Admin/CompanyDetails.jsx";
 import ShipmentAdminDetails from "./Pages/Admin/ShipmentAdminDetails.jsx";
 import TicketsAdmin from "./Pages/Admin/TicketsAdmin.jsx";
+import OTP from "./Pages/Auth/OTP.jsx";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
       <Route path="/forgetpassword" element={<ForgetPassword />} />
       <Route path="/confirmemail" element={<ConfirmEmail />} />
       <Route path="/resetpassword" element={<ResetPassword />} />
+      <Route path="/otp" element={<OTP />} />
 
       <Route path="/home" element={<DashboardLayout />}>
         <Route index element={<Home />} />

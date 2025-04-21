@@ -1,8 +1,14 @@
 import { useState } from "react";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 
 const Sidebar = () => {
   const [openMenus, setOpenMenus] = useState({});
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    navigate("/signin"); // التوجيه إلى صفحة تسجيل الدخول
+  };
 
   const toggleMenu = (menuName) => {
     setOpenMenus((prev) => ({
@@ -171,23 +177,18 @@ const Sidebar = () => {
 
       {/* قسم تسجيل الخروج (ثابت في الأسفل) */}
       <div className="flex-shrink-0 px-8 pb-6 max-md:px-5">
-        <NavLink
-          to="/logout"
-          className={({ isActive }) =>
-            `flex items-center gap-5 w-full px-4 py-2 -mx-4 ${
-              isActive
-                ? "text-pink-950 font-semibold bg-red-100 rounded-lg"
-                : "text-emerald-900"
-            }`
-          }
+        <button
+          onClick={handleLogout}
+          className={`flex items-center gap-2 cursor-pointer  w-full px-4 py-2 -mx-4  text-emerald-900
+            `}
         >
           <img
             src="/Icones/SignOutIcone.svg"
             alt="Sign out icon"
             className="object-contain shrink-0 w-5 aspect-square"
           />
-          تسجيل الخروج
-        </NavLink>
+          <span>تسجيل الخروج</span>
+        </button>
       </div>
     </nav>
   );

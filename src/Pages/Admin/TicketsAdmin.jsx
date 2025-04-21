@@ -2,7 +2,7 @@ import TicketDetails from "../../Components/Ticket/TicketDetails";
 
 function TicketsAdmin() {
   return (
-    <div className="w-full px-4 md:px-6" dir="rtl">
+    <div className="w-full px-4 mb-4 md:px-6" dir="rtl">
       <section className="flex flex-col grow items-start mt-10  max-md:max-w-full">
         <h1 className="text-2xl font-black leading-tight text-gray-800 uppercase">
           التذاكر
