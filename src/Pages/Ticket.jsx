@@ -1,8 +1,8 @@
 // ShipmentStatus.js
 
-import TicketTable from "./../Components/Ticket/TicketTable";
 import TicketModal from "./../Components/Modal/TicketModal";
 import { useState } from "react";
+import TicketDetails from "./../Components/Ticket/TicketDetails";
 
 export const Ticket = () => {
   const [activeModal, setActiveModal] = useState(false);
@@ -42,20 +42,7 @@ export const Ticket = () => {
               تذاكر
             </h2>
             {/* Search Box */}
-            <div className="relative lg:w-64">
-              <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                <img
-                  src="/Icones/search.svg"
-                  className="w-4 h-4"
-                  alt="Search icon"
-                />
-              </div>
-              <input
-                type="text"
-                className="w-full pr-10 text-sm border border-gray-300 rounded-full py-3 px-5 text-right focus:border-black focus:outline-none"
-                placeholder="ابحث عن التذكرة..."
-              />
-            </div>
+
             <div>
               <button
                 onClick={handleAddTicketClick}
@@ -84,10 +71,46 @@ export const Ticket = () => {
           </div>
 
           {/* Table Section */}
-          <div className="w-full mt-4 md:mt-6 overflow-x-auto">
-            <div className="min-w-[600px] md:min-w-full">
-              <TicketTable />
-            </div>
+          <div
+            className="flex overflow-hidden  flex-col px-11 pt-10 mt-5 w-full rounded-2xl bg-slate-50 max-md:px-5 max-md:mt-3 max-md:max-w-full"
+            dir="ltr"
+          >
+            <TicketDetails
+              title="تذكرة - الأولى"
+              ticketNumber="T-1234567"
+              shipmentNumber="SH-1234567"
+              companyName="SMSA"
+              ticketDetails="تفاصيل التذكرة"
+              ticketType="الغاء الشحنة"
+              clientNumber="C-1234567"
+              ticketStatus="قيد التنفيذ"
+              ticketDate="2025-05-01"
+              imageUrl="/Icones/ButtonArrowRight.svg"
+            />
+            <TicketDetails
+              title="تذكرة - الثانية"
+              ticketNumber="T-1134567"
+              shipmentNumber="SH-1234567"
+              companyName="SSH"
+              ticketType="الغاء الشحنة"
+              clientNumber="C-1234567"
+              ticketStatus="قيد التنفيذ"
+              ticketDetails="تفاصيل التذكرة"
+              ticketDate="2025-05-01"
+              imageUrl="/Icones/ButtonArrowRight.svg"
+            />
+            <TicketDetails
+              title="تذكرة - الثالثة"
+              ticketNumber="T-1232567"
+              shipmentNumber="SH-1234567"
+              companyName="SSH"
+              ticketType="الغاء الشحنة"
+              ticketDetails="تفاصيل التذكرة"
+              clientNumber="C-1234567"
+              ticketStatus="قيد التنفيذ"
+              ticketDate="2025-05-01"
+              imageUrl="/Icones/ButtonArrowRight.svg"
+            />
           </div>
         </section>
       </div>

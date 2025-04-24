@@ -20,6 +20,21 @@ const FormSection = ({ label, children, required }) => (
     {children}
   </div>
 );
+const SelectSection = ({ label, children, required }) => (
+  <div
+    className={`flex mt-4 flex-col ${
+      label === "عدد البوكسات" || label === "الكمية" ? "items-start gap-2" : ""
+    }`}
+  >
+    <div className="flex gap-2 self-start">
+      <label className="text-sm md:text-base font-semibold text-slate-950">
+        {label}
+      </label>
+      {required && <span className="text-sm text-red-600">*</span>}
+    </div>
+    {children}
+  </div>
+);
 
 const ShipmentForm = () => {
   const [activeDetails, setActiveDetails] = useState(null);
@@ -213,7 +228,7 @@ const ShipmentForm = () => {
               title="العميل"
               selectedItems={selectedCustomers.map((c) => c.name)} // تمرير الأسماء فقط
               onSelectMulti={handleSelectCustomer} // استخدام دالة الاختيار المتعدد
-              isMulti={true} 
+              isMulti={true}
               modalToOpen="client"
             />
           </div>
@@ -441,47 +456,71 @@ const ShipmentForm = () => {
           {/* معلومات الشحن */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {/* نوع الشحنة */}
-            <FormSection label="نوع الشحنة" required>
-              <div className="flex justify-between items-center p-3 bg-white rounded-lg border border-neutral-400 hover:border-neutral-500 transition-colors cursor-pointer">
-                <span className="text-neutral-400">اختر النوع</span>
+            <SelectSection label="نوع الشحنة" required>
+              <div className="relative w-full">
+                {/* عنصر الـ select الأصلي مع تعديلات بسيطة */}
+                <select className="w-full p-3 pl-10 pr-3 bg-white rounded-lg border border-neutral-400 hover:border-neutral-500 appearance-none cursor-pointer">
+                  <option value="" selected className="text-neutral-400">
+                    اختر نوع الشحنة
+                  </option>
+                  <option value="option1">خيار 1</option>
+                  <option value="option2">خيار 2</option>
+                  <option value="option3">خيار 3</option>
+                </select>
                 <img
                   src="/images/AarrowDown.svg"
                   alt="arrow"
-                  className="w-5 h-5 transition-transform"
+                  className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none"
                 />
               </div>
-            </FormSection>
+            </SelectSection>
 
             {/* شركة الشحن */}
-            <FormSection label="شركة الشحن" required>
-              <div className="flex justify-between items-center p-3 bg-white rounded-lg border border-neutral-400 hover:border-neutral-500 transition-colors cursor-pointer">
-                <div className="flex items-center gap-3">
-                  <img
-                    src="/Icones/ShipmentsIcone.svg"
-                    alt="shipping"
-                    className="w-5 h-5"
-                  />
-                  <span className="text-neutral-400">اختر الشركة</span>
-                </div>
+            <SelectSection label="شركة الشحن" required>
+              <div className="relative w-full">
+                {/* حاوية جديدة لتحديد المواقع */}
+                {/* الأيقونة الثابتة */}
+                <img
+                  src="/Icones/ShipmentsIcone.svg"
+                  alt="shipment icon"
+                  className="w-5 h-5 absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none"
+                />
+                {/* عنصر الـ select الأصلي مع تعديلات بسيطة */}
+                <select className="w-full p-3 pl-10 pr-8 bg-white rounded-lg border border-neutral-400 hover:border-neutral-500 appearance-none cursor-pointer">
+                  <option value="" selected className="text-neutral-400">
+                    اختر الشركة
+                  </option>
+                  <option value="option1">خيار 1</option>
+                  <option value="option2">خيار 2</option>
+                  <option value="option3">خيار 3</option>
+                </select>
                 <img
                   src="/images/AarrowDown.svg"
                   alt="arrow"
-                  className="w-5 h-5 transition-transform"
+                  className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none"
                 />
               </div>
-            </FormSection>
+            </SelectSection>
 
             {/* نوع الخدمة */}
-            <FormSection label="نوع الخدمة" required>
-              <div className="flex justify-between items-center p-3 bg-white rounded-lg border border-neutral-400 hover:border-neutral-500 transition-colors cursor-pointer">
-                <span className="text-neutral-400">اختر الخدمة</span>
+            <SelectSection label="نوع الخدمة" required>
+              <div className="relative w-full">
+                {/* عنصر الـ select الأصلي مع تعديلات بسيطة */}
+                <select className="w-full p-3 pl-10 pr-3 bg-white rounded-lg border border-neutral-400 hover:border-neutral-500 appearance-none cursor-pointer">
+                  <option value="" selected className="text-neutral-400">
+                    اختر نوع الخدمة
+                  </option>
+                  <option value="option1">خيار 1</option>
+                  <option value="option2">خيار 2</option>
+                  <option value="option3">خيار 3</option>
+                </select>
                 <img
                   src="/images/AarrowDown.svg"
                   alt="arrow"
-                  className="w-5 h-5 transition-transform"
+                  className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none"
                 />
               </div>
-            </FormSection>
+            </SelectSection>
           </div>
         </div>
       )}

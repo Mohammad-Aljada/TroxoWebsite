@@ -96,29 +96,33 @@ function TicketDetails({
                   {ticketType}
                 </span>
               </div>
-              <div>
-                <label className="block text-xs md:text-sm text-gray-500 mb-1">
-                  رد على التذكرة
-                </label>
-                <span className="text-sm md:text-base">
-                  <button
-                    className="cursor-pointer"
-                    onClick={handleAnswerTicketModal}
-                    aria-label="الرد على التذكرة"
-                  >
-                    <img
-                      src={answerticket}
-                      alt="رد التذكرة"
-                      className="w-5 h-5 md:w-6 md:h-6"
+
+              {answerticket && (
+                <div>
+                  <label className="block text-xs md:text-sm text-gray-500 mb-1">
+                    رد على التذكرة
+                  </label>
+                  <span className="text-sm md:text-base">
+                    <button
+                      className="cursor-pointer"
+                      onClick={handleAnswerTicketModal}
+                      aria-label="الرد على التذكرة"
+                    >
+                      <img
+                        src={answerticket}
+                        alt="رد التذكرة"
+                        className="w-5 h-5 md:w-6 md:h-6"
+                      />
+                    </button>
+                  </span>
+                  {showAnswerTicketModal && (
+                    <AnswerTicketModal
+                      onClose={() => setShowAnswerTicketModal(null)}
                     />
-                  </button>
-                </span>
-                {showAnswerTicketModal && (
-                  <AnswerTicketModal
-                    onClose={() => setShowAnswerTicketModal(null)}
-                  />
-                )}
-              </div>
+                  )}
+                </div>
+              )}
+
               <div>
                 <label className="block text-xs md:text-sm text-gray-500 mb-1">
                   رقم العميل

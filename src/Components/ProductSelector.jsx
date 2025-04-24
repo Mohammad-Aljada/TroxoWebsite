@@ -115,6 +115,20 @@ export const ProductSelector = () => {
 
       {isOpen && (
         <div className="absolute z-50 w-full mt-1 bg-white rounded-lg shadow-lg border border-gray-200 max-h-60 overflow-y-auto">
+          <div className="relative">
+            <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+              <img
+                src="/Icones/search.svg"
+                alt="search icone"
+                className="w-5 h-5"
+              />
+            </div>
+            <input
+              type="text"
+              placeholder={`ابحث عن منتج...`}
+              className="w-full py-2 pl-4 pr-10 text-sm text-right   "
+            />
+          </div>
           {products.map((product) => (
             <div key={product.id} className="relative">
               <div

@@ -134,24 +134,12 @@ export const ProductList = () => {
           </h2>
           <div className="relative">
             <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-              <svg
-                className="w-5 h-5 text-gray-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
+              <img src="/Icones/search.svg" alt="search icone" className="w-5 h-5"  />
             </div>
             <input
               type="text"
               placeholder="...ابحث عن المنتج"
-              className="w-full py-2 pl-4 pr-10 text-sm text-right border border-gray-300 rounded-full focus:ring-2 focus:ring-red-300 focus:border-transparent sm:w-64"
+              className="w-full py-2 pl-4 pr-10 text-sm text-right border border-gray-300 rounded-full  sm:w-64"
             />
           </div>
         </div>

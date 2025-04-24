@@ -90,14 +90,29 @@ const DropdownMenu = ({
 
       {isOpen && (
         <div className="absolute z-10 w-full mt-1 bg-white rounded-md shadow-lg border border-gray-200 max-h-60 overflow-y-auto">
+          <div className="relative">
+            <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+              <img
+                src="/Icones/search.svg"
+                alt="search icone"
+                className="w-5 h-5"
+              />
+            </div>
+            <input
+              type="text"
+              placeholder={`ابحث عن ${title}...`}
+              className="w-full py-2 pl-4 pr-10 text-sm text-right   "
+            />
+          </div>
           {options.map((option, index) => (
-            <div
-              key={index}
-              className={`flex items-center px-4 py-2.5 hover:bg-gray-50 cursor-pointer ${
-                (isMulti ? selectedItems.includes(option) : "")
-                  ? "bg-blue-50"
-                  : ""
-              }
+            <>
+              <div
+                key={index}
+                className={`flex items-center px-4 py-2.5 hover:bg-gray-50 cursor-pointer ${
+                  (isMulti ? selectedItems.includes(option) : "")
+                    ? "bg-blue-50"
+                    : ""
+                }
               ${
                 isone &&
                 (Array.isArray(selected)
@@ -107,19 +122,20 @@ const DropdownMenu = ({
                   : ""
               }
                             `}
-              onClick={() => handleSelect(option)}
-            >
-              {/* عرض Checkbox فقط إذا كان النوع "عميل" وفي وضع الاختيار المتعدد */}
-              {title === "العميل" && isMulti && (
-                <div className="mr-2" onClick={(e) => e.stopPropagation()}>
-                  <CheckBox
-                    checked={selectedItems.includes(option)}
-                    onChange={() => handleSelect(option)}
-                  />
-                </div>
-              )}
-              <span className="flex-1 text-right">{option}</span>
-            </div>
+                onClick={() => handleSelect(option)}
+              >
+                {/* عرض Checkbox فقط إذا كان النوع "عميل" وفي وضع الاختيار المتعدد */}
+                {title === "العميل" && isMulti && (
+                  <div className="mr-2" onClick={(e) => e.stopPropagation()}>
+                    <CheckBox
+                      checked={selectedItems.includes(option)}
+                      onChange={() => handleSelect(option)}
+                    />
+                  </div>
+                )}
+                <span className="flex-1 text-right">{option}</span>
+              </div>
+            </>
           ))}
 
           <button
